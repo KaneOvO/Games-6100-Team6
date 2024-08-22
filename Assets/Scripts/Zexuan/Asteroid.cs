@@ -10,6 +10,9 @@ public class Asteroid : Item
     [SerializeField] bool isMediumAsteroid;
     [SerializeField] bool isLargeAsteroid;
     private bool hasTakenDamage = false;
+    
+    int indexOfSmallAsteroid = 0;
+    int indexOfMediumAsteroid = 1;
 
     public float MinSpeed
     {
@@ -44,7 +47,7 @@ public class Asteroid : Item
                 {
                     Debug.Log("Medium asteroid destroyed");
                     Destroy(gameObject);
-                    SplitAsteroid(GameManager.Instance.asteroidPrefabs[0]);
+                    SplitAsteroid(GameManager.Instance.asteroidPrefabs[indexOfSmallAsteroid]);
                     GameManager.Instance.scoreChange(150);
                 }
             }
@@ -55,7 +58,7 @@ public class Asteroid : Item
                 {
                     Debug.Log("Large asteroid destroyed");
                     Destroy(gameObject);
-                    SplitAsteroid(GameManager.Instance.asteroidPrefabs[1]);
+                    SplitAsteroid(GameManager.Instance.asteroidPrefabs[indexOfMediumAsteroid]);
                     GameManager.Instance.scoreChange(200);
                 }
             }

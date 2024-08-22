@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5761872147284742679}
   - component: {fileID: 6505694159880639007}
-  - component: {fileID: -6492436172410488258}
   - component: {fileID: -8831568546952332418}
   - component: {fileID: 6111024911877883683}
   - component: {fileID: -4083842890992229914}
@@ -89,33 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &-6492436172410488258
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8782841060108417200}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!70 &-8831568546952332418
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -166,8 +138,8 @@ MonoBehaviour:
   health: 1
   currenthealth: 1
   damage: 1
-  minSpeed: 50
-  maxSpeed: 100
+  minSpeed: 1
+  maxSpeed: 2
   isSmallAsteroid: 1
   isMediumAsteroid: 0
   isLargeAsteroid: 0

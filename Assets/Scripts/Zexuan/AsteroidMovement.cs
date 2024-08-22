@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class AsteroidMovement : MonoBehaviour
@@ -16,7 +15,7 @@ public class AsteroidMovement : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void OnEnable()
+    void Start()
     {
         // Randomly set speed
         speed = Random.Range(asteroid.MinSpeed, asteroid.MaxSpeed);
@@ -46,9 +45,6 @@ public class AsteroidMovement : MonoBehaviour
 
             // Calculate direction towards the random world point
             direction = (randomWorldPoint - (Vector2)transform.position).normalized;
-
-            //add force to the asteroid
-            GetComponent<Rigidbody2D>().AddForce(direction * speed);
         }
     }
 
@@ -56,7 +52,7 @@ public class AsteroidMovement : MonoBehaviour
     void Update()
     {
         // Movement
-        //transform.Translate(direction * speed * Time.deltaTime);
+        transform.Translate(direction * speed * Time.deltaTime);
     }
 
     void OnBecameInvisible()
