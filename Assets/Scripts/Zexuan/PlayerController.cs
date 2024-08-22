@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D playerRb;
     AudioSource playerAudio;
     Ship ship;
+    [SerializeField] GameObject missilePrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,7 @@ public class PlayerController : MonoBehaviour
         MovementInput();
         RotationInput();
         WrapAroundScreen();
+        Fire();
     }
 
     void MovementInput()
@@ -100,5 +102,21 @@ public class PlayerController : MonoBehaviour
         }
 
         transform.position = Camera.main.ViewportToWorldPoint(viewportPosition);
+    }
+
+    private void Fire()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            //Instantiate(missilePrefab, transform.position, transform.rotation);
+            GameObject missile = MissilePool.SharedInstance.GetPooledObject();
+            if (missile != null)
+            {
+                missile.transform.position = transform.position;
+                missile.transform.rotation = transform.rotation;
+                missile.SetActive(true);
+            }
+        }
+
     }
 }

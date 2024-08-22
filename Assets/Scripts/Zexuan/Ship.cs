@@ -38,6 +38,7 @@ public class Ship : Item
             if (currenthealth <= 0)
             {
                 Destroy(gameObject);
+                GameManager.Instance.GameOver();
                 Debug.Log("Ship destroyed");
             }
         }

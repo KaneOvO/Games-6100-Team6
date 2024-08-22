@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,14 +9,13 @@ public class GameManager : MonoBehaviour
     public GameObject[] asteroidPrefabs;
     public GameObject player;
     public int score;
-    private bool isGameOver = false;
+    //private bool isGameOver = false;
 
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -36,10 +36,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isGameOver)
-        {
-            CancelInvoke("GenerateSingleAsteroid");
-        }
+
     }
 
     void GenerateAsteroids(int generateCount = 1)
@@ -95,5 +92,23 @@ public class GameManager : MonoBehaviour
     public void SetPlayer(GameObject player)
     {
         this.player = player;
+    }
+
+    public void GameOver()
+    {
+        //isGameOver = true;
+        CancelInvoke("GenerateSingleAsteroid");
+        UIManager.Instance.GameOver();
+    }
+
+    public void scoreChange(int change)
+    {
+        score += change;
+        UIManager.Instance.UpdateScore(score);
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

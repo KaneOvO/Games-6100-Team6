@@ -9,6 +9,7 @@ public class Asteroid : Item
     [SerializeField] bool isSmallAsteroid;
     [SerializeField] bool isMediumAsteroid;
     [SerializeField] bool isLargeAsteroid;
+    private bool hasTakenDamage = false;
 
     public float MinSpeed
     {
@@ -22,7 +23,8 @@ public class Asteroid : Item
 
     public override void TakeDamage(Attack attacker)
     {
-
+        if (hasTakenDamage) return;
+        hasTakenDamage = true;
         if (attacker.CompareTag("Bullet") || attacker.CompareTag("Player"))
         {
             if (isSmallAsteroid)
@@ -31,6 +33,7 @@ public class Asteroid : Item
                 if (currenthealth < 1)
                 {
                     Destroy(gameObject);
+                    GameManager.Instance.scoreChange(100);
                 }
             }
             else if (isMediumAsteroid)
@@ -38,21 +41,38 @@ public class Asteroid : Item
                 currenthealth -= attacker.Damage;
                 if (currenthealth < 1)
                 {
+                    Debug.Log("Medium asteroid destroyed");
                     Destroy(gameObject);
-                    Instantiate(GameManager.Instance.asteroidPrefabs[0], transform.position, Quaternion.identity);
+                    SplitAsteroid(GameManager.Instance.asteroidPrefabs[0]);
+                    GameManager.Instance.scoreChange(150);
                 }
             }
             else if (isLargeAsteroid)
             {
                 currenthealth -= attacker.Damage;
-                if (currenthealth <= 0)
+                if (currenthealth < 1)
                 {
-                    Instantiate(GameManager.Instance.asteroidPrefabs[1], transform.position, Quaternion.identity);
+                    Debug.Log("Large asteroid destroyed");
+                    Destroy(gameObject);
+                    SplitAsteroid(GameManager.Instance.asteroidPrefabs[1]);
+                    GameManager.Instance.scoreChange(200);
                 }
             }
         }
-
     }
 
+    private void SplitAsteroid(GameObject asteroidPrefab)
+    {
+        GameObject newAsteroid1 = Instantiate(asteroidPrefab, transform.position, Quaternion.identity);
+        GameObject newAsteroid2 = Instantiate(asteroidPrefab, transform.position, Quaternion.identity);
+        AsteroidMovement movement1 = newAsteroid1.GetComponent<AsteroidMovement>();
+        AsteroidMovement movement2 = newAsteroid2.GetComponent<AsteroidMovement>();
 
+        // Set random directions for the new asteroids
+        Vector2 direction1 = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+        Vector2 direction2 = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+
+        movement1.SetDirection(direction1);
+        movement2.SetDirection(direction2);
+    }
 }

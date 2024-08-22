@@ -9,11 +9,9 @@ public class AsteroidMovement : MonoBehaviour
     private float speed;
     public Vector2 direction;
 
-
     void Awake()
     {
         asteroid = GetComponent<Asteroid>();
-
     }
 
     // Start is called before the first frame update
@@ -22,6 +20,8 @@ public class AsteroidMovement : MonoBehaviour
         // Randomly set speed
         speed = Random.Range(asteroid.MinSpeed, asteroid.MaxSpeed);
 
+        if (direction == Vector2.zero)
+    {
         player = GameManager.Instance.player;
 
         // Calculate direction towards player
@@ -33,7 +33,7 @@ public class AsteroidMovement : MonoBehaviour
         {
             Debug.LogWarning("Player not set for asteroid movement.");
         }
-
+    }
     }
 
     // Update is called once per frame
@@ -49,4 +49,8 @@ public class AsteroidMovement : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public void SetDirection(Vector2 newDirection)
+    {
+        direction = newDirection;
+    }
 }
