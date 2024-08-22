@@ -25,6 +25,7 @@ public class Asteroid : Item
     {
         if (hasTakenDamage) return;
         hasTakenDamage = true;
+        Debug.Log("Asteroid taking damage");
         if (attacker.CompareTag("Bullet") || attacker.CompareTag("Player"))
         {
             if (isSmallAsteroid)

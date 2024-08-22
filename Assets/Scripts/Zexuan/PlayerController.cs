@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     AudioSource playerAudio;
     Ship ship;
     [SerializeField] GameObject missilePrefab;
+    private float fireRate = 0.2f;
+    private float nextFireTime = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +31,7 @@ public class PlayerController : MonoBehaviour
 
     void MovementInput()
     {
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
         {
             StartBoost();
         }
@@ -61,11 +63,11 @@ public class PlayerController : MonoBehaviour
 
     private void RotationInput()
     {
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
             ApplyRotation(Vector3.forward);
         }
-        else if (Input.GetKey(KeyCode.RightArrow))
+        else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
             ApplyRotation(Vector3.back);
         }
@@ -106,9 +108,10 @@ public class PlayerController : MonoBehaviour
 
     private void Fire()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) && Time.time > nextFireTime)
         {
-            //Instantiate(missilePrefab, transform.position, transform.rotation);
+            nextFireTime = Time.time + fireRate;
+
             GameObject missile = MissilePool.SharedInstance.GetPooledObject();
             if (missile != null)
             {
@@ -117,6 +120,5 @@ public class PlayerController : MonoBehaviour
                 missile.SetActive(true);
             }
         }
-
     }
 }
