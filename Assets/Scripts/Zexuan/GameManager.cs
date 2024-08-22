@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    void GenerateAsteroids(int generateCount = 1)
+    void GenerateAsteroids(int generateCount)
     {
         for (int i = 0; i < generateCount; i++)
         {
@@ -51,7 +51,8 @@ public class GameManager : MonoBehaviour
 
     void GenerateSingleAsteroid()
     {
-        GenerateAsteroids(1);
+        int randomIndex = Random.Range(0, 3);
+        GenerateAsteroids(randomIndex);
     }
 
     Vector2 GetRandomOffScreenPosition()
