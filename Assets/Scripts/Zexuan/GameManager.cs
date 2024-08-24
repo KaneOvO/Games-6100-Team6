@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public int score;
     //private bool isGameOver = false;
+    [SerializeField] float generateCooldown;
 
     private void Awake()
     {
@@ -30,7 +31,7 @@ public class GameManager : MonoBehaviour
         int asteroidCount = Random.Range(3, 6);
         GenerateAsteroids(asteroidCount);
 
-        InvokeRepeating("GenerateSingleAsteroid", 3.0f, 3.0f);
+        InvokeRepeating("GenerateSingleAsteroid", generateCooldown, generateCooldown);
     }
 
     // Update is called once per frame

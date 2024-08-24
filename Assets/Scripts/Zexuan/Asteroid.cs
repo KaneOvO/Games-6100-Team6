@@ -10,6 +10,8 @@ public class Asteroid : Item
     [SerializeField] bool isMediumAsteroid;
     [SerializeField] bool isLargeAsteroid;
     private bool hasTakenDamage = false;
+
+    public bool isInScene = true;
     
     int indexOfSmallAsteroid = 0;
     int indexOfMediumAsteroid = 1;

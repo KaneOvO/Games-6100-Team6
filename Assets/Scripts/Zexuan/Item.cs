@@ -30,5 +30,10 @@ public class Item : MonoBehaviour
     {
 
     }
+
+    void Start()
+    {
+        currenthealth = health;
+    }
     
 }
