@@ -58,6 +58,7 @@ public class AsteroidMovement : MonoBehaviour
     void OnBecameInvisible()
     {
         //destroy the asteroid when it goes off screen
+        asteroid.isInScene = false;
         Destroy(gameObject);
     }
 

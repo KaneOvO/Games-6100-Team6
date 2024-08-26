@@ -9,6 +9,8 @@ public class Ship : Item
     [SerializeField] float linearDrag;
     [SerializeField] ParticleSystem boostParticle;
     [SerializeField] ParticleSystem collisionParticle;
+    public bool isGrappling = false;
+    public GameObject grappleObject;
 
     public float Speed
     {
@@ -34,6 +36,16 @@ public class Ship : Item
     {
         if (attacker.CompareTag("Enemy"))
         {
+            if (isGrappling)
+            {
+                if (attacker.gameObject == grappleObject)
+                {
+                    Destroy(grappleObject);
+                    isGrappling = false;
+                    grappleObject = null;
+                    return;
+                }
+            }
             currenthealth -= attacker.Damage;
             if (currenthealth <= 0)
             {
@@ -45,9 +57,9 @@ public class Ship : Item
 
     }
 
-    
 
-    
+
+
 
 
 }

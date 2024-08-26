@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public int score;
     //private bool isGameOver = false;
+    [SerializeField] float generateCooldown;
 
     private void Awake()
     {
@@ -30,7 +31,7 @@ public class GameManager : MonoBehaviour
         int asteroidCount = Random.Range(3, 6);
         GenerateAsteroids(asteroidCount);
 
-        InvokeRepeating("GenerateSingleAsteroid", 3.0f, 3.0f);
+        InvokeRepeating("GenerateSingleAsteroid", generateCooldown, generateCooldown);
     }
 
     // Update is called once per frame
@@ -39,7 +40,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    void GenerateAsteroids(int generateCount = 1)
+    void GenerateAsteroids(int generateCount)
     {
         for (int i = 0; i < generateCount; i++)
         {
@@ -51,7 +52,8 @@ public class GameManager : MonoBehaviour
 
     void GenerateSingleAsteroid()
     {
-        GenerateAsteroids(1);
+        int randomIndex = Random.Range(0, 3);
+        GenerateAsteroids(randomIndex);
     }
 
     Vector2 GetRandomOffScreenPosition()
