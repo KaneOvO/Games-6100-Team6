@@ -138,11 +138,12 @@ MonoBehaviour:
   health: 1
   currenthealth: 1
   damage: 1
-  minSpeed: 1
-  maxSpeed: 2
+  minSpeed: 0.5
+  maxSpeed: 1
   isSmallAsteroid: 1
   isMediumAsteroid: 0
   isLargeAsteroid: 0
+  isInScene: 1
 --- !u!114 &-4083842890992229914
 MonoBehaviour:
   m_ObjectHideFlags: 0

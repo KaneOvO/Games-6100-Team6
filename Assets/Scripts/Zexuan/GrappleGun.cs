@@ -59,39 +59,6 @@ public class GrappleGun : MonoBehaviour
 
     }
 
-    // private void Update()
-    // {
-    //     if (Input.GetKeyDown(KeyCode.DownArrow))
-    //     {
-    //         SetGrapplePoint();
-    //     }
-    //     else if (Input.GetKey(KeyCode.DownArrow))
-    //     {
-    //         if (grappleRope.enabled)
-    //         {
-    //             RotateGun(grapplePoint, false);
-    //         }
-
-    //         if (launchToPoint && grappleRope.isGrappling)
-    //         {
-    //             if (launchType == LaunchType.Transform_Launch)
-    //             {
-    //                 Vector2 firePointDistnace = firePoint.position - gunHolder.localPosition;
-    //                 Vector2 targetPos = grapplePoint - firePointDistnace;
-    //                 gunHolder.position = Vector2.Lerp(gunHolder.position, targetPos, Time.deltaTime * launchSpeed);
-    //             }
-    //         }
-    //     }
-    //     else if (Input.GetKeyUp(KeyCode.DownArrow))
-    //     {
-    //         grappleRope.enabled = false;
-    //         m_springJoint2D.enabled = false;
-    //         m_rigidbody.gravityScale = 1;
-    //         ship.isGrappling = false;
-
-    //     }
-    // }
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.DownArrow))
@@ -100,16 +67,6 @@ public class GrappleGun : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.DownArrow))
         {
-            if (ship.grappleObject != null && !ship.grappleObject.GetComponent<Asteroid>().isInScene)
-            {
-                ship.isGrappling = false;
-                grappleRope.enabled = false;
-                m_springJoint2D.enabled = false;
-                m_rigidbody.gravityScale = 1;
-                ship.isGrappling = false;
-                ship.grappleObject = null;
-                return;
-            }
             if (grappleRope.enabled)
             {
                 RotateGun(grapplePoint, false);
@@ -121,7 +78,7 @@ public class GrappleGun : MonoBehaviour
                 {
                     Vector2 firePointDistnace = firePoint.position - gunHolder.localPosition;
                     Vector2 targetPos = grapplePoint - firePointDistnace;
-                    gunHolder.position = Vector2.Lerp(gunHolder.position, targetPos, Time.deltaTime * launchSpeed);
+                    gunHolder.position = Vector2.MoveTowards(gunHolder.position, targetPos, Time.deltaTime * launchSpeed);
                 }
             }
 
@@ -132,7 +89,15 @@ public class GrappleGun : MonoBehaviour
                 m_springJoint2D.connectedAnchor = grapplePoint;
                 Vector2 firePointDistnace = firePoint.position - gunHolder.localPosition;
                 Vector2 targetPos = grapplePoint - firePointDistnace;
-                gunHolder.position = Vector2.Lerp(gunHolder.position, targetPos, Time.deltaTime * launchSpeed);
+                gunHolder.position = Vector2.MoveTowards(gunHolder.position, targetPos, Time.deltaTime * launchSpeed);
+            }
+
+            if(ship.isGrappling && ship.grappleObject == null)
+            {
+                grappleRope.enabled = false;
+                m_springJoint2D.enabled = false;
+                m_rigidbody.gravityScale = 1;
+                ship.isGrappling = false;
             }
         }
 
@@ -145,17 +110,6 @@ public class GrappleGun : MonoBehaviour
             ship.grappleObject = null;
         }
     }
-
-    // private void FixedUpdate()
-    // {
-    //     if (ship.isGrappling && ship.grappleObject != null)
-    //     {
-    //         // 处理钩锁的物理移动逻辑
-    //         Vector2 firePointDistnace = firePoint.position - gunHolder.localPosition;
-    //         Vector2 targetPos = grapplePoint - firePointDistnace;
-    //         m_rigidbody.MovePosition(Vector2.Lerp(m_rigidbody.position, targetPos, Time.fixedDeltaTime * launchSpeed));
-    //     }
-    // }
 
     void RotateGun(Vector3 lookPoint, bool allowRotationOverTime)
     {

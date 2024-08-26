@@ -41,7 +41,6 @@ public class Ship : Item
                 if (attacker.gameObject == grappleObject)
                 {
                     Destroy(grappleObject);
-                    isGrappling = false;
                     grappleObject = null;
                     return;
                 }

@@ -759,7 +759,7 @@ MonoBehaviour:
   maxDistnace: 20
   launchToPoint: 0
   launchType: 0
-  launchSpeed: 3.5
+  launchSpeed: 1.5
   autoConfigureDistance: 1
   targetDistance: 0
   targetFrequncy: 1
