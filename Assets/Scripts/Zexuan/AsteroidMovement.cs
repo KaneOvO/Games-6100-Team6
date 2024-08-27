@@ -8,6 +8,7 @@ public class AsteroidMovement : MonoBehaviour
     private GameObject player;
     private float speed;
     public Vector2 direction;
+    public bool isFreezen = false;
 
     void Awake()
     {
@@ -23,16 +24,6 @@ public class AsteroidMovement : MonoBehaviour
         if (direction == Vector2.zero)
         {
             player = GameManager.Instance.player;
-
-            // // Calculate direction towards player
-            // if (player != null)
-            // {
-            //     direction = (player.transform.position - transform.position).normalized;
-            // }
-            // else
-            // {
-            //     Debug.LogWarning("Player not set for asteroid movement.");
-            // }
 
             // Generate a random point on the screen
             Vector2 randomScreenPoint = new Vector2(
@@ -52,6 +43,7 @@ public class AsteroidMovement : MonoBehaviour
     void Update()
     {
         // Movement
+        if(isFreezen) return;
         transform.Translate(direction * speed * Time.deltaTime);
     }
 

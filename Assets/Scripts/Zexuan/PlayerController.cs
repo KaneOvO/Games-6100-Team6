@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject missilePrefab;
     private float fireRate = 0.2f;
     private float nextFireTime = 0f;
+    public GameObject hook;
+    [SerializeField] GameObject hookPovit;
 
     // Start is called before the first frame update
     void Start()
@@ -27,12 +29,17 @@ public class PlayerController : MonoBehaviour
         RotationInput();
         WrapAroundScreen();
         Fire();
+        shootHook();
     }
 
     void MovementInput()
     {
-        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
+        if (!ship.isShootGrapple && (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)))
         {
+            if(ship.isShootGrapple|| ship.isGrappling)
+            {
+                return;
+            }
             StartBoost();
         }
         else
@@ -63,11 +70,11 @@ public class PlayerController : MonoBehaviour
 
     private void RotationInput()
     {
-        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+        if (!ship.isShootGrapple && (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)))
         {
             ApplyRotation(Vector3.forward);
         }
-        else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+        else if (!ship.isShootGrapple && (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)))
         {
             ApplyRotation(Vector3.back);
         }
@@ -120,5 +127,20 @@ public class PlayerController : MonoBehaviour
                 missile.SetActive(true);
             }
         }
+    }
+
+    void shootHook()
+    {
+        if(ship.isShootGrapple || ship.isGrappling)
+        {
+            return;
+        }
+        if (Input.GetKeyDown(KeyCode.DownArrow) && !ship.isShootGrapple)
+        {
+            playerRb.velocity = Vector2.zero;
+            Instantiate(hook, hookPovit.transform.position, hookPovit.transform.rotation);
+            ship.isShootGrapple = true;
+        }
+        
     }
 }

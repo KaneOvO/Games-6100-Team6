@@ -9,10 +9,10 @@ public class Asteroid : Item
     [SerializeField] bool isSmallAsteroid;
     [SerializeField] bool isMediumAsteroid;
     [SerializeField] bool isLargeAsteroid;
-    private bool hasTakenDamage = false;
+    [SerializeField] bool hasTakenDamage = false;
 
     public bool isInScene = true;
-    
+
     int indexOfSmallAsteroid = 0;
     int indexOfMediumAsteroid = 1;
 
@@ -29,7 +29,10 @@ public class Asteroid : Item
     public override void TakeDamage(Attack attacker)
     {
         if (hasTakenDamage) return;
-        hasTakenDamage = true;
+        if(attacker.Damage > 0)
+        {
+            hasTakenDamage = true;
+        }
         Debug.Log("Asteroid taking damage");
         if (attacker.CompareTag("Bullet") || attacker.CompareTag("Player"))
         {
@@ -38,30 +41,41 @@ public class Asteroid : Item
                 currenthealth -= attacker.Damage;
                 if (currenthealth < 1)
                 {
-                    Destroy(gameObject);
                     GameManager.Instance.scoreChange(100);
+                    Destroy(gameObject);
                 }
             }
             else if (isMediumAsteroid)
             {
+                Debug.Log("Medium asteroid destroyed");
                 currenthealth -= attacker.Damage;
+
                 if (currenthealth < 1)
                 {
-                    Debug.Log("Medium asteroid destroyed");
-                    Destroy(gameObject);
-                    SplitAsteroid(GameManager.Instance.asteroidPrefabs[indexOfSmallAsteroid]);
+                    if (attacker.CompareTag("Player") && attacker.GetComponent<Ship>().isConsumption == false)
+                    {
+                        SplitAsteroid(GameManager.Instance.asteroidPrefabs[indexOfSmallAsteroid]);
+                    }
+
                     GameManager.Instance.scoreChange(150);
+                    Destroy(gameObject);
                 }
             }
             else if (isLargeAsteroid)
             {
                 currenthealth -= attacker.Damage;
+
                 if (currenthealth < 1)
                 {
                     Debug.Log("Large asteroid destroyed");
-                    Destroy(gameObject);
-                    SplitAsteroid(GameManager.Instance.asteroidPrefabs[indexOfMediumAsteroid]);
+                    
+                    if (attacker.CompareTag("Player") && attacker.GetComponent<Ship>().isConsumption == false)
+                    {
+                        SplitAsteroid(GameManager.Instance.asteroidPrefabs[indexOfMediumAsteroid]);
+                    }
+
                     GameManager.Instance.scoreChange(200);
+                    Destroy(gameObject);
                 }
             }
         }

@@ -434,8 +434,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 10
-      minScalar: 5
+      scalar: 3
+      minScalar: 2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1810,7 +1810,8 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+    - sprite: {fileID: 21300000, guid: 45628b045153bde48ba370481e1dbe0e, type: 3}
+    - sprite: {fileID: 21300000, guid: 1df7ae2061609874ba417037f29e5084, type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:
@@ -5088,7 +5089,7 @@ Transform:
   m_GameObject: {fileID: 222419512}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.23, y: 0.65, z: 0}
+  m_LocalPosition: {x: -6.43, y: 3.33, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -5716,6 +5717,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6756525545353478308, guid: 8b2fe19fdac39e64e94a19c6af58a03a, type: 3}
+      propertyPath: UVModule.sprites.Array.data[0].sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 45628b045153bde48ba370481e1dbe0e, type: 3}
     - target: {fileID: 7617695866563369301, guid: 8b2fe19fdac39e64e94a19c6af58a03a, type: 3}
       propertyPath: m_RenderAlignment
       value: 2
