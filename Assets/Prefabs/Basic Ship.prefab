@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3291920403409544371}
   - component: {fileID: 6485342861168450756}
   - component: {fileID: 2285805800765924226}
+  - component: {fileID: 8739750200926402755}
   m_Layer: 0
   m_Name: Basic Ship
   m_TagString: Player
@@ -170,6 +171,8 @@ MonoBehaviour:
   linearDrag: 1
   boostParticle: {fileID: 0}
   collisionParticle: {fileID: 0}
+  isGrappling: 0
+  grappleObject: {fileID: 0}
 --- !u!114 &2285805800765924226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,3 +186,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   missilePrefab: {fileID: 661978617696277151, guid: bd6e4a46561285a4098aadf70b16a371, type: 3}
+--- !u!114 &8739750200926402755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5072216331852912049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bc3014405909a84fb281e4f50347004, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 2

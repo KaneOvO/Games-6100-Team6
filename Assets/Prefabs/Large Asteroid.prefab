@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1740974046421183324}
   - component: {fileID: 5441783355505192668}
   - component: {fileID: 1767677358246347895}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Large Asteroid
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -143,6 +143,7 @@ MonoBehaviour:
   isSmallAsteroid: 0
   isMediumAsteroid: 0
   isLargeAsteroid: 1
+  isInScene: 1
 --- !u!114 &5441783355505192668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,4 +169,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bc3014405909a84fb281e4f50347004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 1
+  Damage: 2

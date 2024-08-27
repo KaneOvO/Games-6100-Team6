@@ -1,16 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager: MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public GameObject[] asteroidPrefabs;
     public GameObject player;
+    public GameObject alienPrefab;
+    GameObject[] asteroids;
+    // GameObject[] aliens;
     public int score;
     //private bool isGameOver = false;
     [SerializeField] float generateCooldown;
+    [SerializeField] int asteroidsPerBatch;
+    [SerializeField] int indexSmallAsteroid;
+    [SerializeField] int indexMediumAsteroid;
+    [SerializeField] int indexLargeAsteroid;
 
     private void Awake()
     {
@@ -28,16 +36,37 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        int asteroidCount = Random.Range(3, 6);
-        GenerateAsteroids(asteroidCount);
+        GenerateBatchAsteroids();
+        // int asteroidCount = Random.Range(3, 6);
+        // GenerateAsteroids(asteroidCount);
 
-        InvokeRepeating("GenerateSingleAsteroid", generateCooldown, generateCooldown);
+        InvokeRepeating("GenerateAlien", generateCooldown, generateCooldown);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
+        {
+            GenerateBatchAsteroids();
+        }
+    }
 
+    void GenerateAlien()
+    {
+        Vector3 Position = GetRandomOffScreenPosition(true);
+        Instantiate(alienPrefab, Position, Quaternion.identity);
+        
+    }
+
+    void GenerateBatchAsteroids()
+    {
+        for (int i = 0; i < asteroidsPerBatch; i++)
+        {
+            GameObject asteroidPrefab = asteroidPrefabs[indexLargeAsteroid];
+            Vector3 Position = GetRandomOffScreenPosition();
+            Instantiate(asteroidPrefab, Position, Quaternion.identity);
+        }
     }
 
     void GenerateAsteroids(int generateCount)
@@ -56,7 +85,7 @@ public class GameManager : MonoBehaviour
         GenerateAsteroids(randomIndex);
     }
 
-    Vector2 GetRandomOffScreenPosition()
+    Vector2 GetRandomOffScreenPosition(bool isAlien=false)
     {
         //Get the screen width and height
         float screenWidth = Screen.width;
@@ -66,6 +95,10 @@ public class GameManager : MonoBehaviour
         float x = 0;
         float y = 0;
         int edge = Random.Range(0, 4);
+        if (isAlien)
+        {
+            edge = Random.Range(0, 2);
+        }
 
         switch (edge)
         {
@@ -99,7 +132,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         //isGameOver = true;
-        CancelInvoke("GenerateSingleAsteroid");
+        // CancelInvoke("GenerateSingleAsteroid");
         UIManager.Instance.GameOver();
     }
 

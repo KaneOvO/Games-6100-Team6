@@ -11,11 +11,15 @@ public class Asteroid : Item
     [SerializeField] bool isLargeAsteroid;
     private bool hasTakenDamage = false;
 
-    public bool isInScene = true;
+    public bool isInScene = false;
     
     int indexOfSmallAsteroid = 0;
     int indexOfMediumAsteroid = 1;
 
+    void Start()
+    {
+        
+    }
     public float MinSpeed
     {
         get { return minSpeed; }
@@ -31,7 +35,7 @@ public class Asteroid : Item
         if (hasTakenDamage) return;
         hasTakenDamage = true;
         Debug.Log("Asteroid taking damage");
-        if (attacker.CompareTag("Bullet") || attacker.CompareTag("Player"))
+        if (attacker.CompareTag("Bullet") || attacker.CompareTag("Player") || attacker.CompareTag("Alien"))
         {
             if (isSmallAsteroid)
             {
