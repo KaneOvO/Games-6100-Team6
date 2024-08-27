@@ -21,7 +21,6 @@ public class Missile : Item
 
     void OnBecameInvisible()
     {
-        //Destroy(gameObject);
         gameObject.SetActive(false);
     }
     

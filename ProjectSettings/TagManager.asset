@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Enemy
   - Bullet
+  - Hook
+  - Pivot
   layers:
   - Default
   - TransparentFX
