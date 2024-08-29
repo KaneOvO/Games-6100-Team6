@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8795560847397179917}
   - component: {fileID: 6381570822676171982}
-  - component: {fileID: 5812306069386933425}
   - component: {fileID: 1740974046421183324}
   - component: {fileID: 3446935957241991668}
   - component: {fileID: 1767677358246347895}
+  - component: {fileID: 2421490611814796203}
   m_Layer: 3
   m_Name: Large Asteroid
   m_TagString: Enemy
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.0015725, y: 0.0066412, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 2, y: 2, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -88,8 +88,56 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!70 &5812306069386933425
-CapsuleCollider2D:
+--- !u!114 &1740974046421183324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7353103860970814151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23b4678c4a55f134da7435d3349be790, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1
+  currenthealth: 1
+  damage: 1
+  minSpeed: 0.5
+  maxSpeed: 1
+  isSmallAsteroid: 0
+  isMediumAsteroid: 0
+  isLargeAsteroid: 1
+  hasTakenDamage: 0
+  isInScene: 1
+--- !u!114 &3446935957241991668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7353103860970814151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 283d37a50d1f8944c82374ff3e205f0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: {x: 0, y: 0}
+--- !u!114 &1767677358246347895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7353103860970814151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bc3014405909a84fb281e4f50347004, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 1
+--- !u!60 &2421490611814796203
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -120,53 +168,36 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.05099964, y: -0.010889411}
-  m_Size: {x: 0.5383142, y: 0.5749701}
-  m_Direction: 0
---- !u!114 &1740974046421183324
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7353103860970814151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23b4678c4a55f134da7435d3349be790, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 1
-  currenthealth: 1
-  damage: 1
-  minSpeed: 0.5
-  maxSpeed: 1
-  isSmallAsteroid: 0
-  isMediumAsteroid: 0
-  isLargeAsteroid: 1
-  isInScene: 1
---- !u!114 &3446935957241991668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7353103860970814151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 283d37a50d1f8944c82374ff3e205f0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  direction: {x: 0, y: 0}
---- !u!114 &1767677358246347895
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7353103860970814151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bc3014405909a84fb281e4f50347004, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Damage: 1
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.63, y: 0.54}
+    newSize: {x: 0.96, y: 0.96}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.18902008, y: 0.18851604}
+      - {x: 0.18706062, y: 0.23808794}
+      - {x: 0.03217238, y: 0.24112777}
+      - {x: -0.029767737, y: 0.27480033}
+      - {x: -0.09186117, y: 0.18894616}
+      - {x: -0.18707092, y: 0.17240666}
+      - {x: -0.19685246, y: 0.061330315}
+      - {x: -0.14623393, y: 0.03686808}
+      - {x: -0.16914998, y: -0.026832275}
+      - {x: -0.14790365, y: -0.08326006}
+      - {x: -0.21352918, y: -0.15894617}
+      - {x: -0.21549731, y: -0.1996847}
+      - {x: -0.17468469, y: -0.26106125}
+      - {x: -0.07566443, y: -0.26312116}
+      - {x: 0.097486556, y: -0.2039492}
+      - {x: 0.10448278, y: -0.26067144}
+      - {x: 0.20705587, y: -0.2626865}
+      - {x: 0.20529732, y: -0.12343243}
+      - {x: 0.3131485, y: -0.122880846}
+      - {x: 0.27796182, y: 0.19576705}
+  m_UseDelaunayMesh: 0
