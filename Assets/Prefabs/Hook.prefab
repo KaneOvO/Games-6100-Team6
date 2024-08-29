@@ -264,13 +264,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9123303067232941171}
   serializedVersion: 2
-<<<<<<< HEAD
-  m_LocalRotation: {x: -0, y: -0, z: 0.2935058, w: 0.95595735}
-  m_LocalPosition: {x: 0.5755124, y: 0.3280391, z: 0}
-=======
   m_LocalRotation: {x: 0, y: -0, z: -0.2866997, w: 0.9580205}
   m_LocalPosition: {x: 0.007822122, y: 0.0128087625, z: 0}
->>>>>>> 53a449108553a470eef8bbf87ff0c2915d111513
   m_LocalScale: {x: 0.05, y: 0.05, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -389,10 +384,7 @@ MonoBehaviour:
   speed: 3
   launchSpeed: 3
   maxDistance: 5
-<<<<<<< HEAD
-=======
   invinciblePeriod: 0
->>>>>>> 53a449108553a470eef8bbf87ff0c2915d111513
   hookRb: {fileID: 0}
   target: {fileID: 0}
   pivot: {fileID: 0}
