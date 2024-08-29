@@ -10,7 +10,7 @@ public class Hook : MonoBehaviour
     [SerializeField] float maxDistance;
     [SerializeField] float invinciblePeriod = 1f;
     float distance;
-    private GameObject hookHolder;
+    public GameObject hookHolder;
     public Rigidbody2D hookRb;
     private bool isRetracting = false;
     private bool moveToTarget = false;
@@ -39,6 +39,11 @@ public class Hook : MonoBehaviour
         if (pivot != null)
         {
             distance = Vector3.Distance(pivot.transform.position, transform.position);
+        }
+        else
+        {
+            hideHook();
+            return;
         }
 
 

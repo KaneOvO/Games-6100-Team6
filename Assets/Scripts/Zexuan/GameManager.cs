@@ -14,6 +14,8 @@ public class GameManager: MonoBehaviour
     // GameObject[] aliens;
     public int score;
     public bool isGameOver = false;
+    public float xBorderOffset;
+    public float yBorderOffset;
     [SerializeField] float generateCooldown;
     [SerializeField] int asteroidsPerBatch;
     [SerializeField] int indexSmallAsteroid;
@@ -160,5 +162,40 @@ public class GameManager: MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public float getWorldSceneX(Vector3 position)
+    {
+        Vector3 viewportPosition = Camera.main.WorldToViewportPoint(position);
+
+        if (viewportPosition.x < 0 + GameManager.Instance.xBorderOffset)
+        {
+            return 1 - GameManager.Instance.xBorderOffset;
+        }
+        else if (viewportPosition.x > 1 - GameManager.Instance.xBorderOffset)
+        {
+            return 0 + GameManager.Instance.xBorderOffset;
+        }
+        return viewportPosition.x;
+    }
+
+    public float getWorldSceneY(Vector3 position)
+    {
+        Vector3 viewportPosition = Camera.main.WorldToViewportPoint(position);
+
+        if (viewportPosition.y < 0 + GameManager.Instance.yBorderOffset)
+        {
+            return 1 - GameManager.Instance.yBorderOffset;
+        }
+        else if (viewportPosition.y > 1 - GameManager.Instance.yBorderOffset)
+        {
+            return 0 + GameManager.Instance.yBorderOffset;
+        }
+        return viewportPosition.y;
+    }
+
+    public Vector3 GetWorldScenePosition(Vector3 position)
+    {
+        return new Vector3(getWorldSceneX(position), getWorldSceneY(position), 0);
     }
 }

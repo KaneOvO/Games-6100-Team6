@@ -91,26 +91,11 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 position = transform.position;
         Vector3 viewportPosition = Camera.main.WorldToViewportPoint(position);
+        Vector3 newPosition = viewportPosition;
+        newPosition.x = GameManager.Instance.getWorldSceneX(position);
+        newPosition.y = GameManager.Instance.getWorldSceneY(position);
 
-        if (viewportPosition.x < 0)
-        {
-            viewportPosition.x = 1;
-        }
-        else if (viewportPosition.x > 1)
-        {
-            viewportPosition.x = 0;
-        }
-
-        if (viewportPosition.y < 0)
-        {
-            viewportPosition.y = 1;
-        }
-        else if (viewportPosition.y > 1)
-        {
-            viewportPosition.y = 0;
-        }
-
-        transform.position = Camera.main.ViewportToWorldPoint(viewportPosition);
+        transform.position = Camera.main.ViewportToWorldPoint(newPosition);
     }
 
     private void Fire()

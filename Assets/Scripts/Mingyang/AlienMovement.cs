@@ -100,23 +100,17 @@ public class AlienMovement : MonoBehaviour
         Vector3 viewportPosition = Camera.main.WorldToViewportPoint(position);
         if (!alien.isInScene)
         {
-            if (viewportPosition.x < 0) return;
-            if (viewportPosition.x > 1) return;
-            if (viewportPosition.y < 0) return;
-            if (viewportPosition.y > 1) return;
+            if (viewportPosition.x < 0 + GameManager.Instance.xBorderOffset) return;
+            if (viewportPosition.x > 1 - GameManager.Instance.xBorderOffset) return;
+            if (viewportPosition.y < 0 + GameManager.Instance.yBorderOffset) return;
+            if (viewportPosition.y > 1 - GameManager.Instance.yBorderOffset) return;
             alien.isInScene = true;
             return;
         }
 
-        if (viewportPosition.y < 0)
-        {
-            viewportPosition.y = 1;
-        }
-        else if (viewportPosition.y > 1)
-        {
-            viewportPosition.y = 0;
-        }
+        Vector3 newPosition = viewportPosition;
+        newPosition.y = GameManager.Instance.getWorldSceneY(position);
 
-        transform.position = Camera.main.ViewportToWorldPoint(viewportPosition);
+        transform.position = Camera.main.ViewportToWorldPoint(newPosition);
     }
 }
