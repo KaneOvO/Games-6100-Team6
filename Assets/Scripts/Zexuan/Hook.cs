@@ -17,7 +17,7 @@ public class Hook : MonoBehaviour
     [SerializeField] GameObject target;
     public GameObject pivot;
     public Rigidbody2D playerRb;
-    Renderer spriteRenderer;
+    public Renderer spriteRenderer;
     Collider2D hookCollider;
     float distanceToTarget;
 

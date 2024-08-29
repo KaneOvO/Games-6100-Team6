@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 8795560847397179917}
   - component: {fileID: 6381570822676171982}
-  - component: {fileID: 5812306069386933425}
+  - component: {fileID: 1740974046421183324}
   - component: {fileID: 1767677358246347895}
   - component: {fileID: 887414398473788455}
-  - component: {fileID: 909257235788560042}
+  - component: {fileID: 931877395737174585}
   m_Layer: 3
-  m_Name: Planet 1
+  m_Name: Planet 2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 29692da159a56ee4c80c1550630def85, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5ddfb8759172f484a9ef13f5899f79bc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -88,8 +88,56 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!70 &5812306069386933425
-CapsuleCollider2D:
+--- !u!114 &1740974046421183324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7353103860970814151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23b4678c4a55f134da7435d3349be790, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1
+  currenthealth: 1
+  damage: 1
+  minSpeed: 0.5
+  maxSpeed: 1
+  isSmallAsteroid: 0
+  isMediumAsteroid: 0
+  isLargeAsteroid: 0
+  hasTakenDamage: 0
+  isInScene: 1
+--- !u!114 &1767677358246347895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7353103860970814151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bc3014405909a84fb281e4f50347004, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 1
+--- !u!114 &887414398473788455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7353103860970814151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 283d37a50d1f8944c82374ff3e205f0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: {x: 0, y: 0}
+--- !u!60 &931877395737174585
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -120,51 +168,28 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.007556483, y: 0.012618959}
-  m_Size: {x: 0.47815904, y: 0.49841964}
-  m_Direction: 0
---- !u!114 &1767677358246347895
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7353103860970814151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bc3014405909a84fb281e4f50347004, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Damage: 1
---- !u!114 &887414398473788455
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7353103860970814151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 283d37a50d1f8944c82374ff3e205f0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  direction: {x: 0, y: 0}
---- !u!114 &909257235788560042
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7353103860970814151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfc771d3d89ed4e46b8325a7e912f0fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 1
-  currenthealth: 1
-  damage: 1
-  minSpeed: 0.75
-  maxSpeed: 1.25
-  hasTakenDamage: 0
-  isInScene: 1
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.78, y: 0.46}
+    newSize: {x: 0.96, y: 0.96}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.054389123, y: 0.19164981}
+      - {x: -0.17496505, y: 0.10614}
+      - {x: -0.36671597, y: -0.08056035}
+      - {x: -0.36410895, y: -0.13836578}
+      - {x: -0.2716498, y: -0.19397667}
+      - {x: 0.079867706, y: -0.18849808}
+      - {x: 0.3708249, y: 0.09793772}
+      - {x: 0.35301948, y: 0.15589105}
+      - {x: 0.29288718, y: 0.19986771}
+    - - {x: -0.19, y: -0.07}
+      - {x: -0.19999999, y: -0.08}
+      - {x: -0.19, y: -0.08}
+  m_UseDelaunayMesh: 0

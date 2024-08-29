@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private float nextFireTime = 0f;
     public GameObject hook;
     [SerializeField] GameObject hookPovit;
+    [SerializeField] Renderer hookSpriteRenderer;
 
     // Start is called before the first frame update
     void Start()
@@ -141,6 +142,7 @@ public class PlayerController : MonoBehaviour
             ship.isShootGrapple = true;
             hook.transform.position = hookPovit.transform.position;
             hook.transform.rotation = hookPovit.transform.rotation;
+            hookSpriteRenderer = hook.GetComponent<SpriteRenderer>();
             hook.gameObject.GetComponent<Hook>().showHook();
         }
         
