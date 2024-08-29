@@ -8,6 +8,8 @@ TagManager:
   - Bullet
   - Hook
   - Pivot
+  - Alien
+  - AlienMissile
   layers:
   - Default
   - TransparentFX

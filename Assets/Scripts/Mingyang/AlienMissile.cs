@@ -21,6 +21,12 @@ public class AlienMissile : Item
             target = GameManager.Instance.GetPlayer();        
         }
 
+        if(target == null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Vector3 targetPosition = target.transform.position;
 
         Vector3 direction = (targetPosition - transform.position).normalized;

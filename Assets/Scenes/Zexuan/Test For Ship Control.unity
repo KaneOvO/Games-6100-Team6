@@ -472,6 +472,10 @@ PrefabInstance:
       propertyPath: launchSpeed
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 4092251557150308505, guid: d8df621536c42a547823e93b709f8de7, type: 3}
+      propertyPath: invinciblePeriod
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 9123303067232941171, guid: d8df621536c42a547823e93b709f8de7, type: 3}
       propertyPath: m_Name
       value: Hook
@@ -711,8 +715,14 @@ MonoBehaviour:
   - {fileID: 2993518109561443989, guid: 33908c955cd06bc48bdaed60748adac0, type: 3}
   - {fileID: 7353103860970814151, guid: 9fb759f7253feb44a97618474ef4a2a3, type: 3}
   player: {fileID: 99063056}
+  alienPrefab: {fileID: 2306081102669611261, guid: 090a08b4fde46cf4bb186d06dc674d0f, type: 3}
   score: 0
-  generateCooldown: 1.5
+  isGameOver: 0
+  generateCooldown: 5
+  asteroidsPerBatch: 4
+  indexSmallAsteroid: 0
+  indexMediumAsteroid: 1
+  indexLargeAsteroid: 2
 --- !u!1 &1380648391 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9123303067232941171, guid: d8df621536c42a547823e93b709f8de7, type: 3}
@@ -1236,6 +1246,18 @@ PrefabInstance:
     - target: {fileID: 5072216331852912049, guid: f56c77cb9d09ffa46b3bb179623675b8, type: 3}
       propertyPath: m_Name
       value: Basic Ship
+      objectReference: {fileID: 0}
+    - target: {fileID: 6485342861168450756, guid: f56c77cb9d09ffa46b3bb179623675b8, type: 3}
+      propertyPath: health
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6485342861168450756, guid: f56c77cb9d09ffa46b3bb179623675b8, type: 3}
+      propertyPath: rotation
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 6702113877149821240, guid: f56c77cb9d09ffa46b3bb179623675b8, type: 3}
+      propertyPath: Damage
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

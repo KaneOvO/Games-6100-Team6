@@ -8,7 +8,7 @@ public class Hook : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float launchSpeed;
     [SerializeField] float maxDistance;
-    [SerializeField]float invinciblePeriod = 1f;
+    [SerializeField] float invinciblePeriod = 1f;
     float distance;
     private GameObject hookHolder;
     public Rigidbody2D hookRb;
@@ -20,7 +20,7 @@ public class Hook : MonoBehaviour
     Renderer spriteRenderer;
     Collider2D hookCollider;
     float distanceToTarget;
-    
+
 
     void Awake()
     {
@@ -49,7 +49,7 @@ public class Hook : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.DownArrow))
         {
-            if(hookHolder == null)
+            if (hookHolder == null)
             {
                 return;
             }
@@ -69,6 +69,7 @@ public class Hook : MonoBehaviour
                 playerRb.velocity = Vector2.zero;
                 moveToTarget = false;
                 hookHolder.GetComponent<Ship>().isInvincible = false;
+                isRetracting = true;
 
                 return;
             }
@@ -85,6 +86,7 @@ public class Hook : MonoBehaviour
                 hookHolder.GetComponent<Ship>().grappleObject = null;
                 moveToTarget = false;
                 StartCoroutine(CallFunctionWithDelay(invinciblePeriod));
+                isRetracting = true;
                 return;
             }
         }
@@ -100,7 +102,7 @@ public class Hook : MonoBehaviour
 
     void retractHook()
     {
-        if(hookHolder == null)
+        if (hookHolder == null)
         {
             return;
         }
@@ -124,8 +126,12 @@ public class Hook : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy") && !isRetracting)
+        if (!isRetracting && (other.CompareTag("Enemy") || other.CompareTag("Alien")))
         {
+            if (hookHolder == null)
+            {
+                return;
+            }
             distanceToTarget = Vector2.Distance(hookHolder.transform.position, other.transform.position);
             DetermineLaunchSpeed();
             Debug.Log("Distance to target: " + distanceToTarget);
@@ -138,10 +144,21 @@ public class Hook : MonoBehaviour
                 hookHolder.GetComponent<Ship>().grappleObject = target;
                 hookHolder.GetComponent<Ship>().isInvincible = true;
 
-                AsteroidMovement asteroidMovement = other.gameObject.GetComponent<AsteroidMovement>();
-                if (asteroidMovement != null)
+                if (target.CompareTag("Alien"))
                 {
-                    asteroidMovement.isFreezen = true;
+                    if(target.GetComponent<AlienMovement>() != null)
+                    {
+                        target.GetComponent<AlienMovement>().isFreezen = true;
+                    }
+                    
+                }
+                else if (target.CompareTag("Enemy"))
+                {
+                    AsteroidMovement asteroidMovement = target.GetComponent<AsteroidMovement>();
+                    if (asteroidMovement != null)
+                    {
+                        asteroidMovement.isFreezen = true;
+                    }
                 }
 
                 LaunchPlayer();
@@ -155,7 +172,6 @@ public class Hook : MonoBehaviour
 
         Rigidbody2D playerRb = hookHolder.GetComponent<Rigidbody2D>();
         playerRb.velocity = launchDirection * launchSpeed;
-        isRetracting = true;
 
     }
 
@@ -179,14 +195,18 @@ public class Hook : MonoBehaviour
 
     void SetInvincible()
     {
+        if (hookHolder == null)
+        {
+            return;
+        }
         hookHolder.GetComponent<Ship>().isInvincible = false;
     }
 
-     IEnumerator CallFunctionWithDelay(float delay)
-     {
+    IEnumerator CallFunctionWithDelay(float delay)
+    {
         yield return new WaitForSeconds(delay);
         SetInvincible();
-     }
+    }
 
 
 }

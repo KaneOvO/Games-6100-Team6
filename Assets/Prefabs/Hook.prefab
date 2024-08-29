@@ -384,6 +384,8 @@ MonoBehaviour:
   speed: 3
   launchSpeed: 3
   maxDistance: 5
+  invinciblePeriod: 0
+  hookRb: {fileID: 0}
   target: {fileID: 0}
   pivot: {fileID: 0}
   playerRb: {fileID: 0}
