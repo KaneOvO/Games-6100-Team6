@@ -138,8 +138,10 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.DownArrow) && !ship.isShootGrapple)
         {
             playerRb.velocity = Vector2.zero;
-            Instantiate(hook, hookPovit.transform.position, hookPovit.transform.rotation);
             ship.isShootGrapple = true;
+            hook.transform.position = hookPovit.transform.position;
+            hook.transform.rotation = hookPovit.transform.rotation;
+            hook.gameObject.GetComponent<Hook>().showHook();
         }
         
     }
