@@ -10,8 +10,6 @@ public class Planet : Item
 
     public bool isInScene = true;
 
-    int indexOfSmallAsteroid = 0;
-    int indexOfMediumAsteroid = 1;
 
     public float MinSpeed
     {

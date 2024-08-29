@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8795560847397179917}
   - component: {fileID: 6381570822676171982}
+  - component: {fileID: 909257235788560042}
   - component: {fileID: 5812306069386933425}
   - component: {fileID: 1767677358246347895}
-  - component: {fileID: 887414398473788455}
-  - component: {fileID: 909257235788560042}
+  - component: {fileID: 6035608815365359717}
   m_Layer: 3
   m_Name: Planet 1
   m_TagString: Enemy
@@ -88,6 +88,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &909257235788560042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7353103860970814151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfc771d3d89ed4e46b8325a7e912f0fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1
+  currenthealth: 1
+  damage: 1
+  minSpeed: 1
+  maxSpeed: 1.5
+  hasTakenDamage: 0
+  isInScene: 1
 --- !u!70 &5812306069386933425
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -136,7 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 1
---- !u!114 &887414398473788455
+--- !u!114 &6035608815365359717
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,26 +164,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7353103860970814151}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 283d37a50d1f8944c82374ff3e205f0e, type: 3}
+  m_Script: {fileID: 11500000, guid: 7a43c63325790e449bbd7d6156f9e597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 0}
---- !u!114 &909257235788560042
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7353103860970814151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfc771d3d89ed4e46b8325a7e912f0fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 1
-  currenthealth: 1
-  damage: 1
-  minSpeed: 0.75
-  maxSpeed: 1.25
-  hasTakenDamage: 0
-  isInScene: 1
