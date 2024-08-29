@@ -5095,11 +5095,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &259421582 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8812856631183454482, guid: 8b2fe19fdac39e64e94a19c6af58a03a, type: 3}
-  m_PrefabInstance: {fileID: 7840507380581264021}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &269871605
 GameObject:
   m_ObjectHideFlags: 0
@@ -5409,8 +5404,9 @@ GameObject:
   m_Component:
   - component: {fileID: 950239156}
   - component: {fileID: 950239155}
+  - component: {fileID: 950239157}
   m_Layer: 0
-  m_Name: hero_head1
+  m_Name: Hero_head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5477,30 +5473,39 @@ Transform:
   m_GameObject: {fileID: 950239154}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.49, y: 3.51, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1527334468}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &950239157
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950239154}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 241d7da4302013a429fc0d90cbeed217, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &1527334468 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5361167530208322029, guid: 8b2fe19fdac39e64e94a19c6af58a03a, type: 3}
   m_PrefabInstance: {fileID: 7840507380581264021}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1527334471
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 259421582}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17fb8245c5d14874780482293a8f3ce0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1607872561
 GameObject:
   m_ObjectHideFlags: 0
@@ -5720,7 +5725,7 @@ PrefabInstance:
     - target: {fileID: 6756525545353478308, guid: 8b2fe19fdac39e64e94a19c6af58a03a, type: 3}
       propertyPath: UVModule.sprites.Array.data[0].sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 45628b045153bde48ba370481e1dbe0e, type: 3}
+      objectReference: {fileID: 21300000, guid: 631d4414e5cf1fb448a2a5d93b221c9b, type: 3}
     - target: {fileID: 7617695866563369301, guid: 8b2fe19fdac39e64e94a19c6af58a03a, type: 3}
       propertyPath: m_RenderAlignment
       value: 2
@@ -5732,10 +5737,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8812856631183454482, guid: 8b2fe19fdac39e64e94a19c6af58a03a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1527334471}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b2fe19fdac39e64e94a19c6af58a03a, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
