@@ -14,6 +14,7 @@ public class Ship : Item
     public bool isGrappling = false;
     public bool isShootGrapple = false;
     public GameObject grappleObject;
+    public bool isInvincible = false;
 
     public float Speed
     {
@@ -39,7 +40,7 @@ public class Ship : Item
     {
         if (attacker.CompareTag("Enemy"))
         {
-            if (isGrappling)
+            if (isGrappling || isInvincible)
             {
                 return;
             }
@@ -56,7 +57,7 @@ public class Ship : Item
 
     void Update()
     {
-        if(isGrappling)
+        if(isInvincible)
         {
             gameObject.GetComponent<Attack>().Damage = 1;
         }
