@@ -26,6 +26,11 @@ public class Asteroid : Item
         get { return maxSpeed; }
     }
 
+    void Start()
+    {
+        StartCoroutine(CallFunctionWithDelay(1f));
+    }
+
     public override void TakeDamage(Attack attacker)
     {
         if (hasTakenDamage) return;
@@ -33,7 +38,7 @@ public class Asteroid : Item
         {
             hasTakenDamage = true;
         }
-        if (attacker.CompareTag("Bullet") || attacker.CompareTag("Player"))
+        if (attacker.CompareTag("Bullet") || attacker.CompareTag("Player") || attacker.CompareTag("Alien") || attacker.CompareTag("AlienMissile"))
         {
             if (isSmallAsteroid)
             {
@@ -91,5 +96,17 @@ public class Asteroid : Item
 
         movement1.SetDirection(direction1);
         movement2.SetDirection(direction2);
+    }
+
+    IEnumerator CallFunctionWithDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SetDamage();
+        
+    }
+
+    void SetDamage()
+    {
+        GetComponent<Attack>().Damage = 1;
     }
 }

@@ -43,19 +43,43 @@ public class AsteroidMovement : MonoBehaviour
     void Update()
     {
         // Movement
-        if(isFreezen) return;
+        if (isFreezen) return;
         transform.Translate(direction * speed * Time.deltaTime);
+        WrapAroundScreen();
     }
 
-    void OnBecameInvisible()
-    {
-        //destroy the asteroid when it goes off screen
-        asteroid.isInScene = false;
-        Destroy(gameObject);
-    }
+    // void OnBecameInvisible()
+    // {
+    //     //destroy the asteroid when it goes off screen
+    //     asteroid.isInScene = false;
+    //     Destroy(gameObject);
+    // }
 
     public void SetDirection(Vector2 newDirection)
     {
         direction = newDirection;
+    }
+
+    private void WrapAroundScreen()
+    {
+
+        Vector3 position = transform.position;
+        Vector3 viewportPosition = Camera.main.WorldToViewportPoint(position);
+        if (asteroid.isInScene == false)
+        {
+            if (viewportPosition.x < 0 + GameManager.Instance.xBorderOffset) return;
+            if (viewportPosition.x > 1 - GameManager.Instance.xBorderOffset) return;
+            if (viewportPosition.y < 0 + GameManager.Instance.yBorderOffset) return;
+            if (viewportPosition.y > 1 - GameManager.Instance.yBorderOffset) return;
+            asteroid.isInScene = true;
+            return;
+        }
+
+        Vector3 newPosition = viewportPosition;
+        newPosition.x = GameManager.Instance.getWorldSceneX(position);
+        newPosition.y = GameManager.Instance.getWorldSceneY(position);
+
+        transform.position = Camera.main.ViewportToWorldPoint(newPosition);
+
     }
 }

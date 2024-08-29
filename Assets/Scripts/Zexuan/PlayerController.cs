@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private float nextFireTime = 0f;
     public GameObject hook;
     [SerializeField] GameObject hookPovit;
+    [SerializeField] Renderer hookSpriteRenderer;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +29,7 @@ public class PlayerController : MonoBehaviour
         MovementInput();
         RotationInput();
         WrapAroundScreen();
-        Fire();
+        //Fire();
         shootHook();
     }
 
@@ -91,31 +92,16 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 position = transform.position;
         Vector3 viewportPosition = Camera.main.WorldToViewportPoint(position);
+        Vector3 newPosition = viewportPosition;
+        newPosition.x = GameManager.Instance.getWorldSceneX(position);
+        newPosition.y = GameManager.Instance.getWorldSceneY(position);
 
-        if (viewportPosition.x < 0)
-        {
-            viewportPosition.x = 1;
-        }
-        else if (viewportPosition.x > 1)
-        {
-            viewportPosition.x = 0;
-        }
-
-        if (viewportPosition.y < 0)
-        {
-            viewportPosition.y = 1;
-        }
-        else if (viewportPosition.y > 1)
-        {
-            viewportPosition.y = 0;
-        }
-
-        transform.position = Camera.main.ViewportToWorldPoint(viewportPosition);
+        transform.position = Camera.main.ViewportToWorldPoint(newPosition);
     }
 
     private void Fire()
     {
-        if (Input.GetKey(KeyCode.Space) && Time.time > nextFireTime)
+        if (Input.GetKey(KeyCode.DownArrow) && Time.time > nextFireTime)
         {
             nextFireTime = Time.time + fireRate;
 
@@ -135,12 +121,13 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow) && !ship.isShootGrapple)
+        if (Input.GetKeyDown(KeyCode.Space) && !ship.isShootGrapple)
         {
             playerRb.velocity = Vector2.zero;
             ship.isShootGrapple = true;
             hook.transform.position = hookPovit.transform.position;
             hook.transform.rotation = hookPovit.transform.rotation;
+            hookSpriteRenderer = hook.GetComponent<SpriteRenderer>();
             hook.gameObject.GetComponent<Hook>().showHook();
         }
         

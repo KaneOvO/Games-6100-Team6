@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1102234865264860130}
   - component: {fileID: 4946603100069425911}
-  - component: {fileID: 7294309161326165395}
   - component: {fileID: 3291920403409544371}
   - component: {fileID: 6485342861168450756}
   - component: {fileID: 2285805800765924226}
+  - component: {fileID: 7785361195804431083}
   - component: {fileID: 6702113877149821240}
   m_Layer: 6
   m_Name: Basic Ship
@@ -90,41 +90,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!70 &7294309161326165395
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5072216331852912049}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.0071717426, y: 0.19672343}
-  m_Size: {x: 0.108918905, y: 0.41059715}
-  m_Direction: 0
 --- !u!50 &3291920403409544371
 Rigidbody2D:
   serializedVersion: 4
@@ -176,6 +141,7 @@ MonoBehaviour:
   isGrappling: 0
   isShootGrapple: 0
   grappleObject: {fileID: 0}
+  isInvincible: 0
 --- !u!114 &2285805800765924226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,6 +157,41 @@ MonoBehaviour:
   missilePrefab: {fileID: 661978617696277151, guid: bd6e4a46561285a4098aadf70b16a371, type: 3}
   hook: {fileID: 9123303067232941171, guid: d8df621536c42a547823e93b709f8de7, type: 3}
   hookPovit: {fileID: 8537084599147881032}
+--- !u!70 &7785361195804431083
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5072216331852912049}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.004999995, y: 0.2}
+  m_Size: {x: 0.29, y: 0.4}
+  m_Direction: 0
 --- !u!114 &6702113877149821240
 MonoBehaviour:
   m_ObjectHideFlags: 0
