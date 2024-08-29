@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Ship : Item
@@ -9,8 +10,11 @@ public class Ship : Item
     [SerializeField] float linearDrag;
     [SerializeField] ParticleSystem boostParticle;
     [SerializeField] ParticleSystem collisionParticle;
+    public bool isConsumption = false;
     public bool isGrappling = false;
+    public bool isShootGrapple = false;
     public GameObject grappleObject;
+    public bool isInvincible = false;
 
     public float Speed
     {
@@ -34,16 +38,11 @@ public class Ship : Item
 
     public override void TakeDamage(Attack attacker)
     {
-        if (attacker.CompareTag("Enemy"))
+        if (attacker.CompareTag("Enemy") || attacker.CompareTag("Alien"))
         {
-            if (isGrappling)
+            if (isGrappling || isInvincible)
             {
-                if (attacker.gameObject == grappleObject)
-                {
-                    Destroy(grappleObject);
-                    grappleObject = null;
-                    return;
-                }
+                return;
             }
             currenthealth -= attacker.Damage;
             if (currenthealth <= 0)
@@ -54,6 +53,18 @@ public class Ship : Item
             }
         }
 
+    }
+
+    void Update()
+    {
+        if(isInvincible)
+        {
+            gameObject.GetComponent<Attack>().Damage = 1;
+        }
+        else
+        {
+            gameObject.GetComponent<Attack>().Damage = 0;
+        }
     }
 
 

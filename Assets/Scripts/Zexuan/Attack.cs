@@ -16,6 +16,11 @@ public class Attack : MonoBehaviour
         
     }
 
+    void OnTriggerStay2D(Collider2D other)
+    {
+        other.gameObject.GetComponent<Item>()?.TakeDamage(this);
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         other.gameObject.GetComponent<Item>()?.TakeDamage(this);

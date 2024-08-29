@@ -21,13 +21,12 @@ public class Missile : Item
 
     void OnBecameInvisible()
     {
-        //Destroy(gameObject);
         gameObject.SetActive(false);
     }
     
     public override void TakeDamage(Attack attacker)
     {
-        if (attacker.CompareTag("Enemy"))
+        if (attacker.CompareTag("Enemy") || attacker.CompareTag("Alien"))
         {
             currenthealth -= attacker.Damage;
             if (currenthealth <= 0)
