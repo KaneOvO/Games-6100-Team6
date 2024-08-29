@@ -38,7 +38,7 @@ public class Ship : Item
 
     public override void TakeDamage(Attack attacker)
     {
-        if (attacker.CompareTag("Enemy") || attacker.CompareTag("Alien"))
+        if (attacker.CompareTag("Enemy") || attacker.CompareTag("Alien") || attacker.CompareTag("AlienMissile"))
         {
             if (isGrappling || isInvincible)
             {
@@ -57,14 +57,14 @@ public class Ship : Item
 
     void Update()
     {
-        if(isInvincible)
-        {
-            gameObject.GetComponent<Attack>().Damage = 1;
-        }
-        else
-        {
-            gameObject.GetComponent<Attack>().Damage = 0;
-        }
+        // if(isGrappling)
+        // {
+        //     gameObject.GetComponent<Attack>().Damage = 1;
+        // }
+        // else
+        // {
+        //     gameObject.GetComponent<Attack>().Damage = 0;
+        // }
     }
 
 

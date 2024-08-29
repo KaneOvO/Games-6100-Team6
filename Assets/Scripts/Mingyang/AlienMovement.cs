@@ -12,6 +12,7 @@ public class AlienMovement : MonoBehaviour
     public Vector2 direction;
     public bool towardsOne;
     private float sinceChangeDirection;
+    public bool isFreezen = false; 
 
     void Awake()
     {
@@ -66,6 +67,7 @@ public class AlienMovement : MonoBehaviour
     void Update()
     {
         // Movement
+        if (isFreezen) return;
         transform.Translate(direction * speed * Time.deltaTime);
         WrapAroundScreenY();
         ChangeDirection();

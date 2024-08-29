@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8782841060108417200
+--- !u!1 &2306081102669611261
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,26 +8,27 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5761872147284742679}
-  - component: {fileID: 6505694159880639007}
-  - component: {fileID: -8831568546952332418}
-  - component: {fileID: 6111024911877883683}
-  - component: {fileID: -4083842890992229914}
-  - component: {fileID: 4292136944923739653}
-  m_Layer: 3
-  m_Name: Small Asteroid
-  m_TagString: Enemy
+  - component: {fileID: 7167600485645026605}
+  - component: {fileID: 2353220964112230399}
+  - component: {fileID: -1554390564999555655}
+  - component: {fileID: -3689544818607921220}
+  - component: {fileID: 3373911151137886644}
+  - component: {fileID: 5147096074637640214}
+  - component: {fileID: -6477685618484924425}
+  m_Layer: 0
+  m_Name: Alien
+  m_TagString: Alien
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5761872147284742679
+--- !u!4 &7167600485645026605
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8782841060108417200}
+  m_GameObject: {fileID: 2306081102669611261}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -36,13 +37,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &6505694159880639007
+--- !u!212 &2353220964112230399
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8782841060108417200}
+  m_GameObject: {fileID: 2306081102669611261}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -77,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7a90e3c07bfba784eb13aa8391dc86a1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: acca11f1b45b4c94bb73ea9988756e20, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -88,19 +89,68 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!70 &-8831568546952332418
+--- !u!114 &-1554390564999555655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2306081102669611261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f67eae564012bfb41a0be77472dd86e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1
+  currenthealth: 1
+  damage: 1
+  minSpeed: 1
+  maxSpeed: 2
+  score: 100
+  alienMissilePrefab: {fileID: 8817167948475343575, guid: 6a71a711e7d0be84f8fe701ae68597d4, type: 3}
+  fireCooldown: 1
+  changeDirectionCooldown: 3
+  isInScene: 0
+--- !u!114 &-3689544818607921220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2306081102669611261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49373a4e1a1c9db4da02a7e0ad154d57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: {x: 0, y: 0}
+  towardsOne: 0
+--- !u!114 &3373911151137886644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2306081102669611261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bc3014405909a84fb281e4f50347004, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 1
+--- !u!70 &5147096074637640214
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8782841060108417200}
+  m_GameObject: {fileID: 2306081102669611261}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -123,52 +173,30 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.32, y: 0.32}
   m_Direction: 0
---- !u!114 &6111024911877883683
-MonoBehaviour:
+--- !u!50 &-6477685618484924425
+Rigidbody2D:
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8782841060108417200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23b4678c4a55f134da7435d3349be790, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 1
-  currenthealth: 1
-  damage: 1
-  minSpeed: 0.5
-  maxSpeed: 1
-  isSmallAsteroid: 1
-  isMediumAsteroid: 0
-  isLargeAsteroid: 0
-  hasTakenDamage: 0
-  isInScene: 1
---- !u!114 &-4083842890992229914
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8782841060108417200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 560ed65f407cd9e4093a9014be9511e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  direction: {x: 0, y: 0}
-  isFreezen: 0
---- !u!114 &4292136944923739653
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8782841060108417200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bc3014405909a84fb281e4f50347004, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Damage: 0
+  m_GameObject: {fileID: 2306081102669611261}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
