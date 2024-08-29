@@ -1015,7 +1015,7 @@ Transform:
   m_GameObject: {fileID: 1031069841}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.701851, y: 16.31972, z: -0.19868937}
+  m_LocalPosition: {x: 3.03, y: 0.49, z: -0.19868937}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1041,9 +1041,16 @@ MonoBehaviour:
   - {fileID: 7353103860970814151, guid: 3fbf49350a8317646a275a92dedd077e, type: 3}
   - {fileID: 7353103860970814151, guid: 75bd3c835c187774c8cb21f277cfc9be, type: 3}
   player: {fileID: 99063056}
+  alienPrefab: {fileID: 2306081102669611261, guid: 090a08b4fde46cf4bb186d06dc674d0f, type: 3}
   score: 0
-  generateCooldown: 1.5
-  planetCooldown: 10
+  xBorderOffset: 0
+  yBorderOffset: 0
+  generateCooldown: 5
+  planetCooldown: 25
+  asteroidsPerBatch: 5
+  indexSmallAsteroid: 0
+  indexMediumAsteroid: 1
+  indexLargeAsteroid: 2
 --- !u!1 &1418805115
 GameObject:
   m_ObjectHideFlags: 0
@@ -1650,6 +1657,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: -555440414624689774, guid: f56c77cb9d09ffa46b3bb179623675b8, type: 3}
     - {fileID: 7294309161326165395, guid: f56c77cb9d09ffa46b3bb179623675b8, type: 3}
+    - {fileID: 7785361195804431083, guid: f56c77cb9d09ffa46b3bb179623675b8, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1102234865264860130, guid: f56c77cb9d09ffa46b3bb179623675b8, type: 3}

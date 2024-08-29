@@ -9,10 +9,17 @@ public class GameManagerPlanet : MonoBehaviour
     public GameObject[] asteroidPrefabs;
     public GameObject[] planetPrefabs;
     public GameObject player;
+    public GameObject alienPrefab;
     public int score;
-    //private bool isGameOver = false;
+    private bool isGameOver = false;
+    public float xBorderOffset;
+    public float yBorderOffset;
     [SerializeField] float generateCooldown;
     [SerializeField] float planetCooldown;
+    [SerializeField] int asteroidsPerBatch;
+    [SerializeField] int indexSmallAsteroid;
+    [SerializeField] int indexMediumAsteroid;
+    [SerializeField] int indexLargeAsteroid;
 
     private void Awake()
     {
@@ -30,8 +37,8 @@ public class GameManagerPlanet : MonoBehaviour
 
     void Start()
     {
-        int asteroidCount = Random.Range(3, 6);
-        GenerateAsteroids(asteroidCount);
+        //int asteroidCount = Random.Range(3, 6);
+        GenerateBatchAsteroids();
 
         InvokeRepeating("GenerateSingleAsteroid", generateCooldown, generateCooldown);
         InvokeRepeating("GenerateSinglePlanet", planetCooldown, planetCooldown);
@@ -41,6 +48,21 @@ public class GameManagerPlanet : MonoBehaviour
     void Update()
     {
 
+    }
+    void GenerateAlien()
+    {
+        Vector3 Position = GetRandomOffScreenPosition(true);
+        Instantiate(alienPrefab, Position, Quaternion.identity);
+
+    }
+    void GenerateBatchAsteroids()
+    {
+        for (int i = 0; i < asteroidsPerBatch; i++)
+        {
+            GameObject asteroidPrefab = asteroidPrefabs[indexLargeAsteroid];
+            Vector3 Position = GetRandomOffScreenPosition();
+            Instantiate(asteroidPrefab, Position, Quaternion.identity);
+        }
     }
 
     void GenerateAsteroids(int generateCount)
@@ -72,7 +94,7 @@ public class GameManagerPlanet : MonoBehaviour
         GeneratePlanet(1);
     }
 
-    Vector2 GetRandomOffScreenPosition()
+    Vector2 GetRandomOffScreenPosition( bool isAlien=false)
     {
         //Get the screen width and height
         float screenWidth = Screen.width;
@@ -128,5 +150,39 @@ public class GameManagerPlanet : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public float getWorldSceneX(Vector3 position)
+    {
+        Vector3 viewportPosition = Camera.main.WorldToViewportPoint(position);
+
+        if (viewportPosition.x < 0 + GameManager.Instance.xBorderOffset)
+        {
+            return 1 - GameManager.Instance.xBorderOffset;
+        }
+        else if (viewportPosition.x > 1 - GameManager.Instance.xBorderOffset)
+        {
+            return 0 + GameManager.Instance.xBorderOffset;
+        }
+        return viewportPosition.x;
+    }
+
+    public float getWorldSceneY(Vector3 position)
+    {
+        Vector3 viewportPosition = Camera.main.WorldToViewportPoint(position);
+
+        if (viewportPosition.y < 0 + GameManager.Instance.yBorderOffset)
+        {
+            return 1 - GameManager.Instance.yBorderOffset;
+        }
+        else if (viewportPosition.y > 1 - GameManager.Instance.yBorderOffset)
+        {
+            return 0 + GameManager.Instance.yBorderOffset;
+        }
+        return viewportPosition.y;
+    }
+
+    public Vector3 GetWorldScenePosition(Vector3 position)
+    {
+        return new Vector3(getWorldSceneX(position), getWorldSceneY(position), 0);
     }
 }
