@@ -10,7 +10,7 @@ public class Hook : MonoBehaviour
     [SerializeField] float maxDistance;
     [SerializeField] float invinciblePeriod = 1f;
     float distance;
-    private GameObject hookHolder;
+    public GameObject hookHolder;
     public Rigidbody2D hookRb;
     private bool isRetracting = false;
     private bool moveToTarget = false;
@@ -40,6 +40,11 @@ public class Hook : MonoBehaviour
         {
             distance = Vector3.Distance(pivot.transform.position, transform.position);
         }
+        else
+        {
+            hideHook();
+            return;
+        }
 
 
         if (distance >= maxDistance || isRetracting)
@@ -47,33 +52,39 @@ public class Hook : MonoBehaviour
             retractHook();
         }
 
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            if (hookHolder == null)
-            {
-                return;
-            }
-            Debug.Log("Down Arrow Up");
-            if (hookHolder.GetComponent<Ship>().isShootGrapple && !hookHolder.GetComponent<Ship>().isGrappling)
-            {
-                Debug.Log("Down Arrow Up, and isShootGrapple is true, and isGrappling is false");
-                isRetracting = true;
-                return;
-            }
-            else if (hookHolder.GetComponent<Ship>().isShootGrapple && hookHolder.GetComponent<Ship>().isGrappling)
-            {
-                Debug.Log("Down Arrow Up, and isShootGrapple is true, and isGrappling is true");
-                hookHolder.GetComponent<Ship>().grappleObject.GetComponent<AsteroidMovement>().isFreezen = false;
-                hookHolder.GetComponent<Ship>().isGrappling = false;
-                hookHolder.GetComponent<Ship>().grappleObject = null;
-                playerRb.velocity = Vector2.zero;
-                moveToTarget = false;
-                hookHolder.GetComponent<Ship>().isInvincible = false;
-                isRetracting = true;
+        // if (Input.GetKeyUp(KeyCode.Space))
+        // {
+        //     if (hookHolder == null)
+        //     {
+        //         return;
+        //     }
+        //     Debug.Log("Down Arrow Up");
+        //     if (hookHolder.GetComponent<Ship>().isShootGrapple && !hookHolder.GetComponent<Ship>().isGrappling)
+        //     {
+        //         Debug.Log("Down Arrow Up, and isShootGrapple is true, and isGrappling is false");
+        //         isRetracting = true;
+        //         return;
+        //     }
+        //     else if (hookHolder.GetComponent<Ship>().isShootGrapple && hookHolder.GetComponent<Ship>().isGrappling)
+        //     {
+        //         Debug.Log("Down Arrow Up, and isShootGrapple is true, and isGrappling is true");
+        //         hookHolder.GetComponent<Ship>().grappleObject.GetComponent<AsteroidMovement>().isFreezen = false;
+        //         hookHolder.GetComponent<Ship>().isGrappling = false;
+        //         hookHolder.GetComponent<Ship>().grappleObject = null;
+        //         playerRb.velocity = Vector2.zero;
+        //         moveToTarget = false;
+        //         hookHolder.GetComponent<Ship>().isInvincible = false;
+        //         isRetracting = true;
 
-                return;
-            }
-        }
+        //         return;
+        //     }
+        // }
+
+        // if(Input.GetKeyDown(KeyCode.Space) && hookHolder.GetComponent<Ship>().isShootGrapple)
+        // {
+        //     Debug.Log("Space key down");
+        //     isRetracting = true;
+        // }
 
         if (moveToTarget)
         {

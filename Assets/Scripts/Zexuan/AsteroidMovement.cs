@@ -67,31 +67,19 @@ public class AsteroidMovement : MonoBehaviour
         Vector3 viewportPosition = Camera.main.WorldToViewportPoint(position);
         if (asteroid.isInScene == false)
         {
-            if (viewportPosition.x < 0) return;
-            if (viewportPosition.x > 1) return;
-            if (viewportPosition.y < 0) return;
-            if (viewportPosition.y > 1) return;
+            if (viewportPosition.x < 0 + GameManager.Instance.xBorderOffset) return;
+            if (viewportPosition.x > 1 - GameManager.Instance.xBorderOffset) return;
+            if (viewportPosition.y < 0 + GameManager.Instance.yBorderOffset) return;
+            if (viewportPosition.y > 1 - GameManager.Instance.yBorderOffset) return;
             asteroid.isInScene = true;
             return;
         }
-        if (viewportPosition.x < 0)
-        {
-            viewportPosition.x = 1;
-        }
-        else if (viewportPosition.x > 1)
-        {
-            viewportPosition.x = 0;
-        }
 
-        if (viewportPosition.y < 0)
-        {
-            viewportPosition.y = 1;
-        }
-        else if (viewportPosition.y > 1)
-        {
-            viewportPosition.y = 0;
-        }
+        Vector3 newPosition = viewportPosition;
+        newPosition.x = GameManager.Instance.getWorldSceneX(position);
+        newPosition.y = GameManager.Instance.getWorldSceneY(position);
 
-        transform.position = Camera.main.ViewportToWorldPoint(viewportPosition);
+        transform.position = Camera.main.ViewportToWorldPoint(newPosition);
+
     }
 }

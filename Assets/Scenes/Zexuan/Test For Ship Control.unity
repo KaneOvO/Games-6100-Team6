@@ -474,7 +474,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4092251557150308505, guid: d8df621536c42a547823e93b709f8de7, type: 3}
       propertyPath: invinciblePeriod
-      value: 0.1
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4506016211923675984, guid: d8df621536c42a547823e93b709f8de7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9123303067232941171, guid: d8df621536c42a547823e93b709f8de7, type: 3}
       propertyPath: m_Name
@@ -718,6 +722,8 @@ MonoBehaviour:
   alienPrefab: {fileID: 2306081102669611261, guid: 090a08b4fde46cf4bb186d06dc674d0f, type: 3}
   score: 0
   isGameOver: 0
+  xBorderOffset: 0
+  yBorderOffset: 0
   generateCooldown: 5
   asteroidsPerBatch: 4
   indexSmallAsteroid: 0
@@ -1199,6 +1205,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1102234865264860130, guid: f56c77cb9d09ffa46b3bb179623675b8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1102234865264860130, guid: f56c77cb9d09ffa46b3bb179623675b8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
