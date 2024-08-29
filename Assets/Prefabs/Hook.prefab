@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e475e590aa8cfcc4a8b84a12781cf8f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grapplingGun: {fileID: 5944508068727592355}
+  grapplingGun: {fileID: 0}
   m_lineRenderer: {fileID: 8545821270704543328}
   percision: 40
   straightenLineSpeed: 10
@@ -247,7 +247,6 @@ GameObject:
   - component: {fileID: 4003044932193861738}
   - component: {fileID: 4506016211923675984}
   - component: {fileID: 3849089420080931896}
-  - component: {fileID: 5944508068727592355}
   - component: {fileID: 4092251557150308505}
   - component: {fileID: 4868298336659465139}
   m_Layer: 6
@@ -370,43 +369,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &5944508068727592355
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9123303067232941171}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac423ca2cebb8d6498396b8cd8d91f18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grappleRope: {fileID: 5396294269297705439}
-  ship: {fileID: 0}
-  grappleToAll: 0
-  grappableLayerNumber: 3
-  TargetLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  m_camera: {fileID: 0}
-  gunHolder: {fileID: 0}
-  gunPivot: {fileID: 0}
-  firePoint: {fileID: 598952584931583699}
-  m_springJoint2D: {fileID: 0}
-  m_rigidbody: {fileID: 0}
-  rotateOverTime: 1
-  rotationSpeed: 4
-  hasMaxDistance: 0
-  maxDistnace: 20
-  launchToPoint: 0
-  launchType: 0
-  launchSpeed: 3
-  autoConfigureDistance: 1
-  targetDistance: 0
-  targetFrequncy: 1
-  grapplePoint: {x: 0, y: 0}
-  grappleDistanceVector: {x: 0, y: 0}
 --- !u!114 &4092251557150308505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -420,9 +382,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  launchSpeed: 2
+  launchSpeed: 3
   maxDistance: 5
+  target: {fileID: 0}
   pivot: {fileID: 0}
+  playerRb: {fileID: 0}
 --- !u!50 &4868298336659465139
 Rigidbody2D:
   serializedVersion: 4

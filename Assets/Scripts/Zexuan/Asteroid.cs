@@ -33,7 +33,6 @@ public class Asteroid : Item
         {
             hasTakenDamage = true;
         }
-        Debug.Log("Asteroid taking damage");
         if (attacker.CompareTag("Bullet") || attacker.CompareTag("Player"))
         {
             if (isSmallAsteroid)
@@ -47,7 +46,6 @@ public class Asteroid : Item
             }
             else if (isMediumAsteroid)
             {
-                Debug.Log("Medium asteroid destroyed");
                 currenthealth -= attacker.Damage;
 
                 if (currenthealth < 1)
@@ -67,7 +65,6 @@ public class Asteroid : Item
 
                 if (currenthealth < 1)
                 {
-                    Debug.Log("Large asteroid destroyed");
                     
                     if (attacker.CompareTag("Player") && attacker.GetComponent<Ship>().isConsumption == false)
                     {

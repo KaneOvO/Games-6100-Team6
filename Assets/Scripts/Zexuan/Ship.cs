@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Ship : Item
@@ -51,6 +52,18 @@ public class Ship : Item
             }
         }
 
+    }
+
+    void Update()
+    {
+        if(isGrappling)
+        {
+            gameObject.GetComponent<Attack>().Damage = 1;
+        }
+        else
+        {
+            gameObject.GetComponent<Attack>().Damage = 0;
+        }
     }
 
 
