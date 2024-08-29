@@ -8,6 +8,7 @@ public class Hook : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float launchSpeed;
     [SerializeField] float maxDistance;
+    [SerializeField]float invinciblePeriod = 1f;
     float distance;
     private GameObject hookHolder;
     public Rigidbody2D hookRb;
@@ -19,6 +20,7 @@ public class Hook : MonoBehaviour
     Renderer spriteRenderer;
     Collider2D hookCollider;
     float distanceToTarget;
+    
 
     void Awake()
     {
@@ -29,56 +31,16 @@ public class Hook : MonoBehaviour
         pivot = GameObject.FindWithTag("Pivot");
         playerRb = hookHolder.GetComponent<Rigidbody2D>();
         hideHook();
-        
+
     }
-
-    // void Update()
-    // {
-    //     distance = Vector3.Distance(pivot.transform.position, transform.position);
-
-    //     if (distance >= maxDistance || isRetracting)
-    //     {
-    //         retractHook();
-    //     }
-
-    //     if (Input.GetKeyUp(KeyCode.DownArrow))
-    //     {
-    //         if (hookHolder.GetComponent<Ship>().isShootGrapple && !hookHolder.GetComponent<Ship>().isGrappling)
-    //         {
-    //             isRetracting = true;
-    //         }
-    //         else if (hookHolder.GetComponent<Ship>().isShootGrapple && hookHolder.GetComponent<Ship>().isGrappling)
-    //         {
-    //             hookHolder.GetComponent<Ship>().grappleObject.GetComponent<AsteroidMovement>().isFreezen = false;
-    //             hookHolder.GetComponent<Ship>().isGrappling = false;
-    //             hookHolder.GetComponent<Ship>().grappleObject = null;
-    //             hookHolder.GetComponent<Attack>().Damage = 0;
-    //             moveToTarget = false;
-    //             isRetracting = true;
-    //             return;
-    //         }
-
-    //     }
-
-    //     if (moveToTarget)
-    //     {
-    //         if (hookHolder.GetComponent<Ship>().grappleObject == null)
-    //         {
-    //             hookHolder.GetComponent<Ship>().isGrappling = false;
-    //             hookHolder.GetComponent<Ship>().grappleObject = null;
-    //             hookHolder.GetComponent<Attack>().Damage = 0;
-    //             moveToTarget = false;
-    //             isRetracting = true;
-    //             return;
-    //         }
-
-    //         hookHolder.transform.position = Vector2.Lerp(hookHolder.transform.position, transform.position, Time.deltaTime * launchSpeed);
-    //     }
-    // }
 
     void Update()
     {
-        distance = Vector3.Distance(pivot.transform.position, transform.position);
+        if (pivot != null)
+        {
+            distance = Vector3.Distance(pivot.transform.position, transform.position);
+        }
+
 
         if (distance >= maxDistance || isRetracting)
         {
@@ -87,6 +49,10 @@ public class Hook : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.DownArrow))
         {
+            if(hookHolder == null)
+            {
+                return;
+            }
             Debug.Log("Down Arrow Up");
             if (hookHolder.GetComponent<Ship>().isShootGrapple && !hookHolder.GetComponent<Ship>().isGrappling)
             {
@@ -102,7 +68,8 @@ public class Hook : MonoBehaviour
                 hookHolder.GetComponent<Ship>().grappleObject = null;
                 playerRb.velocity = Vector2.zero;
                 moveToTarget = false;
-                
+                hookHolder.GetComponent<Ship>().isInvincible = false;
+
                 return;
             }
         }
@@ -117,6 +84,7 @@ public class Hook : MonoBehaviour
                 hookHolder.GetComponent<Ship>().isGrappling = false;
                 hookHolder.GetComponent<Ship>().grappleObject = null;
                 moveToTarget = false;
+                StartCoroutine(CallFunctionWithDelay(invinciblePeriod));
                 return;
             }
         }
@@ -132,6 +100,11 @@ public class Hook : MonoBehaviour
 
     void retractHook()
     {
+        if(hookHolder == null)
+        {
+            return;
+        }
+
         isRetracting = true;
         hookRb.velocity = Vector2.zero;
         hookRb.position = Vector2.MoveTowards(hookRb.position, pivot.transform.position, speed * Time.deltaTime);
@@ -163,6 +136,7 @@ public class Hook : MonoBehaviour
                 hookHolder.GetComponent<Ship>().isGrappling = true;
                 target = other.gameObject;
                 hookHolder.GetComponent<Ship>().grappleObject = target;
+                hookHolder.GetComponent<Ship>().isInvincible = true;
 
                 AsteroidMovement asteroidMovement = other.gameObject.GetComponent<AsteroidMovement>();
                 if (asteroidMovement != null)
@@ -182,7 +156,7 @@ public class Hook : MonoBehaviour
         Rigidbody2D playerRb = hookHolder.GetComponent<Rigidbody2D>();
         playerRb.velocity = launchDirection * launchSpeed;
         isRetracting = true;
-        
+
     }
 
     void hideHook()
@@ -202,6 +176,17 @@ public class Hook : MonoBehaviour
     {
         launchSpeed = distanceToTarget + 1;
     }
+
+    void SetInvincible()
+    {
+        hookHolder.GetComponent<Ship>().isInvincible = false;
+    }
+
+     IEnumerator CallFunctionWithDelay(float delay)
+     {
+        yield return new WaitForSeconds(delay);
+        SetInvincible();
+     }
 
 
 }
