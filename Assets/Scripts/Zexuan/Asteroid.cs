@@ -33,7 +33,7 @@ public class Asteroid : Item
         {
             hasTakenDamage = true;
         }
-        if (attacker.CompareTag("Bullet") || attacker.CompareTag("Player"))
+        if (attacker.CompareTag("Bullet") || attacker.CompareTag("Player") || attacker.CompareTag("Alien"))
         {
             if (isSmallAsteroid)
             {
