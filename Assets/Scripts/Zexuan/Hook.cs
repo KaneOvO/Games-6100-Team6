@@ -47,7 +47,7 @@ public class Hook : MonoBehaviour
             retractHook();
         }
 
-        if (Input.GetKeyUp(KeyCode.DownArrow))
+        if (Input.GetKeyUp(KeyCode.Space))
         {
             if (hookHolder == null)
             {

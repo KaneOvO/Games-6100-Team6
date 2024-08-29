@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
         MovementInput();
         RotationInput();
         WrapAroundScreen();
-        Fire();
+        //Fire();
         shootHook();
     }
 
@@ -115,7 +115,7 @@ public class PlayerController : MonoBehaviour
 
     private void Fire()
     {
-        if (Input.GetKey(KeyCode.Space) && Time.time > nextFireTime)
+        if (Input.GetKey(KeyCode.DownArrow) && Time.time > nextFireTime)
         {
             nextFireTime = Time.time + fireRate;
 
@@ -135,7 +135,7 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow) && !ship.isShootGrapple)
+        if (Input.GetKeyDown(KeyCode.Space) && !ship.isShootGrapple)
         {
             playerRb.velocity = Vector2.zero;
             ship.isShootGrapple = true;

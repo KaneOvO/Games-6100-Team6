@@ -1289,7 +1289,6 @@ MonoBehaviour:
   asteroidPrefabs:
   - {fileID: 8782841060108417200, guid: 72e49a9ccda461e4ba2cb4a216641f4a, type: 3}
   - {fileID: 8782841060108417200, guid: 4ee00696047013041b69014291fcf00a, type: 3}
-  - {fileID: 2993518109561443989, guid: 2a50a29dc2e684e4da497e5166436545, type: 3}
   - {fileID: 7353103860970814151, guid: b8b9594f1fc592947b2e698495c66c79, type: 3}
   planetPrefabs:
   - {fileID: 7353103860970814151, guid: 3fbf49350a8317646a275a92dedd077e, type: 3}
