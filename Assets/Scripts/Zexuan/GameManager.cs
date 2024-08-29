@@ -10,10 +10,10 @@ public class GameManager: MonoBehaviour
     public GameObject[] asteroidPrefabs;
     public GameObject player;
     public GameObject alienPrefab;
-    GameObject[] asteroids;
+    // GameObject[] asteroids;
     // GameObject[] aliens;
     public int score;
-    //private bool isGameOver = false;
+    public bool isGameOver = false;
     [SerializeField] float generateCooldown;
     [SerializeField] int asteroidsPerBatch;
     [SerializeField] int indexSmallAsteroid;
@@ -85,6 +85,21 @@ public class GameManager: MonoBehaviour
         GenerateAsteroids(randomIndex);
     }
 
+    public GameObject GetRandomAsteroid()
+    {
+        GameObject[] asteroids = GameObject.FindGameObjectsWithTag("Enemy");
+        if (asteroids.Length == 0)
+        {
+            return null;
+        }
+        GameObject asteroid = asteroids[Random.Range(0, asteroids.Length)];
+        return asteroid;
+    }
+    public GameObject GetPlayer()
+    {
+        return player;
+    }
+
     Vector2 GetRandomOffScreenPosition(bool isAlien=false)
     {
         //Get the screen width and height
@@ -131,7 +146,7 @@ public class GameManager: MonoBehaviour
 
     public void GameOver()
     {
-        //isGameOver = true;
+        isGameOver = true;
         // CancelInvoke("GenerateSingleAsteroid");
         UIManager.Instance.GameOver();
     }

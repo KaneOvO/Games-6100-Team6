@@ -56,5 +56,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Games-6100-Team6.sln"
+    "dotnet.defaultSolution": "Games-6100-Team6.sln",
+    "dotnet.preferCSharpExtension": true
 }

@@ -1084,7 +1084,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1031069841}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: feb4d6a27cc88a644b2dc59be008535d, type: 3}
+  m_Script: {fileID: 11500000, guid: c2a7ef3470b9fe94781ea863aa1f2ac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   asteroidPrefabs:
@@ -1092,8 +1092,13 @@ MonoBehaviour:
   - {fileID: 2993518109561443989, guid: 33908c955cd06bc48bdaed60748adac0, type: 3}
   - {fileID: 7353103860970814151, guid: 9fb759f7253feb44a97618474ef4a2a3, type: 3}
   player: {fileID: 99063056}
-  score: 0
-  generateCooldown: 1.5
+  alienPrefab: {fileID: 2306081102669611261, guid: 090a08b4fde46cf4bb186d06dc674d0f, type: 3}
+  score: 1
+  generateCooldown: 5
+  asteroidsPerBatch: 4
+  indexSmallAsteroid: 0
+  indexMediumAsteroid: 1
+  indexLargeAsteroid: 2
 --- !u!1 &1418805115
 GameObject:
   m_ObjectHideFlags: 0
@@ -1757,6 +1762,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3291920403409544371, guid: f56c77cb9d09ffa46b3bb179623675b8, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 5072216331852912049, guid: f56c77cb9d09ffa46b3bb179623675b8, type: 3}
       propertyPath: m_Name
       value: Basic Ship
@@ -1771,7 +1780,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6485342861168450756, guid: f56c77cb9d09ffa46b3bb179623675b8, type: 3}
       propertyPath: health
-      value: 999
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6485342861168450756, guid: f56c77cb9d09ffa46b3bb179623675b8, type: 3}
+      propertyPath: rotation
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 7294309161326165395, guid: f56c77cb9d09ffa46b3bb179623675b8, type: 3}
       propertyPath: m_Size.x

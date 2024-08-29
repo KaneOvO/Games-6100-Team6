@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -3689544818607921220}
   - component: {fileID: 3373911151137886644}
   - component: {fileID: 5147096074637640214}
+  - component: {fileID: -6477685618484924425}
   m_Layer: 0
   m_Name: Alien
   m_TagString: Alien
@@ -106,6 +107,8 @@ MonoBehaviour:
   minSpeed: 1
   maxSpeed: 2
   score: 100
+  alienMissilePrefab: {fileID: 8817167948475343575, guid: 6a71a711e7d0be84f8fe701ae68597d4, type: 3}
+  fireCooldown: 1
   changeDirectionCooldown: 3
   isInScene: 0
 --- !u!114 &-3689544818607921220
@@ -170,3 +173,30 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.32, y: 0.32}
   m_Direction: 0
+--- !u!50 &-6477685618484924425
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2306081102669611261}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
