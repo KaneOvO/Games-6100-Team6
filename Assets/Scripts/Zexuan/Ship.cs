@@ -10,6 +10,7 @@ public class Ship : Item
     [SerializeField] float linearDrag;
     [SerializeField] ParticleSystem boostParticle;
     [SerializeField] ParticleSystem collisionParticle;
+    public SpriteRenderer sprite; //Adding this in order to make the player flash blue while invincible
     public bool isConsumption = false;
     public bool isGrappling = false;
     public bool isShootGrapple = false;
@@ -55,16 +56,24 @@ public class Ship : Item
 
     }
 
+    public IEnumerator FlashBlue()
+    {
+        sprite.color = Color.blue;
+        yield return new WaitForSeconds(0.3f);
+        sprite.color = Color.white;
+    }
+
     void Update()
     {
-        // if(isGrappling)
-        // {
+        if(isInvincible)
+        {
+            StartCoroutine(FlashBlue());
         //     gameObject.GetComponent<Attack>().Damage = 1;
-        // }
-        // else
-        // {
-        //     gameObject.GetComponent<Attack>().Damage = 0;
-        // }
+        }
+        //else
+        //{
+        //    gameObject.GetComponent<Attack>().Damage = 0;
+        //}
     }
 
 

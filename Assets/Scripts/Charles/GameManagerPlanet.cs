@@ -11,7 +11,7 @@ public class GameManagerPlanet : MonoBehaviour
     public GameObject player;
     public GameObject alienPrefab;
     public int score;
-    private bool isGameOver = false;
+    public bool isGameOver = false;
     public float xBorderOffset;
     public float yBorderOffset;
     [SerializeField] float generateCooldown;
