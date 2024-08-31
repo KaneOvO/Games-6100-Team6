@@ -9,8 +9,8 @@ public class Asteroid : Item
     [SerializeField] bool isSmallAsteroid;
     [SerializeField] bool isMediumAsteroid;
     [SerializeField] bool isLargeAsteroid;
+    [SerializeField] bool isPlanet;
     [SerializeField] bool hasTakenDamage = false;
-
     public bool isInScene = true;
 
     int indexOfSmallAsteroid = 0;
@@ -34,7 +34,7 @@ public class Asteroid : Item
     public override void TakeDamage(Attack attacker)
     {
         if (hasTakenDamage) return;
-        if(attacker.Damage > 0)
+        if (attacker.Damage > 0)
         {
             hasTakenDamage = true;
         }
@@ -70,13 +70,33 @@ public class Asteroid : Item
 
                 if (currenthealth < 1)
                 {
-                    
+
                     if (attacker.CompareTag("Player") && attacker.GetComponent<Ship>().isConsumption == false)
                     {
                         SplitAsteroid(GameManager.Instance.asteroidPrefabs[indexOfMediumAsteroid]);
                     }
 
                     GameManager.Instance.scoreChange(200);
+                    Destroy(gameObject);
+                }
+            }
+            else if (isPlanet)
+            {
+                currenthealth -= attacker.Damage;
+
+                if (currenthealth < 1)
+                {
+                    if (attacker.CompareTag("Player"))
+                    {
+                        GameManager.Instance.scoreChange(500);
+                        Buff buff1 = BuffContainer.Instance.GetRandomBuff();
+                        Buff buff2 = BuffContainer.Instance.GetRandomBuff();
+                        while (buff1.name == buff2.name)
+                        {
+                            buff2 = BuffContainer.Instance.GetRandomBuff();
+                        }
+                        GameManager.Instance.applyBuff(buff1, buff2);
+                    }
                     Destroy(gameObject);
                 }
             }
@@ -102,7 +122,7 @@ public class Asteroid : Item
     {
         yield return new WaitForSeconds(delay);
         SetDamage();
-        
+
     }
 
     void SetDamage()

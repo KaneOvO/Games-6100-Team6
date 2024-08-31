@@ -10,6 +10,8 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance { get; private set; }
     public TextMeshProUGUI scoreText;
     public GameObject gameOverPanel;
+    public GameObject choosePanel;
+    public GameObject buff1Name, buff1Description, buff1ApplyButton, buff2Name, buff2Description, buff2ApplyButton;
 
     private void Awake()
     {

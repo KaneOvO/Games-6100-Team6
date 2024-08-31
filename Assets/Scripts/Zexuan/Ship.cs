@@ -25,6 +25,7 @@ public class Ship : Item
     public float Rotation
     {
         get { return rotation; }
+        set { rotation = value; }
     }
 
     public float LinearDrag
@@ -73,6 +74,14 @@ public class Ship : Item
         //     isShowInvincible = true;
         //     StartCoroutine(FlashBlue());
         // }
+    }
+
+    private void OnDestroy()
+    {
+        if(grappleObject != null)
+        {
+            grappleObject.GetComponent<AsteroidMovement>().isFreezen = false;
+        }
     }
 
 

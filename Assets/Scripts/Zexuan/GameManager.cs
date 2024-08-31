@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,7 +17,7 @@ public class GameManager : MonoBehaviour
     // GameObject[] asteroids;
     // GameObject[] aliens;
     private int score;
-    [SerializeField] int lives = 3;
+    [SerializeField] public int lives = 3;
     [SerializeField] int respawnInvinciblePeriod;
     public bool isGameOver = false;
     public float xBorderOffset;
@@ -49,6 +51,7 @@ public class GameManager : MonoBehaviour
         // GenerateAsteroids(asteroidCount);
 
         InvokeRepeating("GenerateAlien", generateCooldown, generateCooldown);
+        InvokeRepeating("GeneratePlanet", generateCooldown, generateCooldown);
     }
 
     // Update is called once per frame
@@ -75,6 +78,13 @@ public class GameManager : MonoBehaviour
             Vector3 Position = GetRandomOffScreenPosition();
             Instantiate(asteroidPrefab, Position, Quaternion.identity);
         }
+    }
+
+    void GeneratePlanet()
+    {
+        GameObject planetPrefab = asteroidPrefabs[3];
+        Vector3 Position = GetRandomOffScreenPosition();
+        Instantiate(planetPrefab, Position, Quaternion.identity);
     }
 
     void GenerateAsteroids(int generateCount)
@@ -238,5 +248,31 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         player.GetComponent<Ship>().isInvincible = false;
+    }
+
+    public void applyBuff(Buff buff1, Buff buff2)
+    {
+        Time.timeScale = 0;
+        UIManager.Instance.choosePanel.SetActive(true);
+        UIManager.Instance.buff1Name.GetComponent<TextMeshProUGUI>().text = buff1.name;
+        UIManager.Instance.buff1Description.GetComponent<TextMeshProUGUI>().text = buff1.description;
+        UIManager.Instance.buff1ApplyButton.GetComponent<Button>().onClick.RemoveAllListeners();
+        UIManager.Instance.buff1ApplyButton.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            BuffManager.Instance.AddBuff(buff1);
+            UIManager.Instance.choosePanel.SetActive(false);
+            Time.timeScale = 1;
+        });
+
+        UIManager.Instance.buff2Name.GetComponent<TextMeshProUGUI>().text = buff2.name;
+        UIManager.Instance.buff2Description.GetComponent<TextMeshProUGUI>().text = buff2.description;
+        UIManager.Instance.buff2ApplyButton.GetComponent<Button>().onClick.RemoveAllListeners();
+        UIManager.Instance.buff2ApplyButton.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            BuffManager.Instance.AddBuff(buff2);
+            UIManager.Instance.choosePanel.SetActive(false);
+            Time.timeScale = 1;
+        });
+
     }
 }

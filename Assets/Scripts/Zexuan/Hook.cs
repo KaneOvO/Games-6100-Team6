@@ -6,8 +6,8 @@ using UnityEngine;
 public class Hook : MonoBehaviour
 {
     [SerializeField] float speed;
-    [SerializeField] float launchSpeed;
-    [SerializeField] float maxDistance;
+    [SerializeField] public float launchSpeed;
+    [SerializeField] public float maxDistance;
     [SerializeField] public float invinciblePeriod = 1f;
     float distance;
     public GameObject hookHolder;
