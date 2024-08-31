@@ -129,19 +129,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0faadba6b9ce1ec4fb38c56d84387f40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 999
+  health: 1
   currenthealth: 0
   damage: 0
   speed: 300
-  rotation: 200
+  rotation: 400
   linearDrag: 1
   boostParticle: {fileID: 0}
   collisionParticle: {fileID: 0}
+  sprite: {fileID: 0}
   isConsumption: 0
   isGrappling: 0
   isShootGrapple: 0
   grappleObject: {fileID: 0}
   isInvincible: 0
+  Hook: {fileID: 0}
 --- !u!114 &2285805800765924226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,8 +157,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   missilePrefab: {fileID: 661978617696277151, guid: bd6e4a46561285a4098aadf70b16a371, type: 3}
-  hook: {fileID: 9123303067232941171, guid: d8df621536c42a547823e93b709f8de7, type: 3}
+  hook: {fileID: 0}
   hookPovit: {fileID: 8537084599147881032}
+  hookSpriteRenderer: {fileID: 0}
 --- !u!70 &7785361195804431083
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -204,7 +207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bc3014405909a84fb281e4f50347004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 0
+  Damage: 1
 --- !u!1 &8537084599147881032
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,7 +234,7 @@ Transform:
   m_GameObject: {fileID: 8537084599147881032}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.01, y: 0.3, z: 0}
+  m_LocalPosition: {x: -0.005, y: 0.401, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

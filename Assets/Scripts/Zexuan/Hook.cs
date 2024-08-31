@@ -8,11 +8,12 @@ public class Hook : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float launchSpeed;
     [SerializeField] float maxDistance;
-    [SerializeField] float invinciblePeriod = 1f;
+    [SerializeField] public float invinciblePeriod = 1f;
     float distance;
     public GameObject hookHolder;
     public Rigidbody2D hookRb;
     private bool isRetracting = false;
+    public bool isHooked = false;
     private bool moveToTarget = false;
     [SerializeField] GameObject target;
     public GameObject pivot;
@@ -44,6 +45,32 @@ public class Hook : MonoBehaviour
         {
             hideHook();
             return;
+        }
+
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            if (!isHooked)
+            {
+                isRetracting = true;
+            }
+            else
+            {
+                if (target == null)
+                {
+
+                }
+                else
+                {
+                    Debug.Log("launch player");
+                    LaunchPlayer();
+                    moveToTarget = true;
+                    isHooked = false;
+                    hookHolder.GetComponent<Ship>().isGrappling = true;
+                    hookHolder.GetComponent<Ship>().isInvincible = true;
+                    StartCoroutine(hookHolder.GetComponent<Ship>().FlashBlue(invinciblePeriod));
+                }
+            }
+
         }
 
 
@@ -149,19 +176,17 @@ public class Hook : MonoBehaviour
             if (hookHolder.GetComponent<Ship>().grappleObject == null)
             {
                 hookRb.velocity = Vector2.zero;
-                moveToTarget = true;
-                hookHolder.GetComponent<Ship>().isGrappling = true;
+                isHooked = true;
                 target = other.gameObject;
                 hookHolder.GetComponent<Ship>().grappleObject = target;
-                hookHolder.GetComponent<Ship>().isInvincible = true;
 
                 if (target.CompareTag("Alien"))
                 {
-                    if(target.GetComponent<AlienMovement>() != null)
+                    if (target.GetComponent<AlienMovement>() != null)
                     {
                         target.GetComponent<AlienMovement>().isFreezen = true;
                     }
-                    
+
                 }
                 else if (target.CompareTag("Enemy"))
                 {
@@ -171,8 +196,6 @@ public class Hook : MonoBehaviour
                         asteroidMovement.isFreezen = true;
                     }
                 }
-
-                LaunchPlayer();
             }
         }
     }

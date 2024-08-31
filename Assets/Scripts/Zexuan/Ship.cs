@@ -48,32 +48,31 @@ public class Ship : Item
             currenthealth -= attacker.Damage;
             if (currenthealth <= 0)
             {
-                Destroy(gameObject);
-                GameManager.Instance.GameOver();
-                Debug.Log("Ship destroyed");
+                GameManager.Instance.PlayerDeath();   
             }
         }
 
     }
 
-    public IEnumerator FlashBlue()
+    public IEnumerator FlashBlue(float invinciblePeriod)
     {
         sprite.color = Color.blue;
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(invinciblePeriod);
         sprite.color = Color.white;
+    }
+
+    public void Awake()
+    {
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     void Update()
     {
-        if(isInvincible)
-        {
-            StartCoroutine(FlashBlue());
-        //     gameObject.GetComponent<Attack>().Damage = 1;
-        }
-        //else
-        //{
-        //    gameObject.GetComponent<Attack>().Damage = 0;
-        //}
+        // if(isInvincible && !isShowInvincible)
+        // {
+        //     isShowInvincible = true;
+        //     StartCoroutine(FlashBlue());
+        // }
     }
 
 

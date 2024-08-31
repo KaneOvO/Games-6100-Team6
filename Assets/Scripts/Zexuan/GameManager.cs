@@ -4,15 +4,19 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager: MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public GameObject[] asteroidPrefabs;
     public GameObject player;
+    public GameObject playerPrefab;
     public GameObject alienPrefab;
+    public GameObject hook;
     // GameObject[] asteroids;
     // GameObject[] aliens;
-    public int score;
+    private int score;
+    [SerializeField] int lives = 3;
+    [SerializeField] int respawnInvinciblePeriod;
     public bool isGameOver = false;
     public float xBorderOffset;
     public float yBorderOffset;
@@ -21,6 +25,8 @@ public class GameManager: MonoBehaviour
     [SerializeField] int indexSmallAsteroid;
     [SerializeField] int indexMediumAsteroid;
     [SerializeField] int indexLargeAsteroid;
+    
+
 
     private void Awake()
     {
@@ -33,7 +39,7 @@ public class GameManager: MonoBehaviour
             Destroy(gameObject);
         }
 
-        
+        hook = GameObject.FindWithTag("Hook");
     }
 
     void Start()
@@ -58,7 +64,7 @@ public class GameManager: MonoBehaviour
     {
         Vector3 Position = GetRandomOffScreenPosition(true);
         Instantiate(alienPrefab, Position, Quaternion.identity);
-        
+
     }
 
     void GenerateBatchAsteroids()
@@ -102,7 +108,7 @@ public class GameManager: MonoBehaviour
         return player;
     }
 
-    Vector2 GetRandomOffScreenPosition(bool isAlien=false)
+    Vector2 GetRandomOffScreenPosition(bool isAlien = false)
     {
         //Get the screen width and height
         float screenWidth = Screen.width;
@@ -146,8 +152,37 @@ public class GameManager: MonoBehaviour
         this.player = player;
     }
 
+    public void PlayerDeath()
+    {
+        Instance.lives--;
+
+        if (Instance.lives <= 0)
+        {
+            Instance.GameOver();
+            Destroy(player);
+        }
+        else
+        {
+            StartCoroutine(Destory());
+            Destroy(player);
+        }
+    }
+
+    public IEnumerator Destory()
+    {
+        yield return new WaitForSeconds(2);
+        Destroy(player);
+        player = Instantiate(playerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        hook.GetComponent<Hook>().hookHolder = player;
+        hook.GetComponent<Hook>().pivot = player.transform.Find("Pivot").gameObject;
+        player.GetComponent<Ship>().isInvincible = true;
+        StartCoroutine(player.GetComponent<Ship>().FlashBlue(respawnInvinciblePeriod));
+        StartCoroutine(StopRespawnInvincible(respawnInvinciblePeriod));
+    }
+
     public void GameOver()
     {
+        Destroy(player);
         isGameOver = true;
         // CancelInvoke("GenerateSingleAsteroid");
         UIManager.Instance.GameOver();
@@ -197,5 +232,11 @@ public class GameManager: MonoBehaviour
     public Vector3 GetWorldScenePosition(Vector3 position)
     {
         return new Vector3(getWorldSceneX(position), getWorldSceneY(position), 0);
+    }
+
+    IEnumerator StopRespawnInvincible(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        player.GetComponent<Ship>().isInvincible = false;
     }
 }

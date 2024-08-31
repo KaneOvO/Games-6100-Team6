@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
         ship = GetComponent<Ship>();
         playerRb = GetComponent<Rigidbody2D>();
         playerRb.drag = ship.LinearDrag;
+        hook = GameManager.Instance.hook;
         //playerAudio = GetComponents<AudioSource>()[0];
     }
 
