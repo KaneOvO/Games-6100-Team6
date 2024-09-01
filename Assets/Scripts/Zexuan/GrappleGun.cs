@@ -83,7 +83,7 @@ public class GrappleGun : MonoBehaviour
             }
 
             // 更新 grapplePoint 和 SpringJoint2D 的 connectedAnchor
-            if (ship.isGrappling && ship.grappleObject != null)
+            if (GameManager.Instance.isGrappling && ship.grappleObject != null)
             {
                 grapplePoint = ship.grappleObject.transform.position;
                 m_springJoint2D.connectedAnchor = grapplePoint;
@@ -92,12 +92,12 @@ public class GrappleGun : MonoBehaviour
                 gunHolder.position = Vector2.MoveTowards(gunHolder.position, targetPos, Time.deltaTime * launchSpeed);
             }
 
-            if(ship.isGrappling && ship.grappleObject == null)
+            if(GameManager.Instance.isGrappling && ship.grappleObject == null)
             {
                 grappleRope.enabled = false;
                 m_springJoint2D.enabled = false;
                 m_rigidbody.gravityScale = 1;
-                ship.isGrappling = false;
+                GameManager.Instance.isGrappling = false;
             }
         }
 
@@ -106,7 +106,7 @@ public class GrappleGun : MonoBehaviour
             grappleRope.enabled = false;
             m_springJoint2D.enabled = false;
             m_rigidbody.gravityScale = 1;
-            ship.isGrappling = false;
+            GameManager.Instance.isGrappling = false;
             ship.grappleObject = null;
         }
     }
@@ -146,7 +146,7 @@ public class GrappleGun : MonoBehaviour
                     grapplePoint = _hit.point;
                     grappleDistanceVector = grapplePoint - (Vector2)gunPivot.position;
                     grappleRope.enabled = true;
-                    ship.isGrappling = true;
+                    GameManager.Instance.isGrappling = true;
                     ship.grappleObject = _hit.transform.gameObject;
                 }
             }

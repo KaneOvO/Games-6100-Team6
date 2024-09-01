@@ -27,7 +27,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] int indexSmallAsteroid;
     [SerializeField] int indexMediumAsteroid;
     [SerializeField] int indexLargeAsteroid;
-    
+    public int ropeBlockCount;
+    public bool isRetracting = false;
+    public bool moveToTarget = false;
+    public bool isGrappling = false;
+    public bool isShootGrapple = false;
+
 
 
     private void Awake()
@@ -224,6 +229,11 @@ public class GameManager : MonoBehaviour
         return viewportPosition.x;
     }
 
+    public bool isUsingHook()
+    {
+        return isGrappling || isShootGrapple || isRetracting || moveToTarget;
+    }
+
     public float getWorldSceneY(Vector3 position)
     {
         Vector3 viewportPosition = Camera.main.WorldToViewportPoint(position);
@@ -237,6 +247,28 @@ public class GameManager : MonoBehaviour
             return 0 + GameManager.Instance.yBorderOffset;
         }
         return viewportPosition.y;
+    }
+
+    public bool inWorldScene(Vector3 position)
+    {
+        Vector3 viewportPosition = Camera.main.WorldToViewportPoint(position);
+        if (viewportPosition.y < 0 + GameManager.Instance.yBorderOffset)
+        {
+            return false;
+        }
+        else if (viewportPosition.y > 1 - GameManager.Instance.yBorderOffset)
+        {
+            return false;
+        }
+        if (viewportPosition.x < 0 + GameManager.Instance.xBorderOffset)
+        {
+            return false;
+        }
+        else if (viewportPosition.x > 1 - GameManager.Instance.xBorderOffset)
+        {
+            return false;
+        }
+        return true;
     }
 
     public Vector3 GetWorldScenePosition(Vector3 position)

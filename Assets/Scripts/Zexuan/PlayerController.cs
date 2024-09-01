@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
@@ -14,6 +15,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject hookPovit;
     [SerializeField] Renderer hookSpriteRenderer;
 
+    public int ropeBlockNum;
+    private GameObject[] ropeBlocks;
+    public GameObject ropeBlockPrefab;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +28,13 @@ public class PlayerController : MonoBehaviour
         playerRb.drag = ship.LinearDrag;
         hook = GameManager.Instance.hook;
         //playerAudio = GetComponents<AudioSource>()[0];
+        GameManager.Instance.ropeBlockCount = 0;
+        for (int i = 0; i < ropeBlockNum; i++)
+        {
+            Instantiate(ropeBlockPrefab, ship.transform.position, ship.transform.rotation);
+            GameManager.Instance.ropeBlockCount++;
+
+        }
     }
 
     // Update is called once per frame
@@ -36,9 +49,9 @@ public class PlayerController : MonoBehaviour
 
     void MovementInput()
     {
-        if (!ship.isShootGrapple && (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)))
+        if (!GameManager.Instance.isShootGrapple && (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)))
         {
-            if(ship.isShootGrapple|| ship.isGrappling)
+            if(GameManager.Instance.isShootGrapple || GameManager.Instance.isGrappling)
             {
                 return;
             }
@@ -72,11 +85,11 @@ public class PlayerController : MonoBehaviour
 
     private void RotationInput()
     {
-        if (!ship.isShootGrapple && (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)))
+        if (!GameManager.Instance.isShootGrapple && (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)))
         {
             ApplyRotation(Vector3.forward);
         }
-        else if (!ship.isShootGrapple && (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)))
+        else if (!GameManager.Instance.isShootGrapple && (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)))
         {
             ApplyRotation(Vector3.back);
         }
@@ -118,14 +131,14 @@ public class PlayerController : MonoBehaviour
 
     void shootHook()
     {
-        if(ship.isShootGrapple || ship.isGrappling)
+        if(GameManager.Instance.isShootGrapple || GameManager.Instance.isGrappling)
         {
             return;
         }
-        if (Input.GetKeyDown(KeyCode.Space) && !ship.isShootGrapple)
+        if (Input.GetKeyDown(KeyCode.Space) && !GameManager.Instance.isShootGrapple)
         {
             playerRb.velocity = Vector2.zero;
-            ship.isShootGrapple = true;
+            GameManager.Instance.isShootGrapple = true;
             hook.transform.position = hookPovit.transform.position;
             hook.transform.rotation = hookPovit.transform.rotation;
             hookSpriteRenderer = hook.GetComponent<SpriteRenderer>();

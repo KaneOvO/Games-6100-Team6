@@ -12,9 +12,9 @@ public class Hook : MonoBehaviour
     float distance;
     public GameObject hookHolder;
     public Rigidbody2D hookRb;
-    private bool isRetracting = false;
+    //private bool isRetracting = false;
     public bool isHooked = false;
-    private bool moveToTarget = false;
+    //private bool moveToTarget = false;
     [SerializeField] GameObject target;
     public GameObject pivot;
     public Rigidbody2D playerRb;
@@ -37,6 +37,10 @@ public class Hook : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Instance.isShootGrapple && !GameManager.Instance.inWorldScene(transform.position))
+        {
+            GameManager.Instance.isRetracting = true;
+        }
         if (pivot != null)
         {
             distance = Vector3.Distance(pivot.transform.position, transform.position);
@@ -51,7 +55,7 @@ public class Hook : MonoBehaviour
         {
             if (!isHooked)
             {
-                isRetracting = true;
+                GameManager.Instance.isRetracting = true;
             }
             else
             {
@@ -63,9 +67,9 @@ public class Hook : MonoBehaviour
                 {
                     Debug.Log("launch player");
                     LaunchPlayer();
-                    moveToTarget = true;
+                    GameManager.Instance.moveToTarget = true;
                     isHooked = false;
-                    hookHolder.GetComponent<Ship>().isGrappling = true;
+                    GameManager.Instance.isGrappling = true;
                     hookHolder.GetComponent<Ship>().isInvincible = true;
                     StartCoroutine(hookHolder.GetComponent<Ship>().FlashBlue(invinciblePeriod));
                 }
@@ -74,7 +78,7 @@ public class Hook : MonoBehaviour
         }
 
 
-        if (distance >= maxDistance || isRetracting)
+        if ((distance >= maxDistance && GameManager.Instance.isUsingHook()) || GameManager.Instance.isRetracting)
         {
             retractHook();
         }
@@ -89,7 +93,7 @@ public class Hook : MonoBehaviour
         //     if (hookHolder.GetComponent<Ship>().isShootGrapple && !hookHolder.GetComponent<Ship>().isGrappling)
         //     {
         //         Debug.Log("Down Arrow Up, and isShootGrapple is true, and isGrappling is false");
-        //         isRetracting = true;
+        //         GameManager.Instance.isRetracting = true;
         //         return;
         //     }
         //     else if (hookHolder.GetComponent<Ship>().isShootGrapple && hookHolder.GetComponent<Ship>().isGrappling)
@@ -101,7 +105,7 @@ public class Hook : MonoBehaviour
         //         playerRb.velocity = Vector2.zero;
         //         moveToTarget = false;
         //         hookHolder.GetComponent<Ship>().isInvincible = false;
-        //         isRetracting = true;
+        //         GameManager.Instance.isRetracting = true;
 
         //         return;
         //     }
@@ -110,31 +114,31 @@ public class Hook : MonoBehaviour
         // if(Input.GetKeyDown(KeyCode.Space) && hookHolder.GetComponent<Ship>().isShootGrapple)
         // {
         //     Debug.Log("Space key down");
-        //     isRetracting = true;
+        //     GameManager.Instance.isRetracting = true;
         // }
 
-        if (moveToTarget)
+        if (GameManager.Instance.moveToTarget)
         {
             Debug.Log("Moving to target");
             Debug.Log("Grapple object: " + hookHolder.GetComponent<Ship>().grappleObject);
             if (hookHolder.GetComponent<Ship>().grappleObject == null)
             {
                 Debug.Log("Grapple object is null");
-                hookHolder.GetComponent<Ship>().isGrappling = false;
+                GameManager.Instance.isGrappling = false;
                 hookHolder.GetComponent<Ship>().grappleObject = null;
-                moveToTarget = false;
+                GameManager.Instance.moveToTarget = false;
                 StartCoroutine(CallFunctionWithDelay(invinciblePeriod));
-                isRetracting = true;
+                GameManager.Instance.isRetracting = true;
                 return;
             }
         }
-
+        
 
     }
 
     public void shootHook()
     {
-        isRetracting = false;
+        GameManager.Instance.isRetracting = false;
         hookRb.velocity = transform.up * speed;
     }
 
@@ -145,26 +149,26 @@ public class Hook : MonoBehaviour
             return;
         }
 
-        isRetracting = true;
+        GameManager.Instance.isRetracting = true;
         hookRb.velocity = Vector2.zero;
         hookRb.position = Vector2.MoveTowards(hookRb.position, pivot.transform.position, speed * Time.deltaTime);
 
         if (Vector2.Distance(hookRb.position, pivot.transform.position) < 0.1f)
         {
-            isRetracting = false;
-            hookHolder.GetComponent<Ship>().isShootGrapple = false;
+            GameManager.Instance.isRetracting = false;
+            GameManager.Instance.isShootGrapple = false;
             hideHook();
         }
     }
 
-    void OnBecameInvisible()
-    {
-        isRetracting = true;
-    }
+    //void OnBecameInvisible()
+    //{
+    //    GameManager.Instance.isRetracting = true;
+    //}
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (!isRetracting && (other.CompareTag("Enemy") || other.CompareTag("Alien")))
+        if (!GameManager.Instance.isRetracting && (other.CompareTag("Enemy") || other.CompareTag("Alien")))
         {
             if (hookHolder == null)
             {
@@ -241,6 +245,7 @@ public class Hook : MonoBehaviour
         yield return new WaitForSeconds(delay);
         SetInvincible();
     }
+
 
 
 }

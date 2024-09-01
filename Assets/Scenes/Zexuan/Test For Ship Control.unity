@@ -762,11 +762,16 @@ MonoBehaviour:
   isGameOver: 0
   xBorderOffset: 0
   yBorderOffset: 0
-  generateCooldown: 5
+  generateCooldown: 100
   asteroidsPerBatch: 4
   indexSmallAsteroid: 0
   indexMediumAsteroid: 1
   indexLargeAsteroid: 2
+  ropeBlockCount: 0
+  isRetracting: 0
+  moveToTarget: 0
+  isGrappling: 0
+  isShootGrapple: 0
 --- !u!1 &1161300783 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8411633812223925774, guid: ff0940d9650b9ea4291b34e9c258e835, type: 3}
@@ -1542,9 +1547,21 @@ PrefabInstance:
       propertyPath: hook
       value: 
       objectReference: {fileID: 1380648391}
+    - target: {fileID: 2285805800765924226, guid: f56c77cb9d09ffa46b3bb179623675b8, type: 3}
+      propertyPath: ropeBlockNum
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2285805800765924226, guid: f56c77cb9d09ffa46b3bb179623675b8, type: 3}
+      propertyPath: ropeBlockPrefab
+      value: 
+      objectReference: {fileID: 5053055554727317599, guid: ceecac733e5eabc4ebbc78bae388b145, type: 3}
     - target: {fileID: 5072216331852912049, guid: f56c77cb9d09ffa46b3bb179623675b8, type: 3}
       propertyPath: m_Name
       value: Basic Ship
+      objectReference: {fileID: 0}
+    - target: {fileID: 6485342861168450756, guid: f56c77cb9d09ffa46b3bb179623675b8, type: 3}
+      propertyPath: health
+      value: 999
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -12,8 +12,7 @@ public class Ship : Item
     [SerializeField] ParticleSystem collisionParticle;
     public SpriteRenderer sprite; //Adding this in order to make the player flash blue while invincible
     public bool isConsumption = false;
-    public bool isGrappling = false;
-    public bool isShootGrapple = false;
+    
     public GameObject grappleObject;
     public bool isInvincible = false;
 
@@ -42,7 +41,7 @@ public class Ship : Item
     {
         if (attacker.CompareTag("Enemy") || attacker.CompareTag("Alien") || attacker.CompareTag("AlienMissile"))
         {
-            if (isGrappling || isInvincible)
+            if (GameManager.Instance.isGrappling || isInvincible)
             {
                 return;
             }
