@@ -138,11 +138,12 @@ MonoBehaviour:
   health: 1
   currenthealth: 1
   damage: 1
-  minSpeed: 0.5
-  maxSpeed: 1
+  minSpeed: 0.25
+  maxSpeed: 0.5
   isSmallAsteroid: 0
   isMediumAsteroid: 0
   isLargeAsteroid: 1
+  isPlanet: 0
   hasTakenDamage: 0
   isInScene: 1
 --- !u!114 &5441783355505192668
@@ -157,6 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 560ed65f407cd9e4093a9014be9511e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0
   direction: {x: 0, y: 0}
   isFreezen: 0
 --- !u!114 &1767677358246347895

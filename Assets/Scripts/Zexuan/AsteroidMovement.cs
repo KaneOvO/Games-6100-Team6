@@ -6,7 +6,7 @@ public class AsteroidMovement : MonoBehaviour
 {
     Asteroid asteroid;
     private GameObject player;
-    private float speed;
+    public float speed;
     public Vector2 direction;
     public bool isFreezen = false;
 

@@ -21,6 +21,7 @@ public class Hook : MonoBehaviour
     public Renderer spriteRenderer;
     Collider2D hookCollider;
     float distanceToTarget;
+    [SerializeField] float rotationSpeed = 360f;
 
 
     void Awake()
@@ -51,6 +52,18 @@ public class Hook : MonoBehaviour
             return;
         }
 
+        if (hookHolder != null && target != null)
+        {
+            hookRb.position = Vector2.MoveTowards(hookRb.position, target.transform.position, speed * Time.deltaTime);
+            RotateShipTowardsTarget();
+        }
+        else if (isHooked && target == null)
+        {
+            hookHolder.GetComponent<Ship>().grappleObject = null;
+            isHooked = false;
+            GameManager.Instance.isRetracting = true;
+        }
+
         if (Input.GetKeyUp(KeyCode.Space))
         {
             if (!isHooked)
@@ -61,7 +74,10 @@ public class Hook : MonoBehaviour
             {
                 if (target == null)
                 {
-
+                    hookHolder.GetComponent<Ship>().grappleObject = null;
+                    isHooked = false;
+                    GameManager.Instance.isRetracting = true;
+                    return;
                 }
                 else
                 {
@@ -83,40 +99,6 @@ public class Hook : MonoBehaviour
             retractHook();
         }
 
-        // if (Input.GetKeyUp(KeyCode.Space))
-        // {
-        //     if (hookHolder == null)
-        //     {
-        //         return;
-        //     }
-        //     Debug.Log("Down Arrow Up");
-        //     if (hookHolder.GetComponent<Ship>().isShootGrapple && !hookHolder.GetComponent<Ship>().isGrappling)
-        //     {
-        //         Debug.Log("Down Arrow Up, and isShootGrapple is true, and isGrappling is false");
-        //         GameManager.Instance.isRetracting = true;
-        //         return;
-        //     }
-        //     else if (hookHolder.GetComponent<Ship>().isShootGrapple && hookHolder.GetComponent<Ship>().isGrappling)
-        //     {
-        //         Debug.Log("Down Arrow Up, and isShootGrapple is true, and isGrappling is true");
-        //         hookHolder.GetComponent<Ship>().grappleObject.GetComponent<AsteroidMovement>().isFreezen = false;
-        //         hookHolder.GetComponent<Ship>().isGrappling = false;
-        //         hookHolder.GetComponent<Ship>().grappleObject = null;
-        //         playerRb.velocity = Vector2.zero;
-        //         moveToTarget = false;
-        //         hookHolder.GetComponent<Ship>().isInvincible = false;
-        //         GameManager.Instance.isRetracting = true;
-
-        //         return;
-        //     }
-        // }
-
-        // if(Input.GetKeyDown(KeyCode.Space) && hookHolder.GetComponent<Ship>().isShootGrapple)
-        // {
-        //     Debug.Log("Space key down");
-        //     GameManager.Instance.isRetracting = true;
-        // }
-
         if (GameManager.Instance.moveToTarget)
         {
             Debug.Log("Moving to target");
@@ -132,7 +114,7 @@ public class Hook : MonoBehaviour
                 return;
             }
         }
-        
+
 
     }
 
@@ -188,16 +170,15 @@ public class Hook : MonoBehaviour
                 {
                     if (target.GetComponent<AlienMovement>() != null)
                     {
-                        target.GetComponent<AlienMovement>().isFreezen = true;
+                        target.GetComponent<AlienMovement>().speed /= 2;
                     }
 
                 }
                 else if (target.CompareTag("Enemy"))
                 {
-                    AsteroidMovement asteroidMovement = target.GetComponent<AsteroidMovement>();
-                    if (asteroidMovement != null)
+                    if (target.GetComponent<AsteroidMovement>() != null)
                     {
-                        asteroidMovement.isFreezen = true;
+                        target.GetComponent<AsteroidMovement>().speed /= 2;
                     }
                 }
             }
@@ -244,6 +225,21 @@ public class Hook : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         SetInvincible();
+    }
+
+    void RotateShipTowardsTarget()
+    {
+        if (hookHolder == null || target == null)
+            return;
+
+        Vector2 direction = (target.transform.position - hookHolder.transform.position).normalized;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
+
+        float currentAngle = hookHolder.transform.eulerAngles.z;
+
+        float targetAngle = Mathf.MoveTowardsAngle(currentAngle, angle, rotationSpeed * Time.deltaTime);
+
+        hookHolder.transform.rotation = Quaternion.Euler(0, 0, targetAngle);
     }
 
 

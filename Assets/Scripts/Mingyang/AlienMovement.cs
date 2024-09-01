@@ -8,7 +8,7 @@ public class AlienMovement : MonoBehaviour
 {
     Alien alien;
     private GameObject player;
-    private float speed;
+    public float speed;
     public Vector2 direction;
     public bool towardsOne;
     private float sinceChangeDirection;
