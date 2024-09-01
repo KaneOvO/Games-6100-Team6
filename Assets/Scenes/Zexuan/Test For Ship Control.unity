@@ -772,6 +772,7 @@ MonoBehaviour:
   moveToTarget: 0
   isGrappling: 0
   isShootGrapple: 0
+  edgeSafeOffset: 0.005
 --- !u!1 &1161300783 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8411633812223925774, guid: ff0940d9650b9ea4291b34e9c258e835, type: 3}

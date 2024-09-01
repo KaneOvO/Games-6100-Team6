@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     public bool moveToTarget = false;
     public bool isGrappling = false;
     public bool isShootGrapple = false;
+    [SerializeField] float edgeSafeOffset;
 
 
 
@@ -214,24 +215,25 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    public bool isUsingHook()
+    {
+        return isGrappling || isShootGrapple || isRetracting || moveToTarget;
+    }
+
+
     public float getWorldSceneX(Vector3 position)
     {
         Vector3 viewportPosition = Camera.main.WorldToViewportPoint(position);
 
         if (viewportPosition.x < 0 + GameManager.Instance.xBorderOffset)
         {
-            return 1 - GameManager.Instance.xBorderOffset;
+            return 1 - GameManager.Instance.xBorderOffset - edgeSafeOffset;
         }
         else if (viewportPosition.x > 1 - GameManager.Instance.xBorderOffset)
         {
-            return 0 + GameManager.Instance.xBorderOffset;
+            return 0 + GameManager.Instance.xBorderOffset + edgeSafeOffset;
         }
         return viewportPosition.x;
-    }
-
-    public bool isUsingHook()
-    {
-        return isGrappling || isShootGrapple || isRetracting || moveToTarget;
     }
 
     public float getWorldSceneY(Vector3 position)
@@ -240,11 +242,11 @@ public class GameManager : MonoBehaviour
 
         if (viewportPosition.y < 0 + GameManager.Instance.yBorderOffset)
         {
-            return 1 - GameManager.Instance.yBorderOffset;
+            return 1 - GameManager.Instance.yBorderOffset - edgeSafeOffset;
         }
         else if (viewportPosition.y > 1 - GameManager.Instance.yBorderOffset)
         {
-            return 0 + GameManager.Instance.yBorderOffset;
+            return 0 + GameManager.Instance.yBorderOffset + edgeSafeOffset;
         }
         return viewportPosition.y;
     }
