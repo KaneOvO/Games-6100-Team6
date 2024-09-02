@@ -81,6 +81,9 @@ public class Hook : MonoBehaviour
                 }
                 else
                 {
+                    distanceToTarget = Vector2.Distance(hookHolder.transform.position, target.transform.position);
+                    DetermineLaunchSpeed();
+                    Debug.Log("Distance to target: " + distanceToTarget);
                     Debug.Log("launch player");
                     LaunchPlayer();
                     GameManager.Instance.moveToTarget = true;
@@ -156,9 +159,7 @@ public class Hook : MonoBehaviour
             {
                 return;
             }
-            distanceToTarget = Vector2.Distance(hookHolder.transform.position, other.transform.position);
-            DetermineLaunchSpeed();
-            Debug.Log("Distance to target: " + distanceToTarget);
+            
             if (hookHolder.GetComponent<Ship>().grappleObject == null)
             {
                 hookRb.velocity = Vector2.zero;

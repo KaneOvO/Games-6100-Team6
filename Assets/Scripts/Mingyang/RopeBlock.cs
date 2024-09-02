@@ -8,8 +8,8 @@ public class RopeBlock : Item
     [SerializeField] float hookRopePadding;
     [SerializeField] float shipRopePadding;
     private int index;
-    private GameObject ship;
-    private GameObject hook;
+    //private GameObject ship;
+    //private GameObject hook;
     Renderer spriteRenderer;
     public float ropeLength;
     public float test;
@@ -20,8 +20,8 @@ public class RopeBlock : Item
     {
         spriteRenderer = GetComponent<Renderer>();
         spriteRenderer.enabled = false;
-        ship = GameManager.Instance.player;
-        hook = GameManager.Instance.hook;
+        //ship = GameManager.Instance.player;
+        //hook = GameManager.Instance.hook;
         index = GameManager.Instance.ropeBlockCount;
         ropeLength = RopeLength();
         UpdateTransform(ropeLength);
@@ -56,13 +56,13 @@ public class RopeBlock : Item
         float padding = 0;
         if (GameManager.Instance.moveToTarget)
         {
-            transform.SetPositionAndRotation(hook.transform.position, ship.transform.rotation);
+            transform.SetPositionAndRotation(GameManager.Instance.hook.transform.position, GameManager.Instance.player.transform.rotation);
             transform.up = -transform.up;
             padding = hookRopePadding;
         }
         else
         {
-            transform.SetPositionAndRotation(ship.transform.position, ship.transform.rotation);
+            transform.SetPositionAndRotation(GameManager.Instance.player.transform.position, GameManager.Instance.player.transform.rotation);
             padding = shipRopePadding;
         }
         transform.position += transform.up * (index * ropeGap + padding);
@@ -70,7 +70,7 @@ public class RopeBlock : Item
 
     private float RopeLength()
     {
-        float distance = Vector3.Distance(hook.transform.position, ship.transform.position);
+        float distance = Vector3.Distance(GameManager.Instance.hook.transform.position, GameManager.Instance.player.transform.position);
         return distance - shipRopePadding - hookRopePadding;
     }
 
