@@ -67,6 +67,18 @@ public class GameManager : MonoBehaviour
         {
             GenerateBatchAsteroids();
         }
+
+        if(UIManager.Instance.choosePanel.activeSelf)
+        {
+            if(Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+            {
+                UIManager.Instance.buff1ApplyButton.GetComponent<Button>().onClick.Invoke();
+            }
+            if(Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+            {
+                UIManager.Instance.buff2ApplyButton.GetComponent<Button>().onClick.Invoke();
+            }
+        }
     }
 
     void GenerateAlien()

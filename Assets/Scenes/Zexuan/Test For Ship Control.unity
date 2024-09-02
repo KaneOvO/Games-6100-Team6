@@ -871,6 +871,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3786173189713708980, guid: ff0940d9650b9ea4291b34e9c258e835, type: 3}
+      propertyPath: m_text
+      value: "a/\u2190 to choose this"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3786173189713708980, guid: ff0940d9650b9ea4291b34e9c258e835, type: 3}
+      propertyPath: m_fontSizeMin
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4892470147552215768, guid: ff0940d9650b9ea4291b34e9c258e835, type: 3}
+      propertyPath: m_text
+      value: "d/\u2192 to choose this"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4892470147552215768, guid: ff0940d9650b9ea4291b34e9c258e835, type: 3}
+      propertyPath: m_fontSizeMin
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 5109404183992393761, guid: ff0940d9650b9ea4291b34e9c258e835, type: 3}
       propertyPath: m_Name
       value: ChoosePanel
