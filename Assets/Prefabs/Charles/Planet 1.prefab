@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5812306069386933425}
   - component: {fileID: 1767677358246347895}
   - component: {fileID: 6035608815365359717}
+  - component: {fileID: 4075398836804061734}
   m_Layer: 3
   m_Name: Planet 1
   m_TagString: Enemy
@@ -101,7 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
-  currenthealth: 1
+  currentHealth: 0
   damage: 1
   minSpeed: 1
   maxSpeed: 1.5
@@ -168,3 +169,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 0}
+--- !u!114 &4075398836804061734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7353103860970814151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23b4678c4a55f134da7435d3349be790, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  currentHealth: 0
+  damage: 0
+  minSpeed: 0
+  maxSpeed: 0
+  isSmallAsteroid: 0
+  isMediumAsteroid: 0
+  isLargeAsteroid: 0
+  isPlanet: 1
+  hasTakenDamage: 0
+  isInScene: 1
