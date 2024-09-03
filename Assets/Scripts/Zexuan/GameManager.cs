@@ -103,6 +103,14 @@ public class GameManager : MonoBehaviour
             }
 
         }
+
+        if (UIManager.Instance.gameOverPanel.activeSelf)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                RestartGame();
+            }
+        }
     }
 
     void GenerateAlien()
