@@ -44,7 +44,7 @@ public class UIManager : MonoBehaviour
     }
     public void UpdateLife(int lives)
     {
-        lifeText.text = "Score: " + GameManager.Instance.lives.ToString();
+        lifeText.text = "Lives: " + GameManager.Instance.lives.ToString();
     }
     public void GameOver()
     {

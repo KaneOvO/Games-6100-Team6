@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
 
         InvokeRepeating("GenerateAlien", alienGenerateCooldown, alienGenerateCooldown);
         InvokeRepeating("GeneratePlanet", planetGenerateCooldown, planetGenerateCooldown);
+        UIManager.Instance.UpdateLife(lives);
     }
 
     // Update is called once per frame
@@ -193,6 +194,7 @@ public class GameManager : MonoBehaviour
     public void PlayerDeath()
     {
         Instance.lives--;
+        UIManager.Instance.UpdateLife(lives);
 
         if (Instance.lives <= 0)
         {

@@ -102,6 +102,7 @@ public class BuffContainer : MonoBehaviour
             ApplyEffect = () =>
             {
                 GameManager.Instance.lives++;
+                UIManager.Instance.UpdateLife(GameManager.Instance.lives);
             },
             RemoveEffect = () =>
             {
