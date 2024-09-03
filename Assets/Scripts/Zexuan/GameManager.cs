@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     public bool moveToTarget = false;
     public bool isGrappling = false;
     public bool isShootGrapple = false;
+    public bool isStopMusic = false;
     [SerializeField] float edgeSafeOffset;
 
 
@@ -50,6 +51,7 @@ public class GameManager : MonoBehaviour
         }
 
         hook = GameObject.FindWithTag("Hook");
+        player = Instantiate(playerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
     }
 
     void Start()
@@ -71,16 +73,31 @@ public class GameManager : MonoBehaviour
             GenerateBatchAsteroids();
         }
 
-        if(UIManager.Instance.choosePanel.activeSelf)
+        if (UIManager.Instance.choosePanel.activeSelf)
         {
-            if(Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+            AudioManager.Instance.Pause("Explosion");
+            AudioManager.Instance.Pause("Launch");
+            AudioManager.Instance.Pause("Upgrade");
+            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
             {
                 UIManager.Instance.buff1ApplyButton.GetComponent<Button>().onClick.Invoke();
             }
-            if(Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
             {
                 UIManager.Instance.buff2ApplyButton.GetComponent<Button>().onClick.Invoke();
             }
+            isStopMusic = true;
+        }
+        else
+        {
+            if (isStopMusic)
+            {
+                isStopMusic = false;
+                AudioManager.Instance.Resume("Explosion");
+                AudioManager.Instance.Resume("Launch");
+                AudioManager.Instance.Pause("Upgrade");
+            }
+
         }
     }
 
@@ -284,7 +301,7 @@ public class GameManager : MonoBehaviour
         {
             if (gameObject.tag == "Alien")
             {
-               gameObject.GetComponent<AlienMovement>().isWrapping = true;
+                gameObject.GetComponent<AlienMovement>().isWrapping = true;
             }
             else if (gameObject.tag == "Enemy")
             {

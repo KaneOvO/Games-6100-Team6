@@ -134,4 +134,9 @@ public class Asteroid : Item
     {
         GetComponent<Attack>().Damage = 1;
     }
+
+    void OnDestroy()
+    {
+        AudioManager.Instance.Play("Explosion");
+    }
 }
