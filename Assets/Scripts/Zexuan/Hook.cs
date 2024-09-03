@@ -24,7 +24,7 @@ public class Hook : MonoBehaviour
     Collider2D hookCollider;
     float distanceToTarget;
     [SerializeField] float rotationSpeed = 360f;
-    float distanceOffset = 0.5f;
+    public float distanceOffset = 0.5f;
     public GameObject circle;
     
 
@@ -217,7 +217,7 @@ public class Hook : MonoBehaviour
                 {
                     if (other.GetComponent<AlienMovement>() != null)
                     {
-                        other.GetComponent<AlienMovement>().speed /= 2;
+                        other.GetComponent<AlienMovement>().speed /= 4;
                     }
 
                 }

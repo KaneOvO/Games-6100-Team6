@@ -34,15 +34,12 @@ public class Asteroid : Item
     public override void TakeDamage(Attack attacker)
     {
         if (hasTakenDamage) return;
-        if (attacker.Damage > 0)
-        {
-            hasTakenDamage = true;
-        }
         if (attacker.CompareTag("Bullet") || attacker.CompareTag("Player") || attacker.CompareTag("Alien") || attacker.CompareTag("AlienMissile"))
         {
             if (isSmallAsteroid)
             {
                 currentHealth -= attacker.Damage;
+                hasTakenDamage = true;
                 if (currentHealth < 1)
                 {
                     GameManager.Instance.scoreChange(100);
