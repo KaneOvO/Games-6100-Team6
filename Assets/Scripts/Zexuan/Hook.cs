@@ -55,13 +55,19 @@ public class Hook : MonoBehaviour
             return;
         }
 
-        if (hookHolder != null && target != null && !target.GetComponent<AsteroidMovement>().isWrapping)
+        bool isWrapping = false;
+        if (hookHolder != null && target != null && target.GetComponent<AsteroidMovement>() != null)
+        {
+            isWrapping = target.GetComponent<AsteroidMovement>().isWrapping;
+        }
+
+        if (hookHolder != null && target != null && !isWrapping)
         {
             Debug.Log("Move with: " + target);
             hookRb.position = Vector2.MoveTowards(hookRb.position, launchTarget.transform.position, speed * Time.deltaTime);
             RotateShipTowardsTarget();
         }
-        else if (hookHolder != null && target != null && target.GetComponent<AsteroidMovement>().isWrapping)
+        else if (hookHolder != null && target != null && isWrapping)
         {
             Debug.Log("Target is not in scene");
             target = null;
@@ -214,6 +220,10 @@ public class Hook : MonoBehaviour
                     if (other.GetComponent<AsteroidMovement>() != null)
                     {
                         other.GetComponent<AsteroidMovement>().speed /= 2;
+                    }
+                    if (other.GetComponent<PlanetMovement>() != null)
+                    {
+                        other.GetComponent<PlanetMovement>().speed /= 2;
                     }
                 }
             }
