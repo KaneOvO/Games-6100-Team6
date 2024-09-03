@@ -4,7 +4,7 @@ public class ParticleFollow : MonoBehaviour
 {
     public Rigidbody2D targetRigidbody;  // The Rigidbody2D of the target object
     public ParticleSystem particleSystem; // The separated particle system
-    public float maxDistance = 5f;        // The maximum allowed distance, exceeding this will disable the particle system
+    public float maxDistance = 2f;        // The maximum allowed distance, exceeding this will disable the particle system
 
     private Vector3 lastPosition;         // The last recorded position
 
