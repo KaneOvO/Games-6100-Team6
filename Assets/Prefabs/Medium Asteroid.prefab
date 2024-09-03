@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6690342264019623576}
   - component: {fileID: 5320149550224608348}
   - component: {fileID: 514473928853504493}
-  - component: {fileID: 765008963210993055}
+  - component: {fileID: 5090343797654791883}
   m_Layer: 3
   m_Name: Medium Asteroid
   m_TagString: Enemy
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
-  currenthealth: 1
+  currentHealth: 0
   damage: 1
   minSpeed: 0.25
   maxSpeed: 0.5
@@ -126,6 +126,7 @@ MonoBehaviour:
   speed: 0
   direction: {x: 0, y: 0}
   isFreezen: 0
+  isWrapping: 0
 --- !u!114 &514473928853504493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,8 +140,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 0
---- !u!70 &765008963210993055
-CapsuleCollider2D:
+--- !u!60 &5090343797654791883
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -172,5 +173,25 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.64, y: 0.64}
-  m_Direction: 0
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.64, y: 0.64}
+    newSize: {x: 0.64, y: 0.64}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.29, y: 0.17999999}
+      - {x: 0.17999999, y: 0.29}
+      - {x: -0.07, y: 0.29}
+      - {x: -0.26, y: 0.26}
+      - {x: -0.32, y: 0.13}
+      - {x: -0.32, y: -0.12}
+      - {x: -0.22, y: -0.22999999}
+      - {x: 0.02, y: -0.29}
+      - {x: 0.24, y: -0.29}
+      - {x: 0.29, y: -0.25}
+  m_UseDelaunayMesh: 0

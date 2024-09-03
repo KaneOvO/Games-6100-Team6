@@ -14,6 +14,7 @@ public class Hook : MonoBehaviour
     public Rigidbody2D hookRb;
     //private bool isRetracting = false;
     public bool isHooked = false;
+    public bool isWrapping = false;
     //private bool moveToTarget = false;
     [SerializeField] GameObject target;
     [SerializeField] GameObject launchTarget;
@@ -25,6 +26,7 @@ public class Hook : MonoBehaviour
     [SerializeField] float rotationSpeed = 360f;
     float distanceOffset = 0.5f;
     public GameObject circle;
+    
 
 
     void Awake()
@@ -55,14 +57,14 @@ public class Hook : MonoBehaviour
             return;
         }
 
-        bool isWrapping = false;
+        isWrapping = false;
         if (hookHolder != null && target != null && target.GetComponent<AsteroidMovement>() != null)
         {
             isWrapping = target.GetComponent<AsteroidMovement>().isWrapping;
         }
         else if (hookHolder != null && target != null && target.GetComponent<PlanetMovement>() != null)
         {
-            isWrapping = GameManager.Instance.inWorldScene(target.transform.position);
+            isWrapping = !GameManager.Instance.inWorldScene(target.transform.position);
         }
 
         if (hookHolder != null && target != null && !isWrapping)
@@ -109,7 +111,7 @@ public class Hook : MonoBehaviour
                     Debug.Log("launch player");
                     LaunchPlayer();
                     GameManager.Instance.moveToTarget = true;
-                    isHooked = false;
+                    
                     GameManager.Instance.isGrappling = true;
                     hookHolder.GetComponent<Ship>().isInvincible = true;
                     StartCoroutine(hookHolder.GetComponent<Ship>().FlashBlue(invinciblePeriod));
@@ -137,12 +139,12 @@ public class Hook : MonoBehaviour
 
         if (GameManager.Instance.moveToTarget)
         {
-            Debug.Log("Moving to target");
             Debug.Log("Grapple object: " + hookHolder.GetComponent<Ship>().grappleObject);
             if (hookHolder.GetComponent<Ship>().grappleObject == null)
             {
                 Debug.Log("Grapple object is null");
                 GameManager.Instance.isGrappling = false;
+                isHooked = false;
                 hookHolder.GetComponent<Ship>().grappleObject = null;
                 GameManager.Instance.moveToTarget = false;
                 StartCoroutine(CallFunctionWithDelay(invinciblePeriod));
@@ -219,12 +221,16 @@ public class Hook : MonoBehaviour
                     }
 
                 }
-                else if (other.CompareTag("Enemy") || other.CompareTag("Planet"))
+                else if (other.CompareTag("Enemy"))
                 {
                     if (other.GetComponent<AsteroidMovement>() != null)
                     {
                         other.GetComponent<AsteroidMovement>().speed /= 2;
                     }
+
+                }
+                else if (other.CompareTag("Planet"))
+                {
                     if (other.GetComponent<PlanetMovement>() != null)
                     {
                         other.GetComponent<PlanetMovement>().speed /= 2;
