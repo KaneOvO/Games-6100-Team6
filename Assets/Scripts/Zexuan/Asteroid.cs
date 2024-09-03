@@ -42,8 +42,8 @@ public class Asteroid : Item
         {
             if (isSmallAsteroid)
             {
-                currenthealth -= attacker.Damage;
-                if (currenthealth < 1)
+                currentHealth -= attacker.Damage;
+                if (currentHealth < 1)
                 {
                     GameManager.Instance.scoreChange(100);
                     Destroy(gameObject);
@@ -51,9 +51,9 @@ public class Asteroid : Item
             }
             else if (isMediumAsteroid)
             {
-                currenthealth -= attacker.Damage;
+                currentHealth-= attacker.Damage;
 
-                if (currenthealth < 1)
+                if (currentHealth < 1)
                 {
                     if (attacker.CompareTag("Player") && attacker.GetComponent<Ship>().isConsumption == false)
                     {
@@ -66,9 +66,9 @@ public class Asteroid : Item
             }
             else if (isLargeAsteroid)
             {
-                currenthealth -= attacker.Damage;
+                currentHealth -= attacker.Damage;
 
-                if (currenthealth < 1)
+                if (currentHealth < 1)
                 {
 
                     if (attacker.CompareTag("Player") && attacker.GetComponent<Ship>().isConsumption == false)
@@ -82,11 +82,11 @@ public class Asteroid : Item
             }
             else if (isPlanet)
             {
-                currenthealth -= attacker.Damage;
+                currentHealth -= attacker.Damage;
 
-                if (currenthealth < 1)
+                if (currentHealth < 1)
                 {
-                    if (attacker.CompareTag("Player"))
+                    if (attacker.CompareTag("Player") && GameManager.Instance.isGrappling)
                     {
                         GameManager.Instance.scoreChange(500);
                         Buff buff1 = BuffContainer.Instance.GetRandomBuff();

@@ -48,10 +48,10 @@ public class Alien : Item
     {
         Debug.Log("Alien taking damage");
         
-        currenthealth -= attacker.Damage;
+        currentHealth -= attacker.Damage;
         if (attacker.CompareTag("Enemy") || attacker.CompareTag("Player") || attacker.CompareTag("Bullet"))
         {
-            if (currenthealth < 1)
+            if (currentHealth < 1)
             {
                 Destroy(gameObject);
                 GameManager.Instance.scoreChange(score);

@@ -45,8 +45,8 @@ public class Ship : Item
             {
                 return;
             }
-            currenthealth -= attacker.Damage;
-            if (currenthealth <= 0)
+            currentHealth -= attacker.Damage;
+            if (currentHealth <= 0)
             {
                 GameManager.Instance.PlayerDeath();   
             }
@@ -64,6 +64,13 @@ public class Ship : Item
     public void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
+        
+    }
+
+    void Start()
+    {
+        GameManager.Instance.hook.GetComponent<Hook>().spriteRenderer.enabled = true;
+        currentHealth = health;
     }
 
     void Update()
@@ -80,6 +87,11 @@ public class Ship : Item
         if(grappleObject != null)
         {
             grappleObject.GetComponent<AsteroidMovement>().isFreezen = false;
+        }
+
+        if(GameManager.Instance.hook != null)
+        {
+            GameManager.Instance.hook.GetComponent<Hook>().spriteRenderer.enabled = false;
         }
     }
 

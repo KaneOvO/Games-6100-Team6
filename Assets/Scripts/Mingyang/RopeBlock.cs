@@ -70,6 +70,10 @@ public class RopeBlock : Item
 
     private float RopeLength()
     {
+        if (GameManager.Instance.hook == null || GameManager.Instance.player == null)
+        {
+            return 0;
+        }
         float distance = Vector3.Distance(GameManager.Instance.hook.transform.position, GameManager.Instance.player.transform.position);
         return distance - shipRopePadding - hookRopePadding;
     }

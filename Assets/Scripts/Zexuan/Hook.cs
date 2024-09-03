@@ -22,6 +22,7 @@ public class Hook : MonoBehaviour
     Collider2D hookCollider;
     float distanceToTarget;
     [SerializeField] float rotationSpeed = 360f;
+    float distanceOffset = 0.5f;
 
 
     void Awake()
@@ -96,6 +97,17 @@ public class Hook : MonoBehaviour
 
         }
 
+        if (!GameManager.Instance.isShootGrapple)
+        {
+            if (GameManager.Instance.player != null)
+            {
+                transform.position = hookHolder.transform.position + (Vector3)hookHolder.transform.up * distanceOffset;
+                transform.rotation = hookHolder.transform.rotation;
+            }
+
+
+        }
+
 
         if ((distance >= maxDistance && GameManager.Instance.isUsingHook()) || GameManager.Instance.isRetracting)
         {
@@ -159,7 +171,7 @@ public class Hook : MonoBehaviour
             {
                 return;
             }
-            
+
             if (hookHolder.GetComponent<Ship>().grappleObject == null)
             {
                 hookRb.velocity = Vector2.zero;
@@ -197,13 +209,13 @@ public class Hook : MonoBehaviour
 
     void hideHook()
     {
-        spriteRenderer.enabled = false;
+        //spriteRenderer.enabled = false;
         hookCollider.enabled = false;
     }
 
     public void showHook()
     {
-        spriteRenderer.enabled = true;
+        //spriteRenderer.enabled = true;
         hookCollider.enabled = true;
         shootHook();
     }

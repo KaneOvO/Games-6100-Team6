@@ -36,8 +36,8 @@ public class Planet : Item
         if (attacker.CompareTag("Bullet") || attacker.CompareTag("Player") || attacker.CompareTag("Alien") || attacker.CompareTag("AlienMissile"))
         {
             
-                currenthealth -= attacker.Damage;
-                if (currenthealth < 1)
+                currentHealth -= attacker.Damage;
+                if (currentHealth < 1)
                 {
                     GameManager.Instance.scoreChange(100);
                     Destroy(gameObject);

@@ -44,8 +44,8 @@ public class AlienMissile : Item
     {
         if (attacker.CompareTag("Enemy") || attacker.CompareTag("Player"))
         {
-            currenthealth -= attacker.Damage;
-            if (currenthealth <= 0)
+            currentHealth -= attacker.Damage;
+            if (currentHealth <= 0)
             {
                 Destroy(gameObject);
             }

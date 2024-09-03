@@ -28,8 +28,8 @@ public class Missile : Item
     {
         if (attacker.CompareTag("Enemy") || attacker.CompareTag("Alien"))
         {
-            currenthealth -= attacker.Damage;
-            if (currenthealth <= 0)
+            currentHealth -= attacker.Damage;
+            if (currentHealth <= 0)
             {
                 gameObject.SetActive(false);
             }

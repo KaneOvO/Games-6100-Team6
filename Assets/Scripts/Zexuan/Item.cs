@@ -5,35 +5,34 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     [SerializeField] protected int health;
-    [SerializeField] protected int currenthealth;
+    [SerializeField] protected int currentHealth;
     [SerializeField] protected int damage;
 
     public int Health
     {
-        get { return Health; }
-        set { Health = value; }
+        get { return health; }
+        set { health = value; }
     }
 
     public int Damage
     {
-        get { return Damage; }
-        set { Damage = value; }
+        get { return damage; }
+        set { damage = value; }
     }
 
     public int CurrentHealth
     {
-        get { return CurrentHealth; }
-        set { CurrentHealth = value; }
+        get { return currentHealth; }
+        set { currentHealth = value; }
     }
 
     public virtual void TakeDamage(Attack attacker)
     {
-
+        
     }
 
     void Start()
     {
-        currenthealth = health;
+        currentHealth = health;
     }
-    
 }
