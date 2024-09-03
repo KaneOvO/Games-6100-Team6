@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
+using UnityEngine.UI;
 
 public class GameManagerPlanet : MonoBehaviour
 {
@@ -9,8 +12,12 @@ public class GameManagerPlanet : MonoBehaviour
     public GameObject[] asteroidPrefabs;
     public GameObject[] planetPrefabs;
     public GameObject player;
+    public GameObject playerPrefab;
     public GameObject alienPrefab;
+    public GameObject hook;
     public int score;
+    [SerializeField] public int lives = 3;
+    [SerializeField] int respawnInvinciblePeriod;
     public bool isGameOver = false;
     public float xBorderOffset;
     public float yBorderOffset;
@@ -20,6 +27,12 @@ public class GameManagerPlanet : MonoBehaviour
     [SerializeField] int indexSmallAsteroid;
     [SerializeField] int indexMediumAsteroid;
     [SerializeField] int indexLargeAsteroid;
+    public int ropeBlockCount;
+    public bool isRetracting = false;
+    public bool moveToTarget = false;
+    public bool isGrappling = false;
+    public bool isShootGrapple = false;
+    [SerializeField] float edgeSafeOffset;
 
     private void Awake()
     {
@@ -31,7 +44,7 @@ public class GameManagerPlanet : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
+        hook = GameObject.FindWithTag("Hook");
         
     }
 
@@ -47,7 +60,22 @@ public class GameManagerPlanet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
+        {
+            GenerateBatchAsteroids();
+        }
 
+        if(UIManager.Instance.choosePanel.activeSelf)
+        {
+            if(Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+            {
+                UIManager.Instance.buff1ApplyButton.GetComponent<Button>().onClick.Invoke();
+            }
+            if(Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+            {
+                UIManager.Instance.buff2ApplyButton.GetComponent<Button>().onClick.Invoke();
+            }
+        }
     }
     void GenerateAlien()
     {
@@ -134,6 +162,34 @@ public class GameManagerPlanet : MonoBehaviour
         this.player = player;
     }
 
+    public void PlayerDeath()
+    {
+        Instance.lives--;
+
+        if (Instance.lives <= 0)
+        {
+            Instance.GameOver();
+            Destroy(player);
+        }
+        else
+        {
+            StartCoroutine(Destory());
+            Destroy(player);
+        }
+    }
+
+    public IEnumerator Destory()
+    {
+        yield return new WaitForSeconds(2);
+        Destroy(player);
+        player = Instantiate(playerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        hook.GetComponent<Hook>().hookHolder = player;
+        hook.GetComponent<Hook>().pivot = player.transform.Find("Pivot").gameObject;
+        player.GetComponent<Ship>().isInvincible = true;
+        StartCoroutine(player.GetComponent<Ship>().FlashBlue(respawnInvinciblePeriod));
+        StartCoroutine(StopRespawnInvincible(respawnInvinciblePeriod));
+    }
+
     public void GameOver()
     {
         //isGameOver = true;
@@ -151,6 +207,12 @@ public class GameManagerPlanet : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+    public bool isUsingHook()
+    {
+        return isGrappling || isShootGrapple || isRetracting || moveToTarget;
+    }
+
     public float getWorldSceneX(Vector3 position)
     {
         Vector3 viewportPosition = Camera.main.WorldToViewportPoint(position);
@@ -181,8 +243,62 @@ public class GameManagerPlanet : MonoBehaviour
         return viewportPosition.y;
     }
 
+    public bool inWorldScene(Vector3 position)
+    {
+        Vector3 viewportPosition = Camera.main.WorldToViewportPoint(position);
+        if (viewportPosition.y < 0 + GameManager.Instance.yBorderOffset)
+        {
+            return false;
+        }
+        else if (viewportPosition.y > 1 - GameManager.Instance.yBorderOffset)
+        {
+            return false;
+        }
+        if (viewportPosition.x < 0 + GameManager.Instance.xBorderOffset)
+        {
+            return false;
+        }
+        else if (viewportPosition.x > 1 - GameManager.Instance.xBorderOffset)
+        {
+            return false;
+        }
+        return true;
+    }
+
     public Vector3 GetWorldScenePosition(Vector3 position)
     {
         return new Vector3(getWorldSceneX(position), getWorldSceneY(position), 0);
+    }
+
+    IEnumerator StopRespawnInvincible(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        player.GetComponent<Ship>().isInvincible = false;
+    }
+
+    public void applyBuff(Buff buff1, Buff buff2)
+    {
+        Time.timeScale = 0;
+        UIManager.Instance.choosePanel.SetActive(true);
+        UIManager.Instance.buff1Name.GetComponent<TextMeshProUGUI>().text = buff1.name;
+        UIManager.Instance.buff1Description.GetComponent<TextMeshProUGUI>().text = buff1.description;
+        UIManager.Instance.buff1ApplyButton.GetComponent<Button>().onClick.RemoveAllListeners();
+        UIManager.Instance.buff1ApplyButton.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            BuffManager.Instance.AddBuff(buff1);
+            UIManager.Instance.choosePanel.SetActive(false);
+            Time.timeScale = 1;
+        });
+
+        UIManager.Instance.buff2Name.GetComponent<TextMeshProUGUI>().text = buff2.name;
+        UIManager.Instance.buff2Description.GetComponent<TextMeshProUGUI>().text = buff2.description;
+        UIManager.Instance.buff2ApplyButton.GetComponent<Button>().onClick.RemoveAllListeners();
+        UIManager.Instance.buff2ApplyButton.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            BuffManager.Instance.AddBuff(buff2);
+            UIManager.Instance.choosePanel.SetActive(false);
+            Time.timeScale = 1;
+        });
+
     }
 }
