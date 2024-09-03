@@ -2466,13 +2466,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1898667946335975251, guid: 4e7ffd8e19368484688a62e5e7279190, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 3236553920344872639, guid: 4e7ffd8e19368484688a62e5e7279190, type: 3}
       propertyPath: m_Name
       value: Basic Ship
       objectReference: {fileID: 0}
     - target: {fileID: 3236553920344872639, guid: 4e7ffd8e19368484688a62e5e7279190, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7333339586550257900, guid: 4e7ffd8e19368484688a62e5e7279190, type: 3}
       propertyPath: m_LocalPosition.x
