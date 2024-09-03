@@ -12,7 +12,7 @@ public class Ship : Item
     [SerializeField] ParticleSystem collisionParticle;
     public SpriteRenderer sprite; //Adding this in order to make the player flash blue while invincible
     public bool isConsumption = false;
-    
+
     public GameObject grappleObject;
     public bool isInvincible = false;
 
@@ -48,7 +48,17 @@ public class Ship : Item
             currentHealth -= attacker.Damage;
             if (currentHealth <= 0)
             {
-                GameManager.Instance.PlayerDeath();   
+                GameManager.Instance.isGrappling = false;
+                GameManager.Instance.isShootGrapple = false;
+                GameManager.Instance.hook.GetComponent<Hook>().isHooked = false;
+                GameManager.Instance.hook.GetComponent<Hook>().target = null;
+                GameManager.Instance.hook.GetComponent<Hook>().launchTarget = null;
+                GameManager.Instance.isRetracting = false;
+
+                GameManager.Instance.hook.GetComponent<Hook>().spriteRenderer.enabled = false;
+                GameManager.Instance.hook.transform.position = Vector2.zero;
+                
+                GameManager.Instance.PlayerDeath();
             }
         }
 
@@ -63,7 +73,7 @@ public class Ship : Item
     public void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
-        
+
     }
 
     void Start()
@@ -74,7 +84,7 @@ public class Ship : Item
 
     void Update()
     {
-        if(isInvincible)
+        if (isInvincible)
         {
             sprite.color = Color.blue;
 
@@ -93,10 +103,9 @@ public class Ship : Item
         //     grappleObject.GetComponent<AsteroidMovement>().isFreezen = false;
         // }
 
-        if(GameManager.Instance.hook != null)
+        if (GameManager.Instance.hook != null)
         {
-            GameManager.Instance.hook.GetComponent<Hook>().spriteRenderer.enabled = false;
-             GameManager.Instance.hook.transform.position = Vector2.zero;
+
         }
     }
 

@@ -46,6 +46,7 @@ public class Planet : Item
                             buff2 = BuffContainer.Instance.GetRandomBuff();
                         }
                         GameManager.Instance.applyBuff(buff1, buff2);
+                        AudioManager.Instance.Play("Upgrade");
                     }
 
                 }

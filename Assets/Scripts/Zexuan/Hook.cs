@@ -16,8 +16,8 @@ public class Hook : MonoBehaviour
     public bool isHooked = false;
     public bool isWrapping = false;
     //private bool moveToTarget = false;
-    [SerializeField] GameObject target;
-    [SerializeField] GameObject launchTarget;
+    [SerializeField] public GameObject target;
+    [SerializeField] public GameObject launchTarget;
     public GameObject pivot;
     public Rigidbody2D playerRb;
     public Renderer spriteRenderer;
@@ -26,10 +26,16 @@ public class Hook : MonoBehaviour
     [SerializeField] float rotationSpeed = 360f;
     public float distanceOffset = 0.5f;
     public GameObject circle;
-    
+
 
 
     void Awake()
+    {
+
+
+    }
+
+    void Start()
     {
         spriteRenderer = GetComponent<Renderer>();
         hookCollider = GetComponent<Collider2D>();
@@ -38,7 +44,6 @@ public class Hook : MonoBehaviour
         pivot = GameObject.FindWithTag("Pivot");
         playerRb = hookHolder.GetComponent<Rigidbody2D>();
         hideHook();
-
     }
 
     void Update()
@@ -77,17 +82,27 @@ public class Hook : MonoBehaviour
         {
             Debug.Log("Target is not in scene");
             target = null;
+            launchTarget = null;
             hookHolder.GetComponent<Ship>().grappleObject = null;
             isHooked = false;
             GameManager.Instance.isRetracting = true;
         }
-        
+
         if (isHooked && target == null)
         {
             hookHolder.GetComponent<Ship>().grappleObject = null;
             isHooked = false;
             GameManager.Instance.isRetracting = true;
         }
+        if (isHooked && GameManager.Instance.player == null)
+        {
+            isHooked = false;
+            target = null;
+            launchTarget = null;
+            GameManager.Instance.moveToTarget = false;
+            GameManager.Instance.isShootGrapple = false;
+        }
+
 
         if (Input.GetKeyUp(KeyCode.Space))
         {
@@ -106,15 +121,31 @@ public class Hook : MonoBehaviour
                 }
                 else
                 {
+                    Vector2 direction = (GameManager.Instance.player.transform.position - target.transform.position).normalized;
+                    if (target.CompareTag("Alien"))
+                    {
+
+                        target.GetComponent<AlienMovement>().direction = direction;
+                    }
+                    else if (target.CompareTag("Enemy"))
+                    {
+                        target.GetComponent<AsteroidMovement>().direction = direction;
+                    }
+                    else if (target.CompareTag("Planet"))
+                    {
+                        target.GetComponent<PlanetMovement>().direction = direction;
+                    }
+
                     distanceToTarget = Vector2.Distance(hookHolder.transform.position, launchTarget.transform.position);
                     DetermineLaunchSpeed();
                     Debug.Log("Distance to target: " + distanceToTarget);
                     Debug.Log("launch player");
                     LaunchPlayer();
                     GameManager.Instance.moveToTarget = true;
-                    
+
                     GameManager.Instance.isGrappling = true;
                     hookHolder.GetComponent<Ship>().isInvincible = true;
+                    AudioManager.Instance.Play("Launch");
                 }
             }
 

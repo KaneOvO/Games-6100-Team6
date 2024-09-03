@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4828941397726775561
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1874044323627821739}
+  - component: {fileID: 5059405381523661101}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1874044323627821739
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4828941397726775561}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5059405381523661101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4828941397726775561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a011b42fb2372ad449e4fc6c70af3307, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: BackgroundMusic
+    clip: {fileID: 8300000, guid: 794450f435a5473449d9d40f04260922, type: 3}
+    loop: 1
+    volume: 0.2
+    source: {fileID: 0}
+  - name: Explosion
+    clip: {fileID: 8300000, guid: 5550870c04a15d44ea57bedad82db114, type: 3}
+    loop: 0
+    volume: 0.1
+    source: {fileID: 0}
+  - name: Launch
+    clip: {fileID: 8300000, guid: 1d912d11ba06bf84a803a77ce2ae1ea2, type: 3}
+    loop: 0
+    volume: 0.2
+    source: {fileID: 0}
+  - name: Upgrade
+    clip: {fileID: 8300000, guid: 4ad2fc0d71d652e4bb61d70b78f8b2d8, type: 3}
+    loop: 0
+    volume: 0.5
+    source: {fileID: 0}
+  backgroundMusicName: BackgroundMusic
