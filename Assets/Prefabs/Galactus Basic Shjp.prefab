@@ -70,7 +70,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 75b5cdd8fda89d345b300c02014cf01d, type: 3}
     - target: {fileID: 5072216331852912049, guid: f56c77cb9d09ffa46b3bb179623675b8, type: 3}
       propertyPath: m_Name
-      value: Basic Ship Variant
+      value: Galactus Basic Shjp
       objectReference: {fileID: 0}
     - target: {fileID: 6485342861168450756, guid: f56c77cb9d09ffa46b3bb179623675b8, type: 3}
       propertyPath: damage
@@ -100,7 +100,8 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: -0.14749813
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7785361195804431083, guid: f56c77cb9d09ffa46b3bb179623675b8, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
