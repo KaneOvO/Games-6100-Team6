@@ -1331,6 +1331,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4115078914298767398, guid: 8b2fe19fdac39e64e94a19c6af58a03a, type: 3}
+      propertyPath: targetRigidbody
+      value: 
+      objectReference: {fileID: 839972923}
     - target: {fileID: 5361167530208322029, guid: 8b2fe19fdac39e64e94a19c6af58a03a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.01
@@ -1371,22 +1375,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6756525545353478308, guid: 8b2fe19fdac39e64e94a19c6af58a03a, type: 3}
-      propertyPath: ShapeModule.enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6756525545353478308, guid: 8b2fe19fdac39e64e94a19c6af58a03a, type: 3}
-      propertyPath: ShapeModule.m_Texture
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6756525545353478308, guid: 8b2fe19fdac39e64e94a19c6af58a03a, type: 3}
-      propertyPath: InitialModule.rotation3D
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6756525545353478308, guid: 8b2fe19fdac39e64e94a19c6af58a03a, type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 0.3
-      objectReference: {fileID: 0}
     - target: {fileID: 8812856631183454482, guid: 8b2fe19fdac39e64e94a19c6af58a03a, type: 3}
       propertyPath: m_Name
       value: Particle_SpeedLine
@@ -1394,10 +1382,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8812856631183454482, guid: 8b2fe19fdac39e64e94a19c6af58a03a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2089569064}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b2fe19fdac39e64e94a19c6af58a03a, type: 3}
 --- !u!1 &1501980940
 GameObject:
@@ -1477,6 +1462,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1513916996}
   - component: {fileID: 1513916997}
+  - component: {fileID: 1513916998}
   m_Layer: 6
   m_Name: GameObject
   m_TagString: Untagged
@@ -1551,6 +1537,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1513916998
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513916995}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 241d7da4302013a429fc0d90cbeed217, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1514971822
 GameObject:
   m_ObjectHideFlags: 0
@@ -2619,30 +2626,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8656208549692210394, guid: 75901428823c2fb4abdd10dc5c3c66a7, type: 3}
   m_PrefabInstance: {fileID: 1834679799}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2089569061 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8812856631183454482, guid: 8b2fe19fdac39e64e94a19c6af58a03a, type: 3}
-  m_PrefabInstance: {fileID: 1469942239}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &2089569063 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 6756525545353478308, guid: 8b2fe19fdac39e64e94a19c6af58a03a, type: 3}
-  m_PrefabInstance: {fileID: 1469942239}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2089569064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2089569061}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8e70c5a68e044448a8af441b95e07e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetRigidbody: {fileID: 839972923}
-  particleSystem: {fileID: 2089569063}
 --- !u!1001 &464454465828106951
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2711,8 +2694,7 @@ PrefabInstance:
       propertyPath: hook
       value: 
       objectReference: {fileID: 417549870}
-    m_RemovedComponents:
-    - {fileID: 469928553119633893, guid: 4e7ffd8e19368484688a62e5e7279190, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7333339586550257900, guid: 4e7ffd8e19368484688a62e5e7279190, type: 3}
