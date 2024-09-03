@@ -53,6 +53,10 @@ public class RopeBlock : Item
 
     private void UpdateTransform(float ropeLength)
     {
+        if(GameManager.Instance.player == null)
+        {
+            return;
+        }
         float padding = 0;
         if (GameManager.Instance.moveToTarget)
         {

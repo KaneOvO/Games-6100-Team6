@@ -233,31 +233,63 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public float getWorldSceneX(Vector3 position)
+    public float getWorldSceneX(GameObject gameObject)
     {
-        Vector3 viewportPosition = Camera.main.WorldToViewportPoint(position);
+        Vector3 viewportPosition = Camera.main.WorldToViewportPoint(gameObject.transform.position);
 
         if (viewportPosition.x < 0 + GameManager.Instance.xBorderOffset)
         {
+            if (gameObject.tag == "Alien")
+            {
+                gameObject.GetComponent<AlienMovement>().isWrapping = true;
+            }
+            else if (gameObject.tag == "Enemy")
+            {
+                gameObject.GetComponent<AsteroidMovement>().isWrapping = true;
+            }
             return 1 - GameManager.Instance.xBorderOffset - edgeSafeOffset;
         }
         else if (viewportPosition.x > 1 - GameManager.Instance.xBorderOffset)
         {
+            if (gameObject.tag == "Alien")
+            {
+                gameObject.GetComponent<AlienMovement>().isWrapping = true;
+            }
+            else if (gameObject.tag == "Enemy")
+            {
+                gameObject.GetComponent<AsteroidMovement>().isWrapping = true;
+            }
             return 0 + GameManager.Instance.xBorderOffset + edgeSafeOffset;
         }
         return viewportPosition.x;
     }
 
-    public float getWorldSceneY(Vector3 position)
+    public float getWorldSceneY(GameObject gameObject)
     {
-        Vector3 viewportPosition = Camera.main.WorldToViewportPoint(position);
+        Vector3 viewportPosition = Camera.main.WorldToViewportPoint(gameObject.transform.position);
 
         if (viewportPosition.y < 0 + GameManager.Instance.yBorderOffset)
         {
+            if (gameObject.tag == "Alien")
+            {
+               gameObject.GetComponent<AlienMovement>().isWrapping = true;
+            }
+            else if (gameObject.tag == "Enemy")
+            {
+                gameObject.GetComponent<AsteroidMovement>().isWrapping = true;
+            }
             return 1 - GameManager.Instance.yBorderOffset - edgeSafeOffset;
         }
         else if (viewportPosition.y > 1 - GameManager.Instance.yBorderOffset)
         {
+            if (gameObject.tag == "Alien")
+            {
+                gameObject.GetComponent<AlienMovement>().isWrapping = true;
+            }
+            else if (gameObject.tag == "Enemy")
+            {
+                gameObject.GetComponent<AsteroidMovement>().isWrapping = true;
+            }
             return 0 + GameManager.Instance.yBorderOffset + edgeSafeOffset;
         }
         return viewportPosition.y;
@@ -283,11 +315,6 @@ public class GameManager : MonoBehaviour
             return false;
         }
         return true;
-    }
-
-    public Vector3 GetWorldScenePosition(Vector3 position)
-    {
-        return new Vector3(getWorldSceneX(position), getWorldSceneY(position), 0);
     }
 
     IEnumerator StopRespawnInvincible(float delay)

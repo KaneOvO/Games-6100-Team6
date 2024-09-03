@@ -16,6 +16,7 @@ public class Hook : MonoBehaviour
     public bool isHooked = false;
     //private bool moveToTarget = false;
     [SerializeField] GameObject target;
+    [SerializeField] GameObject launchTarget;
     public GameObject pivot;
     public Rigidbody2D playerRb;
     public Renderer spriteRenderer;
@@ -23,6 +24,7 @@ public class Hook : MonoBehaviour
     float distanceToTarget;
     [SerializeField] float rotationSpeed = 360f;
     float distanceOffset = 0.5f;
+    public GameObject circle;
 
 
     void Awake()
@@ -53,10 +55,19 @@ public class Hook : MonoBehaviour
             return;
         }
 
-        if (hookHolder != null && target != null)
+        if (hookHolder != null && target != null && !target.GetComponent<AsteroidMovement>().isWrapping)
         {
-            hookRb.position = Vector2.MoveTowards(hookRb.position, target.transform.position, speed * Time.deltaTime);
+            Debug.Log("Move with: " + target);
+            hookRb.position = Vector2.MoveTowards(hookRb.position, launchTarget.transform.position, speed * Time.deltaTime);
             RotateShipTowardsTarget();
+        }
+        else if (hookHolder != null && target != null && target.GetComponent<AsteroidMovement>().isWrapping)
+        {
+            Debug.Log("Target is not in scene");
+            target = null;
+            hookHolder.GetComponent<Ship>().grappleObject = null;
+            isHooked = false;
+            GameManager.Instance.isRetracting = true;
         }
         else if (isHooked && target == null)
         {
@@ -82,7 +93,7 @@ public class Hook : MonoBehaviour
                 }
                 else
                 {
-                    distanceToTarget = Vector2.Distance(hookHolder.transform.position, target.transform.position);
+                    distanceToTarget = Vector2.Distance(hookHolder.transform.position, launchTarget.transform.position);
                     DetermineLaunchSpeed();
                     Debug.Log("Distance to target: " + distanceToTarget);
                     Debug.Log("launch player");
@@ -109,7 +120,7 @@ public class Hook : MonoBehaviour
         }
 
 
-        if ((distance >= maxDistance && GameManager.Instance.isUsingHook()) || GameManager.Instance.isRetracting)
+        if ((distance >= maxDistance && GameManager.Instance.isShootGrapple && !isHooked) || GameManager.Instance.isRetracting)
         {
             retractHook();
         }
@@ -174,24 +185,35 @@ public class Hook : MonoBehaviour
 
             if (hookHolder.GetComponent<Ship>().grappleObject == null)
             {
+                Vector2 worldPosition = transform.position;
+                Vector2 localPosition = other.transform.InverseTransformPoint(worldPosition);
+
+                GameObject smallSphere = Instantiate(circle, localPosition, Quaternion.identity);
+                smallSphere.transform.SetParent(other.transform);
+                smallSphere.transform.localPosition = localPosition;
+
+                target = other.gameObject;
+                launchTarget = smallSphere;
+                Debug.Log("fly target position: " + launchTarget.transform.position);
+
+
                 hookRb.velocity = Vector2.zero;
                 isHooked = true;
-                target = other.gameObject;
                 hookHolder.GetComponent<Ship>().grappleObject = target;
 
-                if (target.CompareTag("Alien"))
+                if (other.CompareTag("Alien"))
                 {
-                    if (target.GetComponent<AlienMovement>() != null)
+                    if (other.GetComponent<AlienMovement>() != null)
                     {
-                        target.GetComponent<AlienMovement>().speed /= 2;
+                        other.GetComponent<AlienMovement>().speed /= 2;
                     }
 
                 }
-                else if (target.CompareTag("Enemy"))
+                else if (other.CompareTag("Enemy"))
                 {
-                    if (target.GetComponent<AsteroidMovement>() != null)
+                    if (other.GetComponent<AsteroidMovement>() != null)
                     {
-                        target.GetComponent<AsteroidMovement>().speed /= 2;
+                        other.GetComponent<AsteroidMovement>().speed /= 2;
                     }
                 }
             }
@@ -245,7 +267,7 @@ public class Hook : MonoBehaviour
         if (hookHolder == null || target == null)
             return;
 
-        Vector2 direction = (target.transform.position - hookHolder.transform.position).normalized;
+        Vector2 direction = (launchTarget.transform.position - hookHolder.transform.position).normalized;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
 
         float currentAngle = hookHolder.transform.eulerAngles.z;

@@ -9,7 +9,7 @@ public class Asteroid : Item
     [SerializeField] bool isSmallAsteroid;
     [SerializeField] bool isMediumAsteroid;
     [SerializeField] bool isLargeAsteroid;
-    [SerializeField] bool isPlanet;
+    [SerializeField] public bool isPlanet;
     [SerializeField] bool hasTakenDamage = false;
     public bool isInScene = true;
 

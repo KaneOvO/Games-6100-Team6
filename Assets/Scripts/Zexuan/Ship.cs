@@ -84,10 +84,10 @@ public class Ship : Item
 
     private void OnDestroy()
     {
-        if(grappleObject != null)
-        {
-            grappleObject.GetComponent<AsteroidMovement>().isFreezen = false;
-        }
+        // if(grappleObject != null)
+        // {
+        //     grappleObject.GetComponent<AsteroidMovement>().isFreezen = false;
+        // }
 
         if(GameManager.Instance.hook != null)
         {
