@@ -39,7 +39,7 @@ public class Ship : Item
 
     public override void TakeDamage(Attack attacker)
     {
-        if (attacker.CompareTag("Enemy") || attacker.CompareTag("Alien") || attacker.CompareTag("AlienMissile"))
+        if (attacker.CompareTag("Enemy") || attacker.CompareTag("Alien") || attacker.CompareTag("AlienMissile") || attacker.CompareTag("Planet"))
         {
             if (GameManager.Instance.isGrappling || isInvincible)
             {

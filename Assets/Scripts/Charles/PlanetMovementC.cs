@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Charles
 {
-    public class PlanetMovement : MonoBehaviour
+    public class PlanetMovementC : MonoBehaviour
     {
         Planet planet;
         private GameObject player;

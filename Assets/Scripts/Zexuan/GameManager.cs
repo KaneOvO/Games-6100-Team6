@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public GameObject[] asteroidPrefabs;
+    public GameObject planetPrefab;
     public GameObject player;
     public GameObject playerPrefab;
     public GameObject alienPrefab;
@@ -22,7 +23,8 @@ public class GameManager : MonoBehaviour
     public bool isGameOver = false;
     public float xBorderOffset;
     public float yBorderOffset;
-    [SerializeField] float generateCooldown;
+    [SerializeField] float alienGenerateCooldown;
+    [SerializeField] float planetGenerateCooldown;
     [SerializeField] int asteroidsPerBatch;
     [SerializeField] int indexSmallAsteroid;
     [SerializeField] int indexMediumAsteroid;
@@ -56,8 +58,8 @@ public class GameManager : MonoBehaviour
         // int asteroidCount = Random.Range(3, 6);
         // GenerateAsteroids(asteroidCount);
 
-        InvokeRepeating("GenerateAlien", generateCooldown, generateCooldown);
-        InvokeRepeating("GeneratePlanet", generateCooldown, generateCooldown);
+        InvokeRepeating("GenerateAlien", alienGenerateCooldown, alienGenerateCooldown);
+        InvokeRepeating("GeneratePlanet", planetGenerateCooldown, planetGenerateCooldown);
     }
 
     // Update is called once per frame
@@ -83,6 +85,10 @@ public class GameManager : MonoBehaviour
 
     void GenerateAlien()
     {
+        if (GameObject.FindGameObjectsWithTag("Alien").Length != 0)
+        {
+            return;
+        }
         Vector3 Position = GetRandomOffScreenPosition(true);
         Instantiate(alienPrefab, Position, Quaternion.identity);
 
@@ -100,9 +106,13 @@ public class GameManager : MonoBehaviour
 
     void GeneratePlanet()
     {
-        GameObject planetPrefab = asteroidPrefabs[3];
+        if (GameObject.FindGameObjectsWithTag("Planet").Length != 0)
+        {
+            return;
+        }
+        GameObject planetPre = planetPrefab;
         Vector3 Position = GetRandomOffScreenPosition();
-        Instantiate(planetPrefab, Position, Quaternion.identity);
+        Instantiate(planetPre, Position, Quaternion.identity);
     }
 
     void GenerateAsteroids(int generateCount)

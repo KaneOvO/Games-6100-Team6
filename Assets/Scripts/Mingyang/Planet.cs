@@ -7,9 +7,7 @@ public class Planet : Item
     [SerializeField] float minSpeed;
     [SerializeField] float maxSpeed;
     [SerializeField] bool hasTakenDamage = false;
-
     public bool isInScene = true;
-
 
     public float MinSpeed
     {
@@ -29,29 +27,41 @@ public class Planet : Item
     public override void TakeDamage(Attack attacker)
     {
         if (hasTakenDamage) return;
-        if(attacker.Damage > 0)
+        if (attacker.Damage > 0)
         {
             hasTakenDamage = true;
         }
-        if (attacker.CompareTag("Bullet") || attacker.CompareTag("Player") || attacker.CompareTag("Alien") || attacker.CompareTag("AlienMissile"))
+        if (attacker.CompareTag("Bullet") || attacker.CompareTag("Player"))
         {
             
-                currentHealth -= attacker.Damage;
-                if (currentHealth < 1)
+            currentHealth -= attacker.Damage;
+
+            if (currentHealth < 1)
+            {
+                if (attacker.CompareTag("Player") && GameManager.Instance.isGrappling)
                 {
-                    GameManager.Instance.scoreChange(100);
-                    Destroy(gameObject);
+                    GameManager.Instance.scoreChange(500);
+                    Buff buff1 = BuffContainer.Instance.GetRandomBuff();
+                    Buff buff2 = BuffContainer.Instance.GetRandomBuff();
+                    while (buff1.name == buff2.name)
+                    {
+                        buff2 = BuffContainer.Instance.GetRandomBuff();
+                    }
+                    GameManager.Instance.applyBuff(buff1, buff2);
                 }
-           
+                Destroy(gameObject);
+            }
+            
         }
     }
 
+    
 
     IEnumerator CallFunctionWithDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
         SetDamage();
-        
+
     }
 
     void SetDamage()

@@ -26,7 +26,7 @@ public class Missile : Item
     
     public override void TakeDamage(Attack attacker)
     {
-        if (attacker.CompareTag("Enemy") || attacker.CompareTag("Alien"))
+        if (attacker.CompareTag("Enemy") || attacker.CompareTag("Alien") || attacker.CompareTag("Planet"))
         {
             currentHealth -= attacker.Damage;
             if (currentHealth <= 0)

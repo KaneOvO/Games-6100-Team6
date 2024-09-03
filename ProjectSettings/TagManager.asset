@@ -10,6 +10,7 @@ TagManager:
   - Pivot
   - Alien
   - AlienMissile
+  - Planet
   layers:
   - Default
   - TransparentFX

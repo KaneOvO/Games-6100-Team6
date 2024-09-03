@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 8795560847397179917}
   - component: {fileID: 6381570822676171982}
   - component: {fileID: 5812306069386933425}
-  - component: {fileID: 1740974046421183324}
-  - component: {fileID: 5441783355505192668}
   - component: {fileID: 1767677358246347895}
-  m_Layer: 3
+  - component: {fileID: 5790791837468021816}
+  - component: {fileID: -52876059570550024}
+  m_Layer: 0
   m_Name: Planet 1
-  m_TagString: Enemy
+  m_TagString: Planet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,44 +123,6 @@ CapsuleCollider2D:
   m_Offset: {x: -0.007556483, y: 0.012618959}
   m_Size: {x: 0.47815904, y: 0.49841964}
   m_Direction: 0
---- !u!114 &1740974046421183324
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7353103860970814151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23b4678c4a55f134da7435d3349be790, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 1
-  currenthealth: 1
-  damage: 1
-  minSpeed: 0.25
-  maxSpeed: 0.5
-  isSmallAsteroid: 0
-  isMediumAsteroid: 0
-  isLargeAsteroid: 0
-  isPlanet: 1
-  hasTakenDamage: 0
-  isInScene: 1
---- !u!114 &5441783355505192668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7353103860970814151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 560ed65f407cd9e4093a9014be9511e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0
-  direction: {x: 0, y: 0}
-  isFreezen: 0
 --- !u!114 &1767677358246347895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,3 +136,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 1
+--- !u!114 &5790791837468021816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7353103860970814151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9f8a78f210a71b41933f553809109c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1
+  currentHealth: 0
+  damage: 1
+  minSpeed: 0.25
+  maxSpeed: 0.5
+  hasTakenDamage: 0
+  isInScene: 1
+--- !u!114 &-52876059570550024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7353103860970814151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 859130b5002132243a13e1d8ad0e01d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  direction: {x: 0, y: 0}
+  isFreezen: 0

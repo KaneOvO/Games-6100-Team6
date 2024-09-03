@@ -49,7 +49,7 @@ public class Alien : Item
         Debug.Log("Alien taking damage");
         
         currentHealth -= attacker.Damage;
-        if (attacker.CompareTag("Enemy") || attacker.CompareTag("Player") || attacker.CompareTag("Bullet"))
+        if (attacker.CompareTag("Enemy") || attacker.CompareTag("Player") || attacker.CompareTag("Bullet") || attacker.CompareTag("Planet"))
         {
             if (currentHealth < 1)
             {
