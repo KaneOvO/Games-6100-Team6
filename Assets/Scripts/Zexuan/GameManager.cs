@@ -78,6 +78,8 @@ public class GameManager : MonoBehaviour
             AudioManager.Instance.Pause("Explosion");
             AudioManager.Instance.Pause("Launch");
             AudioManager.Instance.Pause("Upgrade");
+            AudioManager.Instance.Pause("Explosion_player");
+            AudioManager.Instance.Pause("Explosion_Alien");
             if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
             {
                 UIManager.Instance.buff1ApplyButton.GetComponent<Button>().onClick.Invoke();
@@ -95,7 +97,9 @@ public class GameManager : MonoBehaviour
                 isStopMusic = false;
                 AudioManager.Instance.Resume("Explosion");
                 AudioManager.Instance.Resume("Launch");
-                AudioManager.Instance.Pause("Upgrade");
+                AudioManager.Instance.Resume("Upgrade");
+                AudioManager.Instance.Resume("Explosion_player");
+                AudioManager.Instance.Resume("Explosion_Alien");
             }
 
         }

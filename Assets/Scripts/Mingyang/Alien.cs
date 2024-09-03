@@ -60,4 +60,9 @@ public class Alien : Item
         }    
         
     }
+
+    public void OnDestroy()
+    {
+        AudioManager.Instance.Play("Explosion_Alien");
+    }
 }

@@ -57,7 +57,7 @@ public class Ship : Item
 
                 GameManager.Instance.hook.GetComponent<Hook>().spriteRenderer.enabled = false;
                 GameManager.Instance.hook.transform.position = Vector2.zero;
-                
+
                 GameManager.Instance.PlayerDeath();
             }
         }
@@ -98,15 +98,7 @@ public class Ship : Item
 
     private void OnDestroy()
     {
-        // if(grappleObject != null)
-        // {
-        //     grappleObject.GetComponent<AsteroidMovement>().isFreezen = false;
-        // }
-
-        if (GameManager.Instance.hook != null)
-        {
-
-        }
+       AudioManager.Instance.Play("Explosion_Player");
     }
 
 
