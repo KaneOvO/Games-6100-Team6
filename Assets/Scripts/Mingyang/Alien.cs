@@ -12,6 +12,7 @@ public class Alien : Item
     public float changeDirectionCooldown;
     public bool isInScene = false; 
     private float sinceFire;
+    
        
 
     public float MinSpeed

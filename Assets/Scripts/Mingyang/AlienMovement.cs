@@ -13,6 +13,7 @@ public class AlienMovement : MonoBehaviour
     public bool towardsOne;
     private float sinceChangeDirection;
     public bool isFreezen = false; 
+    public bool isWrapping = false;
 
     void Awake()
     {
@@ -109,8 +110,17 @@ public class AlienMovement : MonoBehaviour
         }
 
         Vector3 newPosition = viewportPosition;
-        newPosition.y = GameManager.Instance.getWorldSceneY(position);
+        newPosition.y = GameManager.Instance.getWorldSceneY(gameObject);
 
         transform.position = Camera.main.ViewportToWorldPoint(newPosition);
+        if (isWrapping)
+        {
+            Invoke("stopIsWrapping", 0.5f);
+        }
+    }
+
+    void stopIsWrapping()
+    {
+        isWrapping = false;
     }
 }

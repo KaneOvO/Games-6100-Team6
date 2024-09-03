@@ -107,8 +107,8 @@ public class PlayerController : MonoBehaviour
         Vector3 position = transform.position;
         Vector3 viewportPosition = Camera.main.WorldToViewportPoint(position);
         Vector3 newPosition = viewportPosition;
-        newPosition.x = GameManager.Instance.getWorldSceneX(position);
-        newPosition.y = GameManager.Instance.getWorldSceneY(position);
+        newPosition.x = GameManager.Instance.getWorldSceneX(gameObject);
+        newPosition.y = GameManager.Instance.getWorldSceneY(gameObject);
 
         transform.position = Camera.main.ViewportToWorldPoint(newPosition);
     }

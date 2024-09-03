@@ -9,6 +9,7 @@ public class AsteroidMovement : MonoBehaviour
     public float speed;
     public Vector2 direction;
     public bool isFreezen = false;
+    public bool isWrapping = false;
 
     void Awake()
     {
@@ -50,9 +51,20 @@ public class AsteroidMovement : MonoBehaviour
 
     // void OnBecameInvisible()
     // {
-    //     //destroy the asteroid when it goes off screen
+    //     if(gameObject.GetComponent<Asteroid>().isPlanet)
+    //     {
+    //         Debug.Log("Planet is invisible");
+    //     }
     //     asteroid.isInScene = false;
-    //     Destroy(gameObject);
+    // }
+
+    // void OnBecameVisible()
+    // {
+    //     if(gameObject.GetComponent<Asteroid>().isPlanet)
+    //     {
+    //         Debug.Log("Planet is visible");
+    //     }
+    //     asteroid.isInScene = true;
     // }
 
     public void SetDirection(Vector2 newDirection)
@@ -71,15 +83,26 @@ public class AsteroidMovement : MonoBehaviour
             if (viewportPosition.x > 1 - GameManager.Instance.xBorderOffset) return;
             if (viewportPosition.y < 0 + GameManager.Instance.yBorderOffset) return;
             if (viewportPosition.y > 1 - GameManager.Instance.yBorderOffset) return;
-            asteroid.isInScene = true;
             return;
         }
 
         Vector3 newPosition = viewportPosition;
-        newPosition.x = GameManager.Instance.getWorldSceneX(position);
-        newPosition.y = GameManager.Instance.getWorldSceneY(position);
+        newPosition.x = GameManager.Instance.getWorldSceneX(gameObject);
+        newPosition.y = GameManager.Instance.getWorldSceneY(gameObject);
 
         transform.position = Camera.main.ViewportToWorldPoint(newPosition);
+        if (isWrapping)
+        {
+            Invoke("stopIsWrapping", 0.5f);
+        }
 
+
+    }
+
+
+
+    void stopIsWrapping()
+    {
+        isWrapping = false;
     }
 }
