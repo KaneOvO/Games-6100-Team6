@@ -27,35 +27,35 @@ public class Planet : Item
     public override void TakeDamage(Attack attacker)
     {
         if (hasTakenDamage) return;
-        if (attacker.Damage > 0)
+        if (attacker.CompareTag("Player"))
         {
-            hasTakenDamage = true;
-        }
-        if (attacker.CompareTag("Bullet") || attacker.CompareTag("Player"))
-        {
-            
             currentHealth -= attacker.Damage;
+            hasTakenDamage = true;
 
             if (currentHealth < 1)
             {
-                if (attacker.CompareTag("Player") && GameManager.Instance.isGrappling)
+                if (attacker.CompareTag("Player"))
                 {
-                    GameManager.Instance.scoreChange(500);
-                    Buff buff1 = BuffContainer.Instance.GetRandomBuff();
-                    Buff buff2 = BuffContainer.Instance.GetRandomBuff();
-                    while (buff1.name == buff2.name)
+                    if (attacker.GetComponent<Ship>().isInvincible)
                     {
-                        buff2 = BuffContainer.Instance.GetRandomBuff();
+                        GameManager.Instance.scoreChange(500);
+                        Buff buff1 = BuffContainer.Instance.GetRandomBuff();
+                        Buff buff2 = BuffContainer.Instance.GetRandomBuff();
+                        while (buff1.name == buff2.name)
+                        {
+                            buff2 = BuffContainer.Instance.GetRandomBuff();
+                        }
+                        GameManager.Instance.applyBuff(buff1, buff2);
                     }
-                    GameManager.Instance.applyBuff(buff1, buff2);
+
                 }
                 Destroy(gameObject);
             }
-            
+
         }
     }
 
-    
+
 
     IEnumerator CallFunctionWithDelay(float delay)
     {

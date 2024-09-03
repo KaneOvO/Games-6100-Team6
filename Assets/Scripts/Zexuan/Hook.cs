@@ -217,7 +217,7 @@ public class Hook : MonoBehaviour
                 {
                     if (other.GetComponent<AlienMovement>() != null)
                     {
-                        other.GetComponent<AlienMovement>().speed /= 2;
+                        other.GetComponent<AlienMovement>().speed /= 4;
                     }
 
                 }
