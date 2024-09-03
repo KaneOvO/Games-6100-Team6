@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance { get; private set; }
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI lifeText;
     public GameObject gameOverPanel;
     public GameObject choosePanel;
     public GameObject buff1Name, buff1Description, buff1ApplyButton, buff2Name, buff2Description, buff2ApplyButton;
@@ -41,7 +42,10 @@ public class UIManager : MonoBehaviour
     {
         scoreText.text = "Score: " + score.ToString();
     }
-
+    public void UpdateLife(int lives)
+    {
+        lifeText.text = "Score: " + GameManager.Instance.lives.ToString();
+    }
     public void GameOver()
     {
         gameOverPanel.SetActive(true);
