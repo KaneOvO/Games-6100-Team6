@@ -16,6 +16,18 @@ PrefabInstance:
       propertyPath: m_TagString
       value: AlienMissile
       objectReference: {fileID: 0}
+    - target: {fileID: 3626916397498700004, guid: 1e3c0eabf3375714cba0f706852a8211, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 92057a74aaf23cb47a4d1ea9d34de683, type: 3}
+    - target: {fileID: 7878350319992209165, guid: 1e3c0eabf3375714cba0f706852a8211, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7878350319992209165, guid: 1e3c0eabf3375714cba0f706852a8211, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 1e3c0eabf3375714cba0f706852a8211, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -91,7 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
-  currenthealth: 1
+  currentHealth: 0
   damage: 1
   speed: 3
 --- !u!70 &8813300247024290474
@@ -126,8 +138,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.095}
-  m_Size: {x: 0.03, y: 0.09}
+  m_Offset: {x: 0.0036360323, y: 0.09500012}
+  m_Size: {x: 1.6221654, y: 1.6221654}
   m_Direction: 0
 --- !u!50 &-8460799852899891531
 Rigidbody2D:
