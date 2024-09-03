@@ -60,6 +60,10 @@ public class Hook : MonoBehaviour
         {
             isWrapping = target.GetComponent<AsteroidMovement>().isWrapping;
         }
+        else if (hookHolder != null && target != null && target.GetComponent<PlanetMovement>() != null)
+        {
+            isWrapping = GameManager.Instance.inWorldScene(target.transform.position);
+        }
 
         if (hookHolder != null && target != null && !isWrapping)
         {
