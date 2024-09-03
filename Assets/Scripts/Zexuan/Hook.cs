@@ -74,7 +74,7 @@ public class Hook : MonoBehaviour
 
         if (hookHolder != null && target != null && !isWrapping)
         {
-            Debug.Log("Move with: " + target);
+            //Debug.Log("Move with: " + target);
             hookRb.position = Vector2.MoveTowards(hookRb.position, launchTarget.transform.position, speed * Time.deltaTime);
             RotateShipTowardsTarget();
         }
@@ -136,10 +136,11 @@ public class Hook : MonoBehaviour
                         target.GetComponent<PlanetMovement>().direction = direction;
                     }
 
+
                     distanceToTarget = Vector2.Distance(hookHolder.transform.position, launchTarget.transform.position);
                     DetermineLaunchSpeed();
-                    Debug.Log("Distance to target: " + distanceToTarget);
-                    Debug.Log("launch player");
+                    //Debug.Log("Distance to target: " + distanceToTarget);
+                    //Debug.Log("launch player");
                     LaunchPlayer();
                     GameManager.Instance.moveToTarget = true;
 
@@ -170,7 +171,7 @@ public class Hook : MonoBehaviour
 
         if (GameManager.Instance.moveToTarget)
         {
-            Debug.Log("Grapple object: " + hookHolder.GetComponent<Ship>().grappleObject);
+            //Debug.Log("Grapple object: " + hookHolder.GetComponent<Ship>().grappleObject);
             if (hookHolder.GetComponent<Ship>().grappleObject == null)
             {
                 Debug.Log("Grapple object is null");

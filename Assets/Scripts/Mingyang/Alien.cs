@@ -47,7 +47,7 @@ public class Alien : Item
 
     public override void TakeDamage(Attack attacker)
     {
-        Debug.Log("Alien taking damage");
+        //Debug.Log("Alien taking damage");
         
         currentHealth -= attacker.Damage;
         if (attacker.CompareTag("Enemy") || attacker.CompareTag("Player") || attacker.CompareTag("Bullet") || attacker.CompareTag("Planet"))
