@@ -56,7 +56,6 @@ public class Ship : Item
 
     public IEnumerator FlashBlue(float invinciblePeriod)
     {
-        sprite.color = Color.blue;
         yield return new WaitForSeconds(invinciblePeriod);
         sprite.color = Color.white;
     }
@@ -75,11 +74,16 @@ public class Ship : Item
 
     void Update()
     {
-        // if(isInvincible && !isShowInvincible)
-        // {
-        //     isShowInvincible = true;
-        //     StartCoroutine(FlashBlue());
-        // }
+        if(isInvincible)
+        {
+            sprite.color = Color.blue;
+
+        }
+        else
+        {
+            StartCoroutine(FlashBlue(0.1f));
+        }
+
     }
 
     private void OnDestroy()
@@ -92,6 +96,7 @@ public class Ship : Item
         if(GameManager.Instance.hook != null)
         {
             GameManager.Instance.hook.GetComponent<Hook>().spriteRenderer.enabled = false;
+             GameManager.Instance.hook.transform.position = Vector2.zero;
         }
     }
 

@@ -81,7 +81,8 @@ public class Hook : MonoBehaviour
             isHooked = false;
             GameManager.Instance.isRetracting = true;
         }
-        else if (isHooked && target == null)
+        
+        if (isHooked && target == null)
         {
             hookHolder.GetComponent<Ship>().grappleObject = null;
             isHooked = false;
@@ -114,7 +115,6 @@ public class Hook : MonoBehaviour
                     
                     GameManager.Instance.isGrappling = true;
                     hookHolder.GetComponent<Ship>().isInvincible = true;
-                    StartCoroutine(hookHolder.GetComponent<Ship>().FlashBlue(invinciblePeriod));
                 }
             }
 
