@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.Animations;
 
 public class GameManager : MonoBehaviour
 {
@@ -36,7 +37,7 @@ public class GameManager : MonoBehaviour
     public bool isShootGrapple = false;
     public bool isStopMusic = false;
     [SerializeField] float edgeSafeOffset;
-
+    public Animator playerAnimator;
 
 
     private void Awake()
@@ -52,6 +53,7 @@ public class GameManager : MonoBehaviour
 
         hook = GameObject.FindWithTag("Hook");
         player = Instantiate(playerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        playerAnimator = player.transform.GetChild(1).GetComponent<Animator>();
     }
 
     void Start()
@@ -242,6 +244,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(2);
         Destroy(player);
         player = Instantiate(playerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        playerAnimator = player.transform.GetChild(1).GetComponent<Animator>();
         hook.GetComponent<Hook>().hookHolder = player;
         hook.GetComponent<Hook>().pivot = player.transform.Find("Pivot").gameObject;
         player.GetComponent<Ship>().isInvincible = true;

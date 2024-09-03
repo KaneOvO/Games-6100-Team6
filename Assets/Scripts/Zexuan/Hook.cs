@@ -62,6 +62,8 @@ public class Hook : MonoBehaviour
             return;
         }
 
+        string targetTag = target != null ? target.tag : "null";
+
         isWrapping = false;
         if (hookHolder != null && target != null && target.GetComponent<AsteroidMovement>() != null)
         {
@@ -108,6 +110,7 @@ public class Hook : MonoBehaviour
         {
             if (!isHooked)
             {
+                GameManager.Instance.playerAnimator.SetBool("IsEating", false);
                 GameManager.Instance.isRetracting = true;
             }
             else
@@ -116,6 +119,7 @@ public class Hook : MonoBehaviour
                 {
                     hookHolder.GetComponent<Ship>().grappleObject = null;
                     isHooked = false;
+                    GameManager.Instance.playerAnimator.SetBool("IsEating", false);
                     GameManager.Instance.isRetracting = true;
                     return;
                 }
@@ -142,7 +146,7 @@ public class Hook : MonoBehaviour
                     Debug.Log("launch player");
                     LaunchPlayer();
                     GameManager.Instance.moveToTarget = true;
-
+                    GameManager.Instance.playerAnimator.SetBool("IsEating", false);
                     GameManager.Instance.isGrappling = true;
                     hookHolder.GetComponent<Ship>().isInvincible = true;
                     AudioManager.Instance.Play("Launch");
@@ -180,6 +184,10 @@ public class Hook : MonoBehaviour
                 GameManager.Instance.moveToTarget = false;
                 StartCoroutine(CallFunctionWithDelay(invinciblePeriod));
                 GameManager.Instance.isRetracting = true;
+                if(targetTag == "Plannet")
+                {
+                    GameManager.Instance.playerAnimator.SetTrigger("ToCloseMouth");
+                }
                 return;
             }
         }

@@ -29,10 +29,10 @@ public class Asteroid : Item
     void Start()
     {
         StartCoroutine(CallFunctionWithDelay(0.1f));
-        int randomValue = Random.Range(0, 4);
-        transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
-        float angle = randomValue * 90f;
-        transform.rotation = Quaternion.Euler(0, 0, angle);
+        // int randomValue = Random.Range(0, 4);
+        // transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
+        // float angle = randomValue * 90f;
+        // transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
     public override void TakeDamage(Attack attacker)

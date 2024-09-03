@@ -143,6 +143,7 @@ public class PlayerController : MonoBehaviour
             hook.transform.rotation = hookPovit.transform.rotation;
             hookSpriteRenderer = hook.GetComponent<SpriteRenderer>();
             hook.gameObject.GetComponent<Hook>().showHook();
+            GameManager.Instance.playerAnimator.SetBool("IsEating", true);
         }
         
     }
