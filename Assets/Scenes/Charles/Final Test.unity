@@ -626,6 +626,7 @@ MonoBehaviour:
   planetPrefab:
   - {fileID: 7353103860970814151, guid: 3fbf49350a8317646a275a92dedd077e, type: 3}
   - {fileID: 7353103860970814151, guid: 75bd3c835c187774c8cb21f277cfc9be, type: 3}
+  - {fileID: 7353103860970814151, guid: 3810acc076d380b4ead8d0d768196f58, type: 3}
   player: {fileID: 839972905}
   playerPrefab: {fileID: 3236553920344872639, guid: 4e7ffd8e19368484688a62e5e7279190, type: 3}
   alienPrefab: {fileID: 2306081102669611261, guid: 090a08b4fde46cf4bb186d06dc674d0f, type: 3}
@@ -636,7 +637,7 @@ MonoBehaviour:
   xBorderOffset: 0
   yBorderOffset: 0
   alienGenerateCooldown: 4
-  planetGenerateCooldown: 4
+  planetGenerateCooldown: 20
   asteroidsPerBatch: 4
   indexSmallAsteroid: 0
   indexMediumAsteroid: 1
