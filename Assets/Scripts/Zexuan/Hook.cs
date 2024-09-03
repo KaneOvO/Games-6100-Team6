@@ -176,7 +176,7 @@ public class Hook : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (!GameManager.Instance.isRetracting && (other.CompareTag("Enemy") || other.CompareTag("Alien")))
+        if (!GameManager.Instance.isRetracting && (other.CompareTag("Enemy") || other.CompareTag("Alien") || other.CompareTag("Planet")))
         {
             if (hookHolder == null)
             {
@@ -209,7 +209,7 @@ public class Hook : MonoBehaviour
                     }
 
                 }
-                else if (other.CompareTag("Enemy"))
+                else if (other.CompareTag("Enemy") || other.CompareTag("Planet"))
                 {
                     if (other.GetComponent<AsteroidMovement>() != null)
                     {
