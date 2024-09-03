@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 6381570822676171982}
   - component: {fileID: 1767677358246347895}
   - component: {fileID: 931877395737174585}
-  - component: {fileID: 1565020201735754866}
-  - component: {fileID: 2294226203491493932}
+  - component: {fileID: 890713725603641954}
+  - component: {fileID: 4236036335248103893}
   m_Layer: 3
   m_Name: Planet 2
   m_TagString: Enemy
@@ -158,7 +158,7 @@ PolygonCollider2D:
       - {x: -0.19999999, y: -0.08}
       - {x: -0.19, y: -0.08}
   m_UseDelaunayMesh: 0
---- !u!114 &1565020201735754866
+--- !u!114 &890713725603641954
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -167,17 +167,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 7353103860970814151}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfc771d3d89ed4e46b8325a7e912f0fa, type: 3}
+  m_Script: {fileID: 11500000, guid: e9f8a78f210a71b41933f553809109c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
-  currenthealth: 1
+  currentHealth: 1
   damage: 1
-  minSpeed: 1
-  maxSpeed: 2
+  minSpeed: 0.25
+  maxSpeed: 0.5
   hasTakenDamage: 0
   isInScene: 1
---- !u!114 &2294226203491493932
+--- !u!114 &4236036335248103893
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -186,7 +186,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7353103860970814151}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a43c63325790e449bbd7d6156f9e597, type: 3}
+  m_Script: {fileID: 11500000, guid: 859130b5002132243a13e1d8ad0e01d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0
   direction: {x: 0, y: 0}
+  isFreezen: 0

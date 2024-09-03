@@ -59,6 +59,10 @@ public class Asteroid : Item
                     {
                         SplitAsteroid(GameManager.Instance.asteroidPrefabs[indexOfSmallAsteroid]);
                     }
+                    else if (attacker.CompareTag("Alien") || attacker.CompareTag("AlienMissile"))
+                    {
+                        SplitAsteroid(GameManager.Instance.asteroidPrefabs[indexOfSmallAsteroid]);
+                    }
 
                     GameManager.Instance.scoreChange(150);
                     Destroy(gameObject);
@@ -72,6 +76,10 @@ public class Asteroid : Item
                 {
 
                     if (attacker.CompareTag("Player") && attacker.GetComponent<Ship>().isConsumption == false)
+                    {
+                        SplitAsteroid(GameManager.Instance.asteroidPrefabs[indexOfMediumAsteroid]);
+                    }
+                    else if (attacker.CompareTag("Alien") || attacker.CompareTag("AlienMissile"))
                     {
                         SplitAsteroid(GameManager.Instance.asteroidPrefabs[indexOfMediumAsteroid]);
                     }

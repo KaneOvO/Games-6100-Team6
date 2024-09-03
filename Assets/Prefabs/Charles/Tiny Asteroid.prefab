@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 6505694159880639007}
   - component: {fileID: 6111024911877883683}
   - component: {fileID: 4292136944923739653}
-  - component: {fileID: 3646957037288783214}
   - component: {fileID: 6797247572023144688}
+  - component: {fileID: 1094879305531906583}
   m_Layer: 3
   m_Name: Tiny Asteroid
   m_TagString: Enemy
@@ -101,13 +101,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
-  currenthealth: 1
+  currentHealth: 0
   damage: 1
   minSpeed: 0.5
   maxSpeed: 1
   isSmallAsteroid: 1
   isMediumAsteroid: 0
   isLargeAsteroid: 0
+  isPlanet: 0
   hasTakenDamage: 0
   isInScene: 1
 --- !u!114 &4292136944923739653
@@ -123,19 +124,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 1
---- !u!114 &3646957037288783214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8782841060108417200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 283d37a50d1f8944c82374ff3e205f0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  direction: {x: 0, y: 0}
 --- !u!60 &6797247572023144688
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -192,3 +180,19 @@ PolygonCollider2D:
       - {x: 0.05460197, y: 0.06406768}
       - {x: 0.029423524, y: 0.06546722}
   m_UseDelaunayMesh: 0
+--- !u!114 &1094879305531906583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8782841060108417200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 560ed65f407cd9e4093a9014be9511e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  direction: {x: 0, y: 0}
+  isFreezen: 0
+  isWrapping: 0
