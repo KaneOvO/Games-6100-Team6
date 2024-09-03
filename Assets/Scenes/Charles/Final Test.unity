@@ -673,121 +673,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7333339586550257900, guid: 4e7ffd8e19368484688a62e5e7279190, type: 3}
   m_PrefabInstance: {fileID: 464454465828106951}
   m_PrefabAsset: {fileID: 0}
---- !u!60 &839972919
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 839972905}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 11.72, y: 10.76}
-    newSize: {x: 0.32, y: 0.32}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 1.89, y: -4.14}
-      - {x: 2.1599998, y: -3.4499998}
-      - {x: 2.33, y: -3.49}
-      - {x: 3.09, y: -3.46}
-      - {x: 3.3, y: -3.23}
-      - {x: 3.3, y: -3.03}
-      - {x: 4.68, y: -3.03}
-      - {x: 4.7, y: -3.01}
-      - {x: 4.7, y: -2.81}
-      - {x: 5.64, y: -2.84}
-      - {x: 5.8599997, y: -2.45}
-      - {x: 5.8599997, y: -2.1399999}
-      - {x: 5.62, y: -1.92}
-      - {x: 5.41, y: -1.51}
-      - {x: 5.39, y: -1.49}
-      - {x: 5.19, y: -1.0699999}
-      - {x: 4.93, y: -0.83}
-      - {x: 4.7, y: -0.84999996}
-      - {x: 4.7, y: 0.21}
-      - {x: 4.68, y: 0.22999999}
-      - {x: 4.24, y: 0.22999999}
-      - {x: 4.5, y: 0.84999996}
-      - {x: 4.47, y: 1.3299999}
-      - {x: 4.24, y: 1.7099999}
-      - {x: 4.22, y: 1.73}
-      - {x: 4.08, y: 1.8199999}
-      - {x: 4.38, y: 2.85}
-      - {x: 3.99, y: 3.04}
-      - {x: 3.28, y: 3.24}
-      - {x: 2.35, y: 3.6899998}
-      - {x: 1.2099999, y: 4.35}
-      - {x: 1.22, y: 4.77}
-      - {x: 0.53999996, y: 5.38}
-      - {x: -0.52, y: 5.38}
-      - {x: -1.1899999, y: 4.72}
-      - {x: -1.2099999, y: 4.5099998}
-      - {x: -1.2099999, y: 4.12}
-      - {x: -1.64, y: 4.12}
-      - {x: -1.89, y: 3.86}
-      - {x: -2.34, y: 3.6699998}
-      - {x: -2.36, y: 3.6499999}
-      - {x: -2.81, y: 3.4499998}
-      - {x: -2.83, y: 3.4299998}
-      - {x: -3.28, y: 3.26}
-      - {x: -3.33, y: 3.06}
-      - {x: -4.0299997, y: 3.02}
-      - {x: -4.2599998, y: 2.81}
-      - {x: -4.23, y: 2.32}
-      - {x: -4, y: 2.35}
-      - {x: -4.49, y: 1.29}
-      - {x: -4.46, y: 0.81}
-      - {x: -4.73, y: 0.22999999}
-      - {x: -5.19, y: -1.01}
-      - {x: -5.8599997, y: -2.1399999}
-      - {x: -5.8599997, y: -2.37}
-      - {x: -5.85, y: -2.3799999}
-      - {x: -5.67, y: -2.81}
-      - {x: -4.92, y: -3.06}
-      - {x: -3.3, y: -3.26}
-      - {x: -3.05, y: -3.48}
-      - {x: -2.33, y: -3.48}
-      - {x: -1.89, y: -3.46}
-      - {x: -1.91, y: -4.1}
-      - {x: -1.65, y: -4.3399997}
-      - {x: -1.17, y: -4.54}
-      - {x: -0.25, y: -5.38}
-      - {x: 0.26, y: -5.38}
-      - {x: 1.1899999, y: -4.52}
-      - {x: 1.64, y: -4.3199997}
-      - {x: 1.66, y: -4.2999997}
-  m_UseDelaunayMesh: 0
 --- !u!50 &839972923 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 5125638913273948093, guid: 4e7ffd8e19368484688a62e5e7279190, type: 3}
@@ -2653,10 +2538,6 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3498801845089165258, guid: 4e7ffd8e19368484688a62e5e7279190, type: 3}
-      propertyPath: rotation
-      value: 200
-      objectReference: {fileID: 0}
     - target: {fileID: 7333339586550257900, guid: 4e7ffd8e19368484688a62e5e7279190, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2707,10 +2588,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7333339586550257900, guid: 4e7ffd8e19368484688a62e5e7279190, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1513916996}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3236553920344872639, guid: 4e7ffd8e19368484688a62e5e7279190, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 839972919}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e7ffd8e19368484688a62e5e7279190, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
