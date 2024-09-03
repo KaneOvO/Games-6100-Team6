@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Zexuan/Test For Ship Control.unity
-    guid: eda83fd4d9871e242a1db7d5a0b6cd00
+    path: Assets/Scenes/Liyu/menuScene.unity
+    guid: 556a9791d622ef248a7ec3e09ffc57c1
+  - enabled: 1
+    path: Assets/Scenes/Charles/Final Test.unity
+    guid: 60dfef5da226fab4a9e9b3124fd6c898
   m_configObjects: {}
