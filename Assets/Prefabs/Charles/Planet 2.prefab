@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
-  currentHealth: 1
+  currentHealth: 0
   damage: 1
   minSpeed: 0.25
   maxSpeed: 0.5
