@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public GameObject[] asteroidPrefabs;
-    public GameObject planetPrefab;
+    public GameObject[] planetPrefab;
     public GameObject player;
     public GameObject playerPrefab;
     public GameObject alienPrefab;
@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour
 
         InvokeRepeating("GenerateAlien", alienGenerateCooldown, alienGenerateCooldown);
         InvokeRepeating("GeneratePlanet", planetGenerateCooldown, planetGenerateCooldown);
+        UIManager.Instance.UpdateLife(lives);
     }
 
     // Update is called once per frame
@@ -127,7 +128,7 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
-        GameObject planetPre = planetPrefab;
+        GameObject planetPre = planetPrefab[Random.Range(0, planetPrefab.Length)];
         Vector3 Position = GetRandomOffScreenPosition();
         Instantiate(planetPre, Position, Quaternion.identity);
     }
@@ -210,6 +211,7 @@ public class GameManager : MonoBehaviour
     public void PlayerDeath()
     {
         Instance.lives--;
+        UIManager.Instance.UpdateLife(lives);
 
         if (Instance.lives <= 0)
         {

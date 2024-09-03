@@ -665,7 +665,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tmpText: {fileID: 1391889711}
-  gameSceneName: test_playScene
+  gameSceneName: Final Test
   flashDuration: 0.8
   quickFlashes: 3
   quickFlashDuration: 0.1
