@@ -185,7 +185,7 @@ public class Hook : MonoBehaviour
                 GameManager.Instance.moveToTarget = false;
                 StartCoroutine(CallFunctionWithDelay(invinciblePeriod));
                 GameManager.Instance.isRetracting = true;
-                if(targetTag == "Plannet")
+                if (targetTag == "Plannet")
                 {
                     GameManager.Instance.playerAnimator.SetTrigger("ToCloseMouth");
                 }
@@ -228,7 +228,7 @@ public class Hook : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (!GameManager.Instance.isRetracting && (other.CompareTag("Enemy") || other.CompareTag("Alien") || other.CompareTag("Planet")))
+        if (!GameManager.Instance.isRetracting && (other.CompareTag("Enemy") || other.CompareTag("Alien") || other.CompareTag("Planet")) || other.CompareTag("StartUI"))
         {
             if (hookHolder == null)
             {
@@ -255,25 +255,31 @@ public class Hook : MonoBehaviour
 
                 if (other.CompareTag("Alien"))
                 {
-                    if (other.GetComponent<AlienMovement>() != null)
+                    var alienMovement = other.GetComponent<AlienMovement>();
+
+                    if (alienMovement != null)
                     {
-                        other.GetComponent<AlienMovement>().speed /= 4;
+                        alienMovement.speed /= 2;
                     }
 
                 }
                 else if (other.CompareTag("Enemy"))
                 {
-                    if (other.GetComponent<AsteroidMovement>() != null)
+                    var asteroidMovement = other.GetComponent<AsteroidMovement>();
+
+                    if (asteroidMovement != null)
                     {
-                        other.GetComponent<AsteroidMovement>().speed /= 2;
+                        asteroidMovement.speed /= 2;
                     }
 
                 }
                 else if (other.CompareTag("Planet"))
                 {
-                    if (other.GetComponent<PlanetMovement>() != null)
+                    var planetMovement = other.GetComponent<PlanetMovement>();
+
+                    if (planetMovement != null)
                     {
-                        other.GetComponent<PlanetMovement>().speed /= 2;
+                        planetMovement.speed /= 2;
                     }
                 }
             }
