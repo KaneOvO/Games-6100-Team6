@@ -28,6 +28,7 @@ public class Hook : MonoBehaviour
     public float distanceOffset = 0.5f;
     public GameObject circle;
     int invincibleCount = 0;
+    [SerializeField] public float reactionForce = -0.5f;
 
 
 
@@ -202,6 +203,10 @@ public class Hook : MonoBehaviour
                 if (targetTag == "Plannet")
                 {
                     GameManager.Instance.playerAnimator.SetTrigger("ToCloseMouth");
+                }
+                if(GameManager.Instance.player.GetComponent<Rigidbody2D>() != null)
+                {
+                    GameManager.Instance.player.GetComponent<Rigidbody2D>().velocity = GameManager.Instance.player.GetComponent<Rigidbody2D>().velocity.normalized * reactionForce;
                 }
                 return;
             }

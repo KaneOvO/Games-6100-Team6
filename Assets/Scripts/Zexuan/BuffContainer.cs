@@ -113,7 +113,7 @@ public class BuffContainer : MonoBehaviour
 
     private void IncreaseInvincibleTime()
     {
-        longerInvincibleBuff = new Buff("Longer Invincible Buff", 0, true, "Increase invincible time by 50%")
+        longerInvincibleBuff = new Buff("Longer Shield Buff", 0, true, "Increase shield duration by 50%")
         {
             ApplyEffect = () =>
             {

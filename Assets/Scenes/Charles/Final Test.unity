@@ -2360,7 +2360,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4092251557150308505, guid: d8df621536c42a547823e93b709f8de7, type: 3}
       propertyPath: invinciblePeriod
-      value: 0.6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9123303067232941171, guid: d8df621536c42a547823e93b709f8de7, type: 3}
       propertyPath: m_Name
