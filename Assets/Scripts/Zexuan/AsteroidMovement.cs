@@ -45,7 +45,7 @@ public class AsteroidMovement : MonoBehaviour
     {
         // Movement
         if (isFreezen) return;
-        transform.Translate(direction * speed * Time.deltaTime);
+        transform.Translate(direction * speed * Time.deltaTime, Space.World);
         WrapAroundScreen();
     }
 
