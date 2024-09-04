@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
@@ -26,6 +27,7 @@ public class Hook : MonoBehaviour
     [SerializeField] float rotationSpeed = 360f;
     public float distanceOffset = 0.5f;
     public GameObject circle;
+    int invincibleCount = 0;
 
 
 
@@ -128,16 +130,28 @@ public class Hook : MonoBehaviour
                     Vector2 direction = (GameManager.Instance.player.transform.position - target.transform.position).normalized;
                     if (target.CompareTag("Alien"))
                     {
-
-                        target.GetComponent<AlienMovement>().direction = direction;
+                        var alienMovement = target.GetComponent<AlienMovement>();
+                        if (alienMovement != null)
+                        {
+                            alienMovement.direction = direction;
+                        }
                     }
                     else if (target.CompareTag("Enemy"))
                     {
-                        target.GetComponent<AsteroidMovement>().direction = direction;
+                        var asteroidMovement = target.GetComponent<AsteroidMovement>();
+                        if (asteroidMovement != null)
+                        {
+                            asteroidMovement.direction = direction;
+                        }
+
                     }
                     else if (target.CompareTag("Planet"))
                     {
-                        target.GetComponent<PlanetMovement>().direction = direction;
+                        var planetMovement = target.GetComponent<PlanetMovement>();
+                        if (planetMovement != null)
+                        {
+                            planetMovement.direction = direction;
+                        }
                     }
 
 
@@ -149,7 +163,7 @@ public class Hook : MonoBehaviour
                     GameManager.Instance.moveToTarget = true;
                     GameManager.Instance.playerAnimator.SetBool("IsEating", false);
                     GameManager.Instance.isGrappling = true;
-                    hookHolder.GetComponent<Ship>().isInvincible = true;
+                    SetInvincible(true);
                     AudioManager.Instance.Play("Launch");
                 }
             }
@@ -185,7 +199,7 @@ public class Hook : MonoBehaviour
                 GameManager.Instance.moveToTarget = false;
                 StartCoroutine(CallFunctionWithDelay(invinciblePeriod));
                 GameManager.Instance.isRetracting = true;
-                if(targetTag == "Plannet")
+                if (targetTag == "Plannet")
                 {
                     GameManager.Instance.playerAnimator.SetTrigger("ToCloseMouth");
                 }
@@ -307,19 +321,34 @@ public class Hook : MonoBehaviour
         launchSpeed = distanceToTarget + 1;
     }
 
-    void SetInvincible()
+    void SetInvincible(bool state)
     {
-        if (hookHolder == null)
+        if (state)
         {
-            return;
+            invincibleCount++;
+            if (hookHolder != null)
+            {
+                hookHolder.GetComponent<Ship>().isInvincible = true;
+            }
         }
-        hookHolder.GetComponent<Ship>().isInvincible = false;
+        else
+        {
+            invincibleCount--;
+            if (invincibleCount <= 0)
+            {
+                if (hookHolder != null)
+                {
+                    hookHolder.GetComponent<Ship>().isInvincible = false;
+                }
+                invincibleCount = 0;
+            }
+        }
     }
 
     IEnumerator CallFunctionWithDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        SetInvincible();
+        SetInvincible(false);
     }
 
     void RotateShipTowardsTarget()
