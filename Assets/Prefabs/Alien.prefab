@@ -106,10 +106,10 @@ MonoBehaviour:
   currentHealth: 0
   damage: 1
   minSpeed: 1
-  maxSpeed: 2
-  score: 100
+  maxSpeed: 1.5
+  score: 400
   alienMissilePrefab: {fileID: 8817167948475343575, guid: 6a71a711e7d0be84f8fe701ae68597d4, type: 3}
-  fireCooldown: 1
+  fireCooldown: 1.5
   changeDirectionCooldown: 3
   isInScene: 0
 --- !u!114 &-3689544818607921220
