@@ -511,10 +511,10 @@ RectTransform:
   - {fileID: 169691034}
   m_Father: {fileID: 923336030}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 400}
-  m_SizeDelta: {x: 1234, y: 612}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: 99}
+  m_SizeDelta: {x: 675.9, y: 612}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &256059591
 MonoBehaviour:
@@ -742,6 +742,8 @@ MonoBehaviour:
   alienPrefab: {fileID: 2306081102669611261, guid: 090a08b4fde46cf4bb186d06dc674d0f, type: 3}
   hook: {fileID: 0}
   playerExplosion: {fileID: 839972906}
+  score: 0
+  highScore: 0
   lives: 9999
   respawnInvinciblePeriod: 20000
   isGameOver: 0
@@ -889,6 +891,7 @@ MonoBehaviour:
   buff2Name: {fileID: 694967908}
   buff2Description: {fileID: 188882805}
   buff2ApplyButton: {fileID: 2022785851}
+  highScoreText: {fileID: 0}
 --- !u!114 &923336027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2923,7 +2926,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 56425d068906bab4284b8b6ed8c2881c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0d5227098acced7468bc3eec115f140e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.7019608}
   m_FlipX: 0
   m_FlipY: 0
