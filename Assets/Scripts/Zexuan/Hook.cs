@@ -29,6 +29,7 @@ public class Hook : MonoBehaviour
     public GameObject circle;
     int invincibleCount = 0;
     [SerializeField] public float reactionForce = -0.5f;
+    string targetTag;
 
 
 
@@ -64,8 +65,6 @@ public class Hook : MonoBehaviour
             hideHook();
             return;
         }
-
-        string targetTag = target != null ? target.tag : "null";
 
         isWrapping = false;
         if (hookHolder != null && target != null && target.GetComponent<AsteroidMovement>() != null)
@@ -204,7 +203,8 @@ public class Hook : MonoBehaviour
                 {
                     GameManager.Instance.playerAnimator.SetTrigger("ToCloseMouth");
                 }
-                if(GameManager.Instance.player.GetComponent<Rigidbody2D>() != null)
+                Debug.Log(targetTag);
+                if(GameManager.Instance.player.GetComponent<Rigidbody2D>() != null && targetTag == "Enemy")
                 {
                     GameManager.Instance.player.GetComponent<Rigidbody2D>().velocity = GameManager.Instance.player.GetComponent<Rigidbody2D>().velocity.normalized * reactionForce;
                 }
@@ -264,6 +264,7 @@ public class Hook : MonoBehaviour
                 smallSphere.transform.localPosition = localPosition;
 
                 target = other.gameObject;
+                targetTag = target.tag;
                 launchTarget = smallSphere;
                 Debug.Log("fly target position: " + launchTarget.transform.position);
 
