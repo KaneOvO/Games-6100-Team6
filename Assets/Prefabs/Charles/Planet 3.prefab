@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1767677358246347895}
   - component: {fileID: 9130076900071553585}
   - component: {fileID: 4299401283882049180}
+  - component: {fileID: 2303312047930576851}
   m_Layer: 3
   m_Name: Planet 3
   m_TagString: Planet
@@ -32,7 +33,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.047, y: 0.01, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -156,6 +157,7 @@ MonoBehaviour:
   score: 500
   hasTakenDamage: 0
   isInScene: 1
+  animator: {fileID: 0}
 --- !u!114 &4299401283882049180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,3 +173,24 @@ MonoBehaviour:
   speed: 0
   direction: {x: 0, y: 0}
   isFreezen: 0
+--- !u!95 &2303312047930576851
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7353103860970814151}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d07cf2dea31243345b34552a269e5631, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

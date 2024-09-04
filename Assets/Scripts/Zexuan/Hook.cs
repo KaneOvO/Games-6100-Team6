@@ -189,9 +189,9 @@ public class Hook : MonoBehaviour
 
         if (GameManager.Instance.moveToTarget)
         {
-            //Debug.Log("Grapple object: " + hookHolder.GetComponent<Ship>().grappleObject);
             if (hookHolder.GetComponent<Ship>().grappleObject == null)
             {
+                target = null;
                 Debug.Log("Grapple object is null");
                 GameManager.Instance.isGrappling = false;
                 isHooked = false;
@@ -199,10 +199,6 @@ public class Hook : MonoBehaviour
                 GameManager.Instance.moveToTarget = false;
                 StartCoroutine(CallFunctionWithDelay(invinciblePeriod));
                 GameManager.Instance.isRetracting = true;
-                if (targetTag == "Plannet")
-                {
-                    GameManager.Instance.playerAnimator.SetTrigger("ToCloseMouth");
-                }
                 Debug.Log(targetTag);
                 if(GameManager.Instance.player.GetComponent<Rigidbody2D>() != null && targetTag == "Enemy")
                 {

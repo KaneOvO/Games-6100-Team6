@@ -10,6 +10,8 @@ public class Planet : Item
     [SerializeField] int score;
     [SerializeField] bool hasTakenDamage = false;
     public bool isInScene = true;
+    public Animator animator;
+    Buff buff1, buff2;
 
     public float MinSpeed
     {
@@ -23,6 +25,7 @@ public class Planet : Item
 
     void Start()
     {
+        animator = GetComponent<Animator>();
         StartCoroutine(CallFunctionWithDelay(0.1f));
         int randomValue = Random.Range(0, 4);
         float angle = randomValue * 90f;
@@ -44,21 +47,34 @@ public class Planet : Item
                     if (attacker.GetComponent<Ship>().isInvincible)
                     {
                         GameManager.Instance.scoreChange(score);
-                        Buff buff1 = BuffContainer.Instance.GetRandomBuff();
-                        Buff buff2 = BuffContainer.Instance.GetRandomBuff();
+                        buff1 = BuffContainer.Instance.GetRandomBuff();
+                        buff2 = BuffContainer.Instance.GetRandomBuff();
                         while (buff1.name == buff2.name)
                         {
                             buff2 = BuffContainer.Instance.GetRandomBuff();
                         }
-                        GameManager.Instance.applyBuff(buff1, buff2);
+                        
                         AudioManager.Instance.Play("Upgrade");
                     }
 
                 }
-                Destroy(gameObject);
+                GameManager.Instance.playerAnimator.SetTrigger("ToCloseMouth");
+                animator.SetTrigger("Destory");
+                GameManager.Instance.player.GetComponent<Ship>().grappleObject = null;
+                transform.GetComponent<Collider2D>().enabled = false;
+                Debug.Log("Planet is call destory");
+
+                //Destroy(gameObject);
             }
 
         }
+    }
+
+    public void DestoryPlanet()
+    {
+        Debug.Log("Planet is destory");
+        GameManager.Instance.applyBuff(buff1, buff2);
+        Destroy(gameObject);
     }
 
 
