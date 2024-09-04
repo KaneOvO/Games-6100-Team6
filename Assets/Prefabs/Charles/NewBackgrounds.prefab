@@ -272,7 +272,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 77b32940134340c43a602bb94a412b64, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 71f0d264ec2e4c3499ac0ba878ba1ebb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -453,7 +453,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: fc238c5f27122e8469d3432f3da70bb4, type: 3}
+  m_Texture: {fileID: 2800000, guid: 3d142642bf01b4846bd99035c5139875, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -540,7 +540,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: db9cdf06a2ba2d84e9f9755d8bc75646, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4562da8cdd33b854fad4a6fcd6057978, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -615,7 +615,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fc238c5f27122e8469d3432f3da70bb4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2aeda2f4bbefc4343836e89083ac8605, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -635,7 +635,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7562012075715499381}
   m_Layer: 0
-  m_Name: LayeredBackground
+  m_Name: NewBackgrounds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -723,7 +723,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b4e200fb1994a6e4ba3ef4436e62ae61, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 309c73cd4254ca1408f0ea48cab9c7e9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
