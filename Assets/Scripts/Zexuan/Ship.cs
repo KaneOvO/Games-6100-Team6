@@ -15,6 +15,7 @@ public class Ship : Item
 
     public GameObject grappleObject;
     public bool isInvincible = false;
+    public GameObject shield;
 
     public float Speed
     {
@@ -70,6 +71,12 @@ public class Ship : Item
         sprite.color = Color.white;
     }
 
+    public IEnumerator CloseShield(float delayTime)
+    {
+        yield return new WaitForSeconds(delayTime);
+        shield.SetActive(false);
+    }
+
     public void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
@@ -86,12 +93,16 @@ public class Ship : Item
     {
         if (isInvincible)
         {
-            sprite.color = Color.blue;
+            //sprite.color = Color.blue;
+            if(!shield.activeSelf)
+            {
+                shield.SetActive(true);
+            }
 
         }
         else
         {
-            StartCoroutine(FlashBlue(0.1f));
+            StartCoroutine(CloseShield(0.1f));
         }
 
     }

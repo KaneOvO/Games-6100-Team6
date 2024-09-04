@@ -275,6 +275,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6485342861168450756, guid: f56c77cb9d09ffa46b3bb179623675b8, type: 3}
+      propertyPath: shield
+      value: 
+      objectReference: {fileID: 4922304476819157200}
+    - target: {fileID: 6485342861168450756, guid: f56c77cb9d09ffa46b3bb179623675b8, type: 3}
       propertyPath: rotation
       value: 200
       objectReference: {fileID: 0}
