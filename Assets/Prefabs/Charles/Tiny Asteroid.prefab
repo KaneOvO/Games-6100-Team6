@@ -4999,6 +4999,7 @@ MonoBehaviour:
   isLargeAsteroid: 0
   isPlanet: 0
   hasTakenDamage: 0
+  score: 50
   isInScene: 1
 --- !u!114 &4292136944923739653
 MonoBehaviour:

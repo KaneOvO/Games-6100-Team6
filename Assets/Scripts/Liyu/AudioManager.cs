@@ -54,7 +54,7 @@ public class AudioManager : MonoBehaviour
     public void Play(string name)
     {
         Sound s = System.Array.Find(sounds, sound => sound.name == name);
-        if (s != null)
+        if (s != null && s.source != null)
         {
             s.source.Play();
         }
