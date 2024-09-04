@@ -32,19 +32,3 @@ public class SceneChangeOnCollision : MonoBehaviour
         SceneManager.LoadScene(sceneToLoad);
     }
 }
-
-// public class SceneChangerOnCollision : MonoBehaviour
-// {
-//     public string sceneToLoad;  // The name of the scene to load
-
-//     // This method is called when another Collider2D enters the trigger
-//     private void OnCollisionEnter2D(Collision2D collision)
-//     {
-//         // Check if the collided object is tagged as "Player"
-//         if (collision.gameObject.CompareTag("Player"))
-//         {
-//             // Load the specified scene
-//             SceneManager.LoadScene(sceneToLoad);
-//         }
-//     }
-// }
