@@ -199,9 +199,10 @@ public class Hook : MonoBehaviour
                 GameManager.Instance.moveToTarget = false;
                 StartCoroutine(CallFunctionWithDelay(invinciblePeriod));
                 GameManager.Instance.isRetracting = true;
-                if (targetTag == "Plannet")
+                if (targetTag == "Planet")
                 {
                     GameManager.Instance.playerAnimator.SetTrigger("ToCloseMouth");
+                    //Debug.Log("Close mouth");
                 }
                 Debug.Log(targetTag);
                 if(GameManager.Instance.player.GetComponent<Rigidbody2D>() != null && targetTag == "Enemy")
