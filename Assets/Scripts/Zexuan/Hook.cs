@@ -289,6 +289,8 @@ public class Hook : MonoBehaviour
                     {
                         other.GetComponent<PlanetMovement>().speed /= 2;
                     }
+
+                    GameManager.Instance.playerAnimator.SetBool("IsEating", true);
                 }
             }
         }
