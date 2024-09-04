@@ -19,7 +19,8 @@ public class GameManager : MonoBehaviour
     public ParticleSystem playerExplosion;
     // GameObject[] asteroids;
     // GameObject[] aliens;
-    private int score;
+    public int score;
+    public int highScore;
     [SerializeField] public int lives = 3;
     [SerializeField] int respawnInvinciblePeriod;
     public bool isGameOver = false;
@@ -41,7 +42,7 @@ public class GameManager : MonoBehaviour
     public Animator playerAnimator;
 
 
-    private void Awake()
+    public void Awake()
     {
         if (Instance == null)
         {
@@ -59,6 +60,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        score = 0;
+        highScore = PlayerPrefs.GetInt("HighScore", 0);
         GenerateBatchAsteroids();
         // int asteroidCount = Random.Range(3, 6);
         // GenerateAsteroids(asteroidCount);
@@ -257,6 +260,10 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        if (score > highScore)
+        {
+            PlayerPrefs.SetInt("HighScore", score);
+        }
         Destroy(player);
         isGameOver = true;
         // CancelInvoke("GenerateSingleAsteroid");
