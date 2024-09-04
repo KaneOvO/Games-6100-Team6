@@ -102,7 +102,7 @@ public class Ship : Item
         }
         else
         {
-            StartCoroutine(CloseShield(0.1f));
+            StartCoroutine(CloseShield(0f));
         }
 
     }
