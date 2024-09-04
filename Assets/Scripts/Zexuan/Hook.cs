@@ -130,18 +130,27 @@ public class Hook : MonoBehaviour
                     if (target.CompareTag("Alien"))
                     {
                         var alienMovement = target.GetComponent<AlienMovement>();
-                        alienMovement.direction = direction;
+                        if(alienMovement != null)
+                        {
+                            alienMovement.direction = direction;
+                        }
                     }
                     else if (target.CompareTag("Enemy"))
                     {
                         var asteroidMovement = target.GetComponent<AsteroidMovement>();
-                        asteroidMovement.direction = direction;
+                        if(asteroidMovement != null)
+                        {
+                            asteroidMovement.direction = direction;
+                        }
 
                     }
                     else if (target.CompareTag("Planet"))
                     {
                         var planetMovement = target.GetComponent<PlanetMovement>();
-                        planetMovement.direction = direction;
+                        if(planetMovement != null)
+                        {
+                            planetMovement.direction = direction;
+                        }
                     }
 
 
