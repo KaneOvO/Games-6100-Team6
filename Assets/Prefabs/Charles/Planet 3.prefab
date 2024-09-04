@@ -157,6 +157,7 @@ MonoBehaviour:
   score: 500
   hasTakenDamage: 0
   isInScene: 1
+  animator: {fileID: 0}
 --- !u!114 &4299401283882049180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,7 +181,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7353103860970814151}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: d07cf2dea31243345b34552a269e5631, type: 2}
   m_CullingMode: 0

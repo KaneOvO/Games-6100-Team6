@@ -189,9 +189,9 @@ public class Hook : MonoBehaviour
 
         if (GameManager.Instance.moveToTarget)
         {
-            //Debug.Log("Grapple object: " + hookHolder.GetComponent<Ship>().grappleObject);
             if (hookHolder.GetComponent<Ship>().grappleObject == null)
             {
+                target = null;
                 Debug.Log("Grapple object is null");
                 GameManager.Instance.isGrappling = false;
                 isHooked = false;
