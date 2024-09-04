@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public GameObject playerPrefab;
     public GameObject alienPrefab;
     public GameObject hook;
+    public ParticleSystem playerExplosion;
     // GameObject[] asteroids;
     // GameObject[] aliens;
     private int score;
@@ -226,6 +227,9 @@ public class GameManager : MonoBehaviour
     {
         Instance.lives--;
         UIManager.Instance.UpdateLife(lives);
+        AudioManager.Instance.Play("Explosion_Player");
+        playerExplosion.transform.position = player.transform.position;
+        playerExplosion.Play();
 
         if (Instance.lives <= 0)
         {
@@ -242,7 +246,6 @@ public class GameManager : MonoBehaviour
     public IEnumerator Destory()
     {
         yield return new WaitForSeconds(2);
-        Destroy(player);
         player = Instantiate(playerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         playerAnimator = player.transform.GetChild(1).GetComponent<Animator>();
         hook.GetComponent<Hook>().hookHolder = player;

@@ -109,7 +109,7 @@ public class Ship : Item
 
     private void OnDestroy()
     {
-       AudioManager.Instance.Play("Explosion_Player");
+       
     }
 
 
