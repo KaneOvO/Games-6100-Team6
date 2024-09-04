@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
@@ -128,16 +129,19 @@ public class Hook : MonoBehaviour
                     Vector2 direction = (GameManager.Instance.player.transform.position - target.transform.position).normalized;
                     if (target.CompareTag("Alien"))
                     {
-
-                        target.GetComponent<AlienMovement>().direction = direction;
+                        var alienMovement = target.GetComponent<AlienMovement>();
+                        alienMovement.direction = direction;
                     }
                     else if (target.CompareTag("Enemy"))
                     {
-                        target.GetComponent<AsteroidMovement>().direction = direction;
+                        var asteroidMovement = target.GetComponent<AsteroidMovement>();
+                        asteroidMovement.direction = direction;
+
                     }
                     else if (target.CompareTag("Planet"))
                     {
-                        target.GetComponent<PlanetMovement>().direction = direction;
+                        var planetMovement = target.GetComponent<PlanetMovement>();
+                        planetMovement.direction = direction;
                     }
 
 
