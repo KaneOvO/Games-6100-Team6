@@ -10,6 +10,7 @@ public class AsteroidMovement : MonoBehaviour
     public Vector2 direction;
     public bool isFreezen = false;
     public bool isWrapping = false;
+    [SerializeField] private float spwanOffset = 0.2f;
 
     void Awake()
     {
@@ -37,7 +38,11 @@ public class AsteroidMovement : MonoBehaviour
 
             // Calculate direction towards the random world point
             direction = (randomWorldPoint - (Vector2)transform.position).normalized;
+
         }
+        //Debug.Log("Direction: " + direction);
+        //Debug.Log("New Direction: " + (Vector3)direction * spwanOffset);
+        transform.position += (Vector3)direction * spwanOffset;
     }
 
     // Update is called once per frame

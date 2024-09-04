@@ -28,7 +28,7 @@ public class Hook : MonoBehaviour
     public float distanceOffset = 0.5f;
     public GameObject circle;
     int invincibleCount = 0;
-    [SerializeField] public float reactionForce = -0.5f;
+    [SerializeField] public float reactionForce = 1f;
     string targetTag;
 
 
@@ -199,9 +199,10 @@ public class Hook : MonoBehaviour
                 GameManager.Instance.moveToTarget = false;
                 StartCoroutine(CallFunctionWithDelay(invinciblePeriod));
                 GameManager.Instance.isRetracting = true;
-                if (targetTag == "Plannet")
+                if (targetTag == "Planet")
                 {
                     GameManager.Instance.playerAnimator.SetTrigger("ToCloseMouth");
+                    //Debug.Log("Close mouth");
                 }
                 Debug.Log(targetTag);
                 if(GameManager.Instance.player.GetComponent<Rigidbody2D>() != null && targetTag == "Enemy")
