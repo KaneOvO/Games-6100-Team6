@@ -28,7 +28,7 @@ public class Hook : MonoBehaviour
     public float distanceOffset = 0.5f;
     public GameObject circle;
     int invincibleCount = 0;
-    [SerializeField] public float reactionForce = -0.5f;
+    [SerializeField] public float reactionForce = 1f;
     string targetTag;
 
 
