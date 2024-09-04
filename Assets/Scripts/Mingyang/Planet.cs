@@ -55,7 +55,9 @@ public class Planet : Item
                     }
 
                 }
-                Destroy(gameObject);
+                GameManager.Instance.playerAnimator.SetTrigger("ToCloseMouth");
+                
+                //Destroy(gameObject);
             }
 
         }
