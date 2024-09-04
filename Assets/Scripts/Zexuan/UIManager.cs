@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     public GameObject gameOverPanel;
     public GameObject choosePanel;
     public GameObject buff1Name, buff1Description, buff1ApplyButton, buff2Name, buff2Description, buff2ApplyButton;
+    public TextMeshProUGUI highScoreText;
 
     private void Awake()
     {
@@ -49,5 +50,20 @@ public class UIManager : MonoBehaviour
     public void GameOver()
     {
         gameOverPanel.SetActive(true);
+        HeightScore();
+    }
+
+    public void HeightScore()
+    {
+        if (GameManager.Instance.score > GameManager.Instance.highScore)
+        {
+            Debug.Log("New Record!");
+            highScoreText.text = "New Record!\n\nYour highest score is:\n\n" + GameManager.Instance.score.ToString();
+        }
+        else
+        {
+            Debug.Log("No Record!");
+            highScoreText.text = "Your highest score is:\n\n" + GameManager.Instance.highScore.ToString();
+        }
     }
 }
