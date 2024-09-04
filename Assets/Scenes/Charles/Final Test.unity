@@ -1143,7 +1143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d7160249d1344745844f698a94c94c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.5
+  parallaxFactor: -0.01
 --- !u!198 &1331292063 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 4105913045281720813, guid: 7a2859a7df88db147a01f3834baba76c, type: 3}
@@ -2099,7 +2099,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.8987778}
   m_AnchorMax: {x: 0.148, y: 1}
-  m_AnchoredPosition: {x: 8.700012, y: -4.700012}
+  m_AnchoredPosition: {x: 8.700104, y: -4.700012}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1834679799
@@ -2224,6 +2224,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2251739680177676512, guid: f916976d6ce0539439597f74450fdf3a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.004
+      objectReference: {fileID: 0}
+    - target: {fileID: 2251739680177676512, guid: f916976d6ce0539439597f74450fdf3a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.004
+      objectReference: {fileID: 0}
     - target: {fileID: 3534652810691762592, guid: f916976d6ce0539439597f74450fdf3a, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.25
