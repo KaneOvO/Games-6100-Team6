@@ -483,6 +483,7 @@ MonoBehaviour:
   rotationSpeed: 360
   distanceOffset: 0
   circle: {fileID: 7032317447481857171, guid: b91a052ae981f2b499fd1bc53ab7ebc8, type: 3}
+  reactionForce: 2.5
 --- !u!50 &4868298336659465139
 Rigidbody2D:
   serializedVersion: 4
