@@ -778,6 +778,7 @@ MonoBehaviour:
   isShootGrapple: 0
   isStopMusic: 0
   edgeSafeOffset: 0.005
+  playerAnimator: {fileID: 0}
 --- !u!1 &1161300783 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8411633812223925774, guid: ff0940d9650b9ea4291b34e9c258e835, type: 3}
@@ -1507,38 +1508,6 @@ PrefabInstance:
     - target: {fileID: 4828941397726775561, guid: e40bef25490921842b043561f798406e, type: 3}
       propertyPath: m_Name
       value: AudioManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 5059405381523661101, guid: e40bef25490921842b043561f798406e, type: 3}
-      propertyPath: sounds.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5059405381523661101, guid: e40bef25490921842b043561f798406e, type: 3}
-      propertyPath: sounds.Array.data[4].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: a561ffd3c9f74bc4b80a4fbc5c3563ee, type: 3}
-    - target: {fileID: 5059405381523661101, guid: e40bef25490921842b043561f798406e, type: 3}
-      propertyPath: sounds.Array.data[4].name
-      value: Explosion_Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 5059405381523661101, guid: e40bef25490921842b043561f798406e, type: 3}
-      propertyPath: sounds.Array.data[5].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 5fd7bd6abeb82f14593df71e1e48541b, type: 3}
-    - target: {fileID: 5059405381523661101, guid: e40bef25490921842b043561f798406e, type: 3}
-      propertyPath: sounds.Array.data[5].name
-      value: Explosion_Alien
-      objectReference: {fileID: 0}
-    - target: {fileID: 5059405381523661101, guid: e40bef25490921842b043561f798406e, type: 3}
-      propertyPath: sounds.Array.data[3].volume
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5059405381523661101, guid: e40bef25490921842b043561f798406e, type: 3}
-      propertyPath: sounds.Array.data[4].volume
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5059405381523661101, guid: e40bef25490921842b043561f798406e, type: 3}
-      propertyPath: sounds.Array.data[5].volume
-      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

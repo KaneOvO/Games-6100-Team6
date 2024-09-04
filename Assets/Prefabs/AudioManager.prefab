@@ -63,6 +63,16 @@ MonoBehaviour:
   - name: Upgrade
     clip: {fileID: 8300000, guid: 4ad2fc0d71d652e4bb61d70b78f8b2d8, type: 3}
     loop: 0
-    volume: 0.5
+    volume: 0.3
+    source: {fileID: 0}
+  - name: Explosion_Player
+    clip: {fileID: 8300000, guid: a561ffd3c9f74bc4b80a4fbc5c3563ee, type: 3}
+    loop: 0
+    volume: 0.2
+    source: {fileID: 0}
+  - name: Explosion_Alien
+    clip: {fileID: 8300000, guid: 5fd7bd6abeb82f14593df71e1e48541b, type: 3}
+    loop: 0
+    volume: 0.2
     source: {fileID: 0}
   backgroundMusicName: BackgroundMusic
