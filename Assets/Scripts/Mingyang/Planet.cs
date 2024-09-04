@@ -6,6 +6,8 @@ public class Planet : Item
 {
     [SerializeField] float minSpeed;
     [SerializeField] float maxSpeed;
+
+    [SerializeField] int score;
     [SerializeField] bool hasTakenDamage = false;
     public bool isInScene = true;
 
@@ -41,7 +43,7 @@ public class Planet : Item
                 {
                     if (attacker.GetComponent<Ship>().isInvincible)
                     {
-                        GameManager.Instance.scoreChange(500);
+                        GameManager.Instance.scoreChange(score);
                         Buff buff1 = BuffContainer.Instance.GetRandomBuff();
                         Buff buff2 = BuffContainer.Instance.GetRandomBuff();
                         while (buff1.name == buff2.name)

@@ -153,6 +153,7 @@ MonoBehaviour:
   damage: 1
   minSpeed: 0.25
   maxSpeed: 0.5
+  score: 500
   hasTakenDamage: 0
   isInScene: 1
 --- !u!114 &4299401283882049180

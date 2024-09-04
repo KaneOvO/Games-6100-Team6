@@ -11,6 +11,8 @@ public class Asteroid : Item
     [SerializeField] bool isLargeAsteroid;
     [SerializeField] public bool isPlanet;
     [SerializeField] bool hasTakenDamage = false;
+
+    [SerializeField] int score;
     public bool isInScene = true;
 
     int indexOfSmallAsteroid = 0;
@@ -45,7 +47,10 @@ public class Asteroid : Item
                 hasTakenDamage = true;
                 if (currentHealth < 1)
                 {
-                    GameManager.Instance.scoreChange(100);
+                    if (attacker.CompareTag("Player"))
+                    {
+                        GameManager.Instance.scoreChange(score);
+                    }
                     Destroy(gameObject);
                 }
             }
@@ -58,13 +63,13 @@ public class Asteroid : Item
                     if (attacker.CompareTag("Player") && attacker.GetComponent<Ship>().isConsumption == false)
                     {
                         SplitAsteroid(GameManager.Instance.asteroidPrefabs[indexOfSmallAsteroid]);
+                        GameManager.Instance.scoreChange(score);
                     }
                     else if (attacker.CompareTag("Alien") || attacker.CompareTag("AlienMissile"))
                     {
                         SplitAsteroid(GameManager.Instance.asteroidPrefabs[indexOfSmallAsteroid]);
                     }
 
-                    GameManager.Instance.scoreChange(150);
                     Destroy(gameObject);
                 }
             }
@@ -78,13 +83,13 @@ public class Asteroid : Item
                     if (attacker.CompareTag("Player") && attacker.GetComponent<Ship>().isConsumption == false)
                     {
                         SplitAsteroid(GameManager.Instance.asteroidPrefabs[indexOfMediumAsteroid]);
+
+                        GameManager.Instance.scoreChange(score);
                     }
                     else if (attacker.CompareTag("Alien") || attacker.CompareTag("AlienMissile"))
                     {
                         SplitAsteroid(GameManager.Instance.asteroidPrefabs[indexOfMediumAsteroid]);
                     }
-
-                    GameManager.Instance.scoreChange(200);
                     Destroy(gameObject);
                 }
             }

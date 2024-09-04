@@ -9,9 +9,11 @@ public class Alien : Item
     [SerializeField] int score;
     [SerializeField] GameObject alienMissilePrefab;
     [SerializeField] float fireCooldown;
+    private float realFireCooldown;
     public float changeDirectionCooldown;
     public bool isInScene = false; 
     private float sinceFire;
+    private bool allowFire;
     
        
 
@@ -28,36 +30,50 @@ public class Alien : Item
     void Start()
     {
         sinceFire = 0;
+        realFireCooldown = fireCooldown;
+        allowFire = true;
     }
 
     void Update()
     {
-        Fire();
+        if (allowFire)
+        {
+            Fire();
+
+        }
     }
 
     private void Fire()
     {
         sinceFire += Time.deltaTime;
         if (sinceFire < fireCooldown) return;
-        if (Random.Range(0, 20) > 5) return;
         
         Instantiate(alienMissilePrefab, transform.position, Quaternion.identity);
         sinceFire = 0;
+        realFireCooldown = fireCooldown * Random.Range(7, 13) / 10;
     }
 
     public override void TakeDamage(Attack attacker)
     {
         //Debug.Log("Alien taking damage");
         
-        currentHealth -= attacker.Damage;
+        
         if (attacker.CompareTag("Enemy") || attacker.CompareTag("Player") || attacker.CompareTag("Bullet") || attacker.CompareTag("Planet"))
         {
+            currentHealth -= attacker.Damage;
             if (currentHealth < 1)
             {
                 Destroy(gameObject);
-                GameManager.Instance.scoreChange(score);
+                if (attacker.CompareTag("Player"))
+                {
+                    GameManager.Instance.scoreChange(score);
+                }
             }
-        }    
+        }   
+        else if (attacker.CompareTag("Hook"))
+        {
+            allowFire = false;
+        }
         
     }
 

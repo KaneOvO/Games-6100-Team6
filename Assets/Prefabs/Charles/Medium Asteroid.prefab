@@ -101,14 +101,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
-  currenthealth: 1
+  currentHealth: 0
   damage: 1
   minSpeed: 0.5
   maxSpeed: 1
   isSmallAsteroid: 0
   isMediumAsteroid: 1
   isLargeAsteroid: 0
+  isPlanet: 0
   hasTakenDamage: 0
+  score: 150
   isInScene: 1
 --- !u!114 &9068727706944898940
 MonoBehaviour:
