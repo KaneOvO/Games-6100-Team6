@@ -5086,4 +5086,4 @@ MonoBehaviour:
   direction: {x: 0, y: 0}
   isFreezen: 0
   isWrapping: 0
-  spwanOffset: 0.1
+  spwanOffset: 0.2
