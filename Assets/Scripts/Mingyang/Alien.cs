@@ -80,6 +80,8 @@ public class Alien : Item
 
     public void OnDestroy()
     {
+        GameManager.Instance.alienExplosion.transform.position = transform.position;
+        GameManager.Instance.alienExplosion.Play();
         AudioManager.Instance.Play("Explosion_Alien");
     }
 }

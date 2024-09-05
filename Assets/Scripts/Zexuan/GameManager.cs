@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public GameObject alienPrefab;
     public GameObject hook;
     public ParticleSystem playerExplosion;
+    public ParticleSystem alienExplosion;
     // GameObject[] asteroids;
     // GameObject[] aliens;
     public int score;
