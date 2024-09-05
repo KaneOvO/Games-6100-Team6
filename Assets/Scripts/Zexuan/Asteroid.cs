@@ -34,6 +34,7 @@ public class Asteroid : Item
         int randomValue = Random.Range(0, 4);
         float angle = randomValue * 90f;
         transform.rotation = Quaternion.Euler(0, 0, angle);
+        currentHealth = health;
     }
 
     public override void TakeDamage(Attack attacker)

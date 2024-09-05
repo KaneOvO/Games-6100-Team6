@@ -32,6 +32,7 @@ public class Alien : Item
         sinceFire = 0;
         realFireCooldown = fireCooldown;
         allowFire = true;
+        currentHealth = health;
     }
 
     void Update()

@@ -30,21 +30,26 @@ public class Planet : Item
         int randomValue = Random.Range(0, 4);
         float angle = randomValue * 90f;
         transform.rotation = Quaternion.Euler(0, 0, angle);
+        currentHealth = health;
+    }
+
+    void Update()
+    {
+
     }
 
     public override void TakeDamage(Attack attacker)
     {
         if (hasTakenDamage) return;
-        if (attacker.CompareTag("Player") )
+        if (attacker.CompareTag("Player"))
         {
             currentHealth -= attacker.Damage;
             hasTakenDamage = true;
-
             if (currentHealth < 1)
             {
                 if (GameManager.Instance.isGrappling)
                 {
-                    if (attacker.GetComponent<Ship>().isInvincible)
+                    if (GameManager.Instance.player.GetComponent<Ship>().isInvincible)
                     {
                         GameManager.Instance.scoreChange(score);
                         buff1 = BuffContainer.Instance.GetRandomBuff();
