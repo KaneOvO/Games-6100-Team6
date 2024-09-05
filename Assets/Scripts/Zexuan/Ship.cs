@@ -65,12 +65,6 @@ public class Ship : Item
 
     }
 
-    public IEnumerator FlashBlue(float invinciblePeriod)
-    {
-        yield return new WaitForSeconds(invinciblePeriod);
-        sprite.color = Color.white;
-    }
-
     public IEnumerator CloseShield(float delayTime)
     {
         yield return new WaitForSeconds(delayTime);

@@ -92,11 +92,11 @@ public class GameManager : MonoBehaviour
             AudioManager.Instance.Pause("Upgrade");
             AudioManager.Instance.Pause("Explosion_player");
             AudioManager.Instance.Pause("Explosion_Alien");
-            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+            if ((Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) && UIManager.Instance.buff1ApplyButton.GetComponent<Button>().onClick != null)
             {
                 UIManager.Instance.buff1ApplyButton.GetComponent<Button>().onClick.Invoke();
             }
-            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+            if ((Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) && UIManager.Instance.buff1ApplyButton.GetComponent<Button>().onClick != null)
             {
                 UIManager.Instance.buff2ApplyButton.GetComponent<Button>().onClick.Invoke();
             }
@@ -247,19 +247,18 @@ public class GameManager : MonoBehaviour
         else
         {
             StartCoroutine(Destory());
-            Destroy(player);
         }
     }
 
     public IEnumerator Destory()
     {
+        Destroy(player);
         yield return new WaitForSeconds(2);
         player = Instantiate(playerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         playerAnimator = player.transform.GetChild(1).GetComponent<Animator>();
         hook.GetComponent<Hook>().hookHolder = player;
         hook.GetComponent<Hook>().pivot = player.transform.Find("Pivot").gameObject;
         player.GetComponent<Ship>().isInvincible = true;
-        StartCoroutine(player.GetComponent<Ship>().FlashBlue(respawnInvinciblePeriod));
         StartCoroutine(StopRespawnInvincible(respawnInvinciblePeriod));
     }
 

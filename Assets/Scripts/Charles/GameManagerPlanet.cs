@@ -186,7 +186,6 @@ public class GameManagerPlanet : MonoBehaviour
         hook.GetComponent<Hook>().hookHolder = player;
         hook.GetComponent<Hook>().pivot = player.transform.Find("Pivot").gameObject;
         player.GetComponent<Ship>().isInvincible = true;
-        StartCoroutine(player.GetComponent<Ship>().FlashBlue(respawnInvinciblePeriod));
         StartCoroutine(StopRespawnInvincible(respawnInvinciblePeriod));
     }
 

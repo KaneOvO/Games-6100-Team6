@@ -11,11 +11,11 @@ public class Alien : Item
     [SerializeField] float fireCooldown;
     private float realFireCooldown;
     public float changeDirectionCooldown;
-    public bool isInScene = false; 
+    public bool isInScene = false;
     private float sinceFire;
     private bool allowFire;
-    
-       
+
+
 
     public float MinSpeed
     {
@@ -48,7 +48,7 @@ public class Alien : Item
     {
         sinceFire += Time.deltaTime;
         if (sinceFire < fireCooldown) return;
-        
+
         Instantiate(alienMissilePrefab, transform.position, Quaternion.identity);
         sinceFire = 0;
         realFireCooldown = fireCooldown * Random.Range(7, 13) / 10;
@@ -57,8 +57,8 @@ public class Alien : Item
     public override void TakeDamage(Attack attacker)
     {
         //Debug.Log("Alien taking damage");
-        
-        
+
+
         if (attacker.CompareTag("Enemy") || attacker.CompareTag("Player") || attacker.CompareTag("Bullet") || attacker.CompareTag("Planet"))
         {
             currentHealth -= attacker.Damage;
@@ -70,18 +70,25 @@ public class Alien : Item
                     GameManager.Instance.scoreChange(score);
                 }
             }
-        }   
+        }
         else if (attacker.CompareTag("Hook"))
         {
             allowFire = false;
         }
-        
+
     }
 
     public void OnDestroy()
     {
-        GameManager.Instance.alienExplosion.transform.position = transform.position;
-        GameManager.Instance.alienExplosion.Play();
-        AudioManager.Instance.Play("Explosion_Alien");
+        if (GameManager.Instance.alienExplosion != null)
+        {
+            GameManager.Instance.alienExplosion.transform.position = transform.position;
+            GameManager.Instance.alienExplosion.Play();
+        }
+
+        if(AudioManager.Instance != null)
+        {
+           AudioManager.Instance.Play("Explosion_Alien");
+        }
     }
 }

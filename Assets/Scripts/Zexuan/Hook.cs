@@ -25,7 +25,7 @@ public class Hook : MonoBehaviour
     [SerializeField] float rotationSpeed = 360f;
     public float distanceOffset = 0.5f;
     public GameObject circle;
-    int invincibleCount = 0;
+    [SerializeField] int invincibleCount = 0;
     [SerializeField] public float reactionForce = 1f;
     string targetTag;
 
@@ -195,13 +195,17 @@ public class Hook : MonoBehaviour
                 isHooked = false;
                 hookHolder.GetComponent<Ship>().grappleObject = null;
                 GameManager.Instance.moveToTarget = false;
-                StartCoroutine(CallFunctionWithDelay(invinciblePeriod));
                 GameManager.Instance.isRetracting = true;
-                Debug.Log(targetTag);
-                if(GameManager.Instance.player.GetComponent<Rigidbody2D>() != null && targetTag == "Enemy")
+                if (invincibleCount > 0)
+                {
+                    StartCoroutine(CallFunctionWithDelay(invinciblePeriod));
+                }
+
+                if (GameManager.Instance.player.GetComponent<Rigidbody2D>() != null && targetTag == "Enemy")
                 {
                     GameManager.Instance.player.GetComponent<Rigidbody2D>().velocity = GameManager.Instance.player.GetComponent<Rigidbody2D>().velocity.normalized * reactionForce;
                 }
+                
                 return;
             }
         }
@@ -336,13 +340,13 @@ public class Hook : MonoBehaviour
         else
         {
             invincibleCount--;
-            if (invincibleCount <= 0)
+            if (invincibleCount < 0)
             {
-                if (hookHolder != null)
-                {
-                    hookHolder.GetComponent<Ship>().isInvincible = false;
-                }
                 invincibleCount = 0;
+            }
+            if (invincibleCount == 0 && hookHolder != null)
+            {
+                hookHolder.GetComponent<Ship>().isInvincible = false;
             }
         }
     }

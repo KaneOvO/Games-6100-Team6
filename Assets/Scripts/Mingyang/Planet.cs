@@ -49,23 +49,20 @@ public class Planet : Item
             {
                 if (GameManager.Instance.isGrappling)
                 {
-                    if (GameManager.Instance.player.GetComponent<Ship>().isInvincible)
+                    GameManager.Instance.scoreChange(score);
+                    buff1 = BuffContainer.Instance.GetRandomBuff();
+                    buff2 = BuffContainer.Instance.GetRandomBuff();
+                    while (buff1.name == buff2.name)
                     {
-                        GameManager.Instance.scoreChange(score);
-                        buff1 = BuffContainer.Instance.GetRandomBuff();
                         buff2 = BuffContainer.Instance.GetRandomBuff();
-                        while (buff1.name == buff2.name)
-                        {
-                            buff2 = BuffContainer.Instance.GetRandomBuff();
-                        }
-
-                        AudioManager.Instance.Play("Upgrade");
-                        GameManager.Instance.playerAnimator.SetTrigger("ToCloseMouth");
-                        animator.SetTrigger("Destory");
-                        GameManager.Instance.player.GetComponent<Ship>().grappleObject = null;
-                        transform.GetComponent<Collider2D>().enabled = false;
-                        Debug.Log("Planet is call destory");
                     }
+
+                    AudioManager.Instance.Play("Upgrade");
+                    GameManager.Instance.playerAnimator.SetTrigger("ToCloseMouth");
+                    animator.SetTrigger("Destory");
+                    GameManager.Instance.player.GetComponent<Ship>().grappleObject = null;
+                    transform.GetComponent<Attack>().Damage = 0;
+                    Debug.Log("Planet is call destory");
 
                 }
                 else
