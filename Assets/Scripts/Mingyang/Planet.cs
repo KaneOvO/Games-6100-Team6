@@ -35,14 +35,14 @@ public class Planet : Item
     public override void TakeDamage(Attack attacker)
     {
         if (hasTakenDamage) return;
-        if (attacker.CompareTag("Player"))
+        if (attacker.CompareTag("Player") )
         {
             currentHealth -= attacker.Damage;
             hasTakenDamage = true;
 
             if (currentHealth < 1)
             {
-                if (attacker.CompareTag("Player"))
+                if (GameManager.Instance.isGrappling)
                 {
                     if (attacker.GetComponent<Ship>().isInvincible)
                     {
@@ -53,18 +53,20 @@ public class Planet : Item
                         {
                             buff2 = BuffContainer.Instance.GetRandomBuff();
                         }
-                        
+
                         AudioManager.Instance.Play("Upgrade");
+                        GameManager.Instance.playerAnimator.SetTrigger("ToCloseMouth");
+                        animator.SetTrigger("Destory");
+                        GameManager.Instance.player.GetComponent<Ship>().grappleObject = null;
+                        transform.GetComponent<Collider2D>().enabled = false;
+                        Debug.Log("Planet is call destory");
                     }
 
                 }
-                GameManager.Instance.playerAnimator.SetTrigger("ToCloseMouth");
-                animator.SetTrigger("Destory");
-                GameManager.Instance.player.GetComponent<Ship>().grappleObject = null;
-                transform.GetComponent<Collider2D>().enabled = false;
-                Debug.Log("Planet is call destory");
-
-                //Destroy(gameObject);
+                else
+                {
+                    Destroy(gameObject);
+                }
             }
 
         }
