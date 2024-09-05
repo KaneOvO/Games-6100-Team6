@@ -237,7 +237,6 @@ public class GameManager : MonoBehaviour
         if (Instance.lives <= 0)
         {
             Instance.GameOver();
-            Destroy(player);
         }
         else
         {
@@ -260,18 +259,21 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        isGameOver = true;
         if (score > highScore)
         {
             PlayerPrefs.SetInt("HighScore", score);
         }
         Destroy(player);
-        isGameOver = true;
-        // CancelInvoke("GenerateSingleAsteroid");
         UIManager.Instance.GameOver();
     }
 
     public void scoreChange(int change)
     {
+        if (isGameOver)
+        {
+            return;
+        }
         score += change;
         UIManager.Instance.UpdateScore(score);
     }

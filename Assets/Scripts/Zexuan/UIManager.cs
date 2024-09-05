@@ -57,12 +57,11 @@ public class UIManager : MonoBehaviour
     {
         if (GameManager.Instance.score > GameManager.Instance.highScore)
         {
-            Debug.Log("New Record!");
-            highScoreText.text = "New Record!\nYour highest score is:\n" + GameManager.Instance.score.ToString();
+            GameManager.Instance.highScore = GameManager.Instance.score;
+            highScoreText.text = "New Record!\nYour highest score is:\n" + GameManager.Instance.highScore.ToString();
         }
         else
         {
-            Debug.Log("No Record!");
             highScoreText.text = "Your highest score is:\n" + GameManager.Instance.highScore.ToString();
         }
     }
