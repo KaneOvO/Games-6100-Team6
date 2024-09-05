@@ -964,7 +964,7 @@ MonoBehaviour:
   score: 0
   highScore: 0
   lives: 9999
-  respawnInvinciblePeriod: 20000
+  respawnInvinciblePeriod: 2
   isGameOver: 0
   xBorderOffset: 0
   yBorderOffset: 0
