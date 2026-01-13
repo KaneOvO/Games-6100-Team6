@@ -79,4 +79,28 @@ public class Asteroid : Item
         movement1.SetDirection(direction1);
         movement2.SetDirection(direction2);
     }
+
+    // 碰撞检测：当陨石碰撞到玩家时触发伤害事件（观察者模式）
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            // 触发玩家伤害事件
+            int damageAmount = damage > 0 ? damage : 1; // 如果damage为0，默认造成1点伤害
+            PlayerDamageEvent.TriggerPlayerDamage(damageAmount);
+            Debug.Log($"陨石碰撞到玩家，触发伤害事件，伤害值: {damageAmount}");
+        }
+    }
+
+    // 触发器检测：当陨石触发到玩家时触发伤害事件（观察者模式）
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            // 触发玩家伤害事件
+            int damageAmount = damage > 0 ? damage : 1; // 如果damage为0，默认造成1点伤害
+            PlayerDamageEvent.TriggerPlayerDamage(damageAmount);
+            Debug.Log($"陨石触发到玩家，触发伤害事件，伤害值: {damageAmount}");
+        }
+    }
 }

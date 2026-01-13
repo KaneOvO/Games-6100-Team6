@@ -10,20 +10,20 @@ public class Item : MonoBehaviour
 
     public int Health
     {
-        get { return Health; }
-        set { Health = value; }
+        get { return health; }
+        set { health = value; }
     }
 
     public int Damage
     {
-        get { return Damage; }
-        set { Damage = value; }
+        get { return damage; }
+        set { damage = value; }
     }
 
     public int CurrentHealth
     {
-        get { return CurrentHealth; }
-        set { CurrentHealth = value; }
+        get { return currenthealth; }
+        set { currenthealth = value; }
     }
 
     public virtual void TakeDamage(Attack attacker)

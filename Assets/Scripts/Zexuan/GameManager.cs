@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
 
     void GenerateSingleAsteroid()
     {
-        int randomIndex = Random.Range(0, 3);
+        int randomIndex = Random.Range(3, 5);
         GenerateAsteroids(randomIndex);
     }
 
