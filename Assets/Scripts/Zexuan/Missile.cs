@@ -6,7 +6,6 @@ public class Missile : Item
 {
     [SerializeField] float speed;
     Rigidbody2D missileRb;
-    // Start is called before the first frame update
 
     void Awake()
     {
@@ -21,19 +20,15 @@ public class Missile : Item
 
     void OnBecameInvisible()
     {
-        //Destroy(gameObject);
         gameObject.SetActive(false);
     }
     
-    public override void TakeDamage(Attack attacker)
+    public override void OnEnemyDamage(Attack attacker)
     {
-        if (attacker.CompareTag("Enemy"))
+        currenthealth -= attacker.Damage;
+        if (currenthealth <= 0)
         {
-            currenthealth -= attacker.Damage;
-            if (currenthealth <= 0)
-            {
-                gameObject.SetActive(false);
-            }
+            gameObject.SetActive(false);
         }
 
     }

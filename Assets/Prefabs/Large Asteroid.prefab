@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6fbff0e5dfdb6674384ff21cb27c454e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ebc5d4eb80aa98648ab270dcf6ef97f9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -138,6 +138,9 @@ MonoBehaviour:
   health: 1
   currenthealth: 1
   damage: 1
+  enemyTags:
+  - Bullet
+  allyTags: []
   minSpeed: 0.5
   maxSpeed: 1
   asteroidType: 2

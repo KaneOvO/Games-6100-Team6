@@ -8,6 +8,10 @@ public class Item : MonoBehaviour
     [SerializeField] protected int currenthealth;
     [SerializeField] protected int damage;
 
+    //tag 列表
+    [SerializeField] protected List<string> enemyTags;
+    [SerializeField] protected List<string> allyTags;
+
     public int Health
     {
         get { return health; }
@@ -26,9 +30,25 @@ public class Item : MonoBehaviour
         set { currenthealth = value; }
     }
 
-    public virtual void TakeDamage(Attack attacker)
+    public void TakeDamage(Attack attacker)
+    {
+        if (enemyTags.Contains(attacker.tag))
+        {
+            OnEnemyDamage(attacker);
+        }
+        else if (allyTags.Contains(attacker.tag))
+        {
+            OnAllyBuff(attacker);
+        }
+    }
+
+    public virtual void OnEnemyDamage(Attack attacker)
     {
 
     }
-    
+
+    public virtual void OnAllyBuff(Attack attacker)
+    {
+
+    }
 }

@@ -192,4 +192,7 @@ MonoBehaviour:
   health: 1
   currenthealth: 1
   damage: 1
+  enemyTags:
+  - Enemy
+  allyTags: []
   speed: 10

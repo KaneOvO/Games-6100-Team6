@@ -6,7 +6,8 @@ public class Asteroid : Item
 {
     [SerializeField] float minSpeed;
     [SerializeField] float maxSpeed;
-    [SerializeField] enum AsteroidType
+    [SerializeField]
+    enum AsteroidType
     {
         Small,
         Medium,
@@ -25,45 +26,44 @@ public class Asteroid : Item
         get { return maxSpeed; }
     }
 
-    public override void TakeDamage(Attack attacker)
+    public override void OnEnemyDamage(Attack attacker)
     {
         if (hasTakenDamage) return;
         hasTakenDamage = true;
         Debug.Log("Asteroid taking damage");
-        if (attacker.CompareTag("Bullet") || attacker.CompareTag("Player"))
+        if (asteroidType == AsteroidType.Small)
         {
-            if (asteroidType == AsteroidType.Small)
+            currenthealth -= attacker.Damage;
+            if (currenthealth < 1)
             {
-                currenthealth -= attacker.Damage;
-                if (currenthealth < 1)
-                {
-                    Destroy(gameObject);
-                    GameManager.Instance.scoreChange(100);
-                }
-            }
-            else if (asteroidType == AsteroidType.Medium)
-            {
-                currenthealth -= attacker.Damage;
-                if (currenthealth < 1)
-                {
-                    Debug.Log("Medium asteroid destroyed");
-                    Destroy(gameObject);
-                    SplitAsteroid(GameManager.Instance.asteroidPrefabs[(int)AsteroidType.Small]);
-                    GameManager.Instance.scoreChange(150);
-                }
-            }
-            else if (asteroidType == AsteroidType.Large)
-            {
-                currenthealth -= attacker.Damage;
-                if (currenthealth < 1)
-                {
-                    Debug.Log("Large asteroid destroyed");
-                    Destroy(gameObject);
-                    SplitAsteroid(GameManager.Instance.asteroidPrefabs[(int)AsteroidType.Medium]);
-                    GameManager.Instance.scoreChange(200);
-                }
+                Destroy(gameObject);
+                GameManager.Instance.scoreChange(100);
             }
         }
+        else if (asteroidType == AsteroidType.Medium)
+        {
+            currenthealth -= attacker.Damage;
+            if (currenthealth < 1)
+            {
+                Debug.Log("Medium asteroid destroyed");
+                Destroy(gameObject);
+                SplitAsteroid(GameManager.Instance.asteroidPrefabs[(int)AsteroidType.Small]);
+                GameManager.Instance.scoreChange(150);
+            }
+        }
+        else if (asteroidType == AsteroidType.Large)
+        {
+            currenthealth -= attacker.Damage;
+            if (currenthealth < 1)
+            {
+                Debug.Log("Large asteroid destroyed");
+                Destroy(gameObject);
+                SplitAsteroid(GameManager.Instance.asteroidPrefabs[(int)AsteroidType.Medium]);
+                GameManager.Instance.scoreChange(200);
+            }
+        }
+
+        AudioManager.Instance.PlaySound(Random.Range(0, 3));
     }
 
     private void SplitAsteroid(GameObject asteroidPrefab)
@@ -78,14 +78,5 @@ public class Asteroid : Item
 
         movement1.SetDirection(direction1);
         movement2.SetDirection(direction2);
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            int damageAmount = damage > 0 ? damage : 1;
-            PlayerDamageEvent.TriggerPlayerDamage(damageAmount);
-        }
     }
 }

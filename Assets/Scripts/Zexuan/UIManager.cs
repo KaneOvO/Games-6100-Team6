@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance { get; private set; }
     public TextMeshProUGUI scoreText;
     public GameObject gameOverPanel;
+    public TextMeshProUGUI HealthText;
 
     private void Awake()
     {
@@ -22,17 +23,14 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    // Start is called before the first frame update
     void Start()
     {
-
+        Ship.OnPlayerDamaged += UpdateHealth;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDestroy()
     {
-
+        Ship.OnPlayerDamaged -= UpdateHealth;
     }
 
     public void UpdateScore(int score)
@@ -43,5 +41,10 @@ public class UIManager : MonoBehaviour
     public void GameOver()
     {
         gameOverPanel.SetActive(true);
+    }
+
+    public void UpdateHealth(int health)
+    {
+        HealthText.text = " X " + health.ToString();
     }
 }

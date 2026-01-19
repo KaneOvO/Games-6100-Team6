@@ -10,6 +10,4 @@ public class Attack : MonoBehaviour
     {
         other.gameObject.GetComponent<Item>()?.TakeDamage(this);
     }
-
-    
 }

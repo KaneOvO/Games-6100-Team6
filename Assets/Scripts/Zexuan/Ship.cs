@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Ship : Item
 {
@@ -9,8 +10,8 @@ public class Ship : Item
     [SerializeField] float linearDrag;
     [SerializeField] ParticleSystem boostParticle;
     [SerializeField] ParticleSystem collisionParticle;
-
-    private float invincibilityDuration = 1.0f;
+    public static event Action<int> OnPlayerDamaged;
+    [SerializeField] float invincibilityDuration = 1.0f;
     private bool isInvincible = false;
     private SpriteRenderer spriteRenderer;
 
@@ -42,37 +43,39 @@ public class Ship : Item
         }
 
         spriteRenderer = GetComponent<SpriteRenderer>();
-
-        PlayerDamageEvent.OnPlayerDamaged += HandlePlayerDamage;
     }
-
     private void OnDestroy()
     {
-        PlayerDamageEvent.OnPlayerDamaged -= HandlePlayerDamage;
+        
     }
 
-    private void HandlePlayerDamage(object sender, PlayerDamageEventArgs e)
+    public override void OnEnemyDamage(Attack attacker)
     {
         if (isInvincible)
         {
             return;
         }
 
-        currenthealth -= e.Damage;
+        currenthealth -= attacker.Damage;
+
+        OnPlayerDamaged?.Invoke(currenthealth);
 
         if (currenthealth <= 0)
         {
             currenthealth = 0;
-            Debug.Log("玩家死亡");
             GameManager.Instance.GameOver();
             Destroy(gameObject);
             return;
         }
-
+        
         StartCoroutine(InvincibilityCoroutine());
     }
 
-    // 无敌时间协程
+    public override void OnAllyBuff(Attack attacker)
+    {
+        
+    }
+
     private IEnumerator InvincibilityCoroutine()
     {
         isInvincible = true;
