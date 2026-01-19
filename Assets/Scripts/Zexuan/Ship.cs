@@ -4,25 +4,24 @@ using UnityEngine;
 
 public class Ship : Item
 {
-    [SerializeField] float speed;
-    [SerializeField] float rotation;
+    [SerializeField] float movementSpeed;
+    [SerializeField] float rotationSpeed;
     [SerializeField] float linearDrag;
     [SerializeField] ParticleSystem boostParticle;
     [SerializeField] ParticleSystem collisionParticle;
-    
-    // 无敌时间（秒）
+
     private float invincibilityDuration = 1.0f;
     private bool isInvincible = false;
     private SpriteRenderer spriteRenderer;
 
     public float Speed
     {
-        get { return speed; }
+        get { return movementSpeed; }
     }
 
     public float Rotation
     {
-        get { return rotation; }
+        get { return rotationSpeed; }
     }
 
     public float LinearDrag
@@ -37,39 +36,30 @@ public class Ship : Item
 
     private void Start()
     {
-        // 初始化生命值
         if (currenthealth <= 0)
         {
             currenthealth = health;
         }
-        
-        // 获取SpriteRenderer组件（用于无敌时的闪烁效果）
+
         spriteRenderer = GetComponent<SpriteRenderer>();
-        
-        // 订阅玩家伤害事件
+
         PlayerDamageEvent.OnPlayerDamaged += HandlePlayerDamage;
     }
 
     private void OnDestroy()
     {
-        // 取消订阅事件
         PlayerDamageEvent.OnPlayerDamaged -= HandlePlayerDamage;
     }
 
-    // 处理玩家伤害事件（观察者模式）
     private void HandlePlayerDamage(object sender, PlayerDamageEventArgs e)
     {
-        // 如果处于无敌状态，忽略伤害
         if (isInvincible)
         {
             return;
         }
 
-        // 造成伤害
         currenthealth -= e.Damage;
-        Debug.Log($"玩家受到 {e.Damage} 点伤害，当前生命值: {currenthealth}/{health}");
 
-        // 检查是否死亡
         if (currenthealth <= 0)
         {
             currenthealth = 0;
@@ -79,7 +69,6 @@ public class Ship : Item
             return;
         }
 
-        // 启动无敌时间
         StartCoroutine(InvincibilityCoroutine());
     }
 
@@ -88,12 +77,11 @@ public class Ship : Item
     {
         isInvincible = true;
         float elapsedTime = 0f;
-        float blinkInterval = 0.1f; // 闪烁间隔
+        float blinkInterval = 0.1f;
         bool visible = true;
 
         while (elapsedTime < invincibilityDuration)
         {
-            // 闪烁效果
             if (spriteRenderer != null)
             {
                 visible = !visible;
@@ -104,7 +92,6 @@ public class Ship : Item
             yield return new WaitForSeconds(blinkInterval);
         }
 
-        // 恢复可见
         if (spriteRenderer != null)
         {
             spriteRenderer.enabled = true;

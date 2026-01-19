@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
     public GameObject[] asteroidPrefabs;
     public GameObject player;
     public int score;
-    //private bool isGameOver = false;
 
     private void Awake()
     {
@@ -33,7 +32,6 @@ public class GameManager : MonoBehaviour
         InvokeRepeating("GenerateSingleAsteroid", 3.0f, 3.0f);
     }
 
-    // Update is called once per frame
     void Update()
     {
 

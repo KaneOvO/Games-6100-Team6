@@ -139,7 +139,7 @@ MonoBehaviour:
   currenthealth: 1
   damage: 1
   minSpeed: 1
-  maxSpeed: 2
+  maxSpeed: 1.5
   isSmallAsteroid: 1
   isMediumAsteroid: 0
   isLargeAsteroid: 0

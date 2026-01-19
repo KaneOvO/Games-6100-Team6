@@ -6,13 +6,14 @@ public class Asteroid : Item
 {
     [SerializeField] float minSpeed;
     [SerializeField] float maxSpeed;
-    [SerializeField] bool isSmallAsteroid;
-    [SerializeField] bool isMediumAsteroid;
-    [SerializeField] bool isLargeAsteroid;
+    [SerializeField] enum AsteroidType
+    {
+        Small,
+        Medium,
+        Large
+    }
+    [SerializeField] AsteroidType asteroidType;
     private bool hasTakenDamage = false;
-    
-    int indexOfSmallAsteroid = 0;
-    int indexOfMediumAsteroid = 1;
 
     public float MinSpeed
     {
@@ -31,7 +32,7 @@ public class Asteroid : Item
         Debug.Log("Asteroid taking damage");
         if (attacker.CompareTag("Bullet") || attacker.CompareTag("Player"))
         {
-            if (isSmallAsteroid)
+            if (asteroidType == AsteroidType.Small)
             {
                 currenthealth -= attacker.Damage;
                 if (currenthealth < 1)
@@ -40,25 +41,25 @@ public class Asteroid : Item
                     GameManager.Instance.scoreChange(100);
                 }
             }
-            else if (isMediumAsteroid)
+            else if (asteroidType == AsteroidType.Medium)
             {
                 currenthealth -= attacker.Damage;
                 if (currenthealth < 1)
                 {
                     Debug.Log("Medium asteroid destroyed");
                     Destroy(gameObject);
-                    SplitAsteroid(GameManager.Instance.asteroidPrefabs[indexOfSmallAsteroid]);
+                    SplitAsteroid(GameManager.Instance.asteroidPrefabs[(int)AsteroidType.Small]);
                     GameManager.Instance.scoreChange(150);
                 }
             }
-            else if (isLargeAsteroid)
+            else if (asteroidType == AsteroidType.Large)
             {
                 currenthealth -= attacker.Damage;
                 if (currenthealth < 1)
                 {
                     Debug.Log("Large asteroid destroyed");
                     Destroy(gameObject);
-                    SplitAsteroid(GameManager.Instance.asteroidPrefabs[indexOfMediumAsteroid]);
+                    SplitAsteroid(GameManager.Instance.asteroidPrefabs[(int)AsteroidType.Medium]);
                     GameManager.Instance.scoreChange(200);
                 }
             }
@@ -72,7 +73,6 @@ public class Asteroid : Item
         AsteroidMovement movement1 = newAsteroid1.GetComponent<AsteroidMovement>();
         AsteroidMovement movement2 = newAsteroid2.GetComponent<AsteroidMovement>();
 
-        // Set random directions for the new asteroids
         Vector2 direction1 = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
         Vector2 direction2 = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
 
@@ -80,27 +80,12 @@ public class Asteroid : Item
         movement2.SetDirection(direction2);
     }
 
-    // 碰撞检测：当陨石碰撞到玩家时触发伤害事件（观察者模式）
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            // 触发玩家伤害事件
-            int damageAmount = damage > 0 ? damage : 1; // 如果damage为0，默认造成1点伤害
-            PlayerDamageEvent.TriggerPlayerDamage(damageAmount);
-            Debug.Log($"陨石碰撞到玩家，触发伤害事件，伤害值: {damageAmount}");
-        }
-    }
-
-    // 触发器检测：当陨石触发到玩家时触发伤害事件（观察者模式）
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            // 触发玩家伤害事件
-            int damageAmount = damage > 0 ? damage : 1; // 如果damage为0，默认造成1点伤害
+            int damageAmount = damage > 0 ? damage : 1;
             PlayerDamageEvent.TriggerPlayerDamage(damageAmount);
-            Debug.Log($"陨石触发到玩家，触发伤害事件，伤害值: {damageAmount}");
         }
     }
 }
