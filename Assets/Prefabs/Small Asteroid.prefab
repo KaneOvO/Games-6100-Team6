@@ -140,9 +140,13 @@ MonoBehaviour:
   damage: 1
   enemyTags:
   - Bullet
+  - Player
   allyTags: []
   minSpeed: 1
   maxSpeed: 1.5
+  heartPrefab: {fileID: 7353103860970814151, guid: 908fded2e59a9804999c57bb5c93f549, type: 3}
+  shieldPrefab: {fileID: 7353103860970814151, guid: 3c64e1611fd230b418cf3d844170c987, type: 3}
+  dropItemProbability: 0.2
   asteroidType: 0
 --- !u!114 &-4083842890992229914
 MonoBehaviour:

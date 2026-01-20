@@ -7,8 +7,6 @@ public class Item : MonoBehaviour
     [SerializeField] protected int health;
     [SerializeField] protected int currenthealth;
     [SerializeField] protected int damage;
-
-    //tag 列表
     [SerializeField] protected List<string> enemyTags;
     [SerializeField] protected List<string> allyTags;
 

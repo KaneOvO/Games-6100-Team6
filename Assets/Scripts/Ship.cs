@@ -7,13 +7,12 @@ public class Ship : Item
 {
     [SerializeField] float movementSpeed;
     [SerializeField] float rotationSpeed;
-    [SerializeField] float linearDrag;
-    [SerializeField] ParticleSystem boostParticle;
-    [SerializeField] ParticleSystem collisionParticle;
-    public static event Action<int> OnPlayerDamaged;
+    [SerializeField] float linearDrag;    public static event Action<int> OnPlayerDamaged;
     [SerializeField] float invincibilityDuration = 1.0f;
+    [SerializeField] float shieldInvincibilityDuration = 3.0f;
     private bool isInvincible = false;
     private SpriteRenderer spriteRenderer;
+    private SpriteRenderer shieldSprite;
 
     public float Speed
     {
@@ -29,12 +28,6 @@ public class Ship : Item
     {
         get { return linearDrag; }
     }
-
-    public ParticleSystem BoostParticle
-    {
-        get { return boostParticle; }
-    }
-
     private void Start()
     {
         if (currenthealth <= 0)
@@ -43,12 +36,8 @@ public class Ship : Item
         }
 
         spriteRenderer = GetComponent<SpriteRenderer>();
+        shieldSprite = transform.Find("shield_white").GetComponent<SpriteRenderer>();
     }
-    private void OnDestroy()
-    {
-        
-    }
-
     public override void OnEnemyDamage(Attack attacker)
     {
         if (isInvincible)
@@ -73,7 +62,19 @@ public class Ship : Item
 
     public override void OnAllyBuff(Attack attacker)
     {
-        
+        if(attacker.CompareTag("Heart"))
+        {
+            if(currenthealth < health)
+            {
+                currenthealth -= attacker.Damage;
+            }
+            OnPlayerDamaged?.Invoke(currenthealth);
+        }
+        else if(attacker.CompareTag("Shield"))
+        {
+            StartCoroutine(ShieldCoroutine());
+        }
+        PlayPowerUpAudio();
     }
 
     private IEnumerator InvincibilityCoroutine()
@@ -101,5 +102,19 @@ public class Ship : Item
         }
 
         isInvincible = false;
+    }
+
+    private IEnumerator ShieldCoroutine()
+    {
+        isInvincible = true;
+        shieldSprite.enabled = true;
+        yield return new WaitForSeconds(shieldInvincibilityDuration);
+        shieldSprite.enabled = false;
+        isInvincible = false;
+    }
+
+    private void PlayPowerUpAudio()
+    {
+        AudioManager.Instance.PlaySound(UnityEngine.Random.Range(3, 6));
     }
 }

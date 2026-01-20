@@ -11,12 +11,11 @@ GameObject:
   - component: {fileID: 8795560847397179917}
   - component: {fileID: 6381570822676171982}
   - component: {fileID: 5812306069386933425}
-  - component: {fileID: 1740974046421183324}
-  - component: {fileID: 5441783355505192668}
+  - component: {fileID: 4055058384309559408}
   - component: {fileID: 1767677358246347895}
   m_Layer: 0
-  m_Name: Large Asteroid
-  m_TagString: Enemy
+  m_Name: Heart
+  m_TagString: Heart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -77,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ebc5d4eb80aa98648ab270dcf6ef97f9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4d106cc6c44ff954e8ba746271b4890e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -120,10 +119,10 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0784968, y: -0.026165605}
-  m_Size: {x: 1.0332634, y: 1.0414038}
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.25, y: 0.25}
   m_Direction: 0
---- !u!114 &1740974046421183324
+--- !u!114 &4055058384309559408
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,35 +131,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 7353103860970814151}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23b4678c4a55f134da7435d3349be790, type: 3}
+  m_Script: {fileID: 11500000, guid: 1259f94374f601a468312bdbc0fd989f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
-  currenthealth: 1
-  damage: 1
-  enemyTags:
-  - Bullet
+  health: 0
+  currenthealth: 0
+  damage: 0
+  enemyTags: []
+  allyTags:
   - Player
-  allyTags: []
-  minSpeed: 0.5
-  maxSpeed: 1
-  heartPrefab: {fileID: 7353103860970814151, guid: 908fded2e59a9804999c57bb5c93f549, type: 3}
-  shieldPrefab: {fileID: 7353103860970814151, guid: 3c64e1611fd230b418cf3d844170c987, type: 3}
-  dropItemProbability: 0.2
-  asteroidType: 2
---- !u!114 &5441783355505192668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7353103860970814151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 560ed65f407cd9e4093a9014be9511e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  direction: {x: 0, y: 0}
+  lifeTime: 10
 --- !u!114 &1767677358246347895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,4 +153,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bc3014405909a84fb281e4f50347004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 1
+  Damage: -1

@@ -10,17 +10,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject missilePrefab;
     private float fireRate = 0.2f;
     private float nextFireTime = 0f;
-
-    // Start is called before the first frame update
     void Start()
     {
         ship = GetComponent<Ship>();
         playerRb = GetComponent<Rigidbody2D>();
         playerRb.drag = ship.LinearDrag;
-        //playerAudio = GetComponents<AudioSource>()[0];
     }
 
-    // Update is called once per frame
     void Update()
     {
         MovementInput();
@@ -44,21 +40,11 @@ public class PlayerController : MonoBehaviour
     private void StartBoost()
     {
         playerRb.AddRelativeForce(Vector3.up * ship.Speed * Time.deltaTime);
-        // if (!ship.BoostParticle.isPlaying)
-        // {
-        //     ship.BoostParticle.Play();
-        // }
-
-        // if (!playerAudio.isPlaying)
-        // {
-        //     playerAudio.PlayOneShot(ship.FlyAudio, 0.2f);
-        // }
     }
 
     private void StopBoost()
     {
-        //playerAudio.Stop();
-        //ship.BoostParticle.Stop();
+        
     }
 
     private void RotationInput()
@@ -118,6 +104,7 @@ public class PlayerController : MonoBehaviour
                 missile.transform.position = transform.position;
                 missile.transform.rotation = transform.rotation;
                 missile.SetActive(true);
+                AudioManager.Instance.PlaySound(Random.Range(6, 9));
             }
         }
     }

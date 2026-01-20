@@ -55,11 +55,9 @@ public class GameManager : MonoBehaviour
 
     Vector2 GetRandomOffScreenPosition()
     {
-        //Get the screen width and height
         float screenWidth = Screen.width;
         float screenHeight = Screen.height;
 
-        // Generate a random position on the edge of the screen
         float x = 0;
         float y = 0;
         int edge = Random.Range(0, 4);
@@ -84,7 +82,6 @@ public class GameManager : MonoBehaviour
                 break;
         }
 
-        // Convert screen position to world position
         return Camera.main.ScreenToWorldPoint(new Vector2(x, y));
     }
 
@@ -95,7 +92,6 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        //isGameOver = true;
         CancelInvoke("GenerateSingleAsteroid");
         UIManager.Instance.GameOver();
     }

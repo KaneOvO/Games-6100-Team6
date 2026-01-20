@@ -6,7 +6,9 @@ public class Asteroid : Item
 {
     [SerializeField] float minSpeed;
     [SerializeField] float maxSpeed;
-    [SerializeField]
+    [SerializeField] GameObject heartPrefab;
+    [SerializeField] GameObject shieldPrefab;
+    [SerializeField] float dropItemProbability = 0.2f;
     enum AsteroidType
     {
         Small,
@@ -36,8 +38,8 @@ public class Asteroid : Item
             currenthealth -= attacker.Damage;
             if (currenthealth < 1)
             {
-                Destroy(gameObject);
                 GameManager.Instance.scoreChange(100);
+                Destroy(gameObject);
             }
         }
         else if (asteroidType == AsteroidType.Medium)
@@ -45,10 +47,9 @@ public class Asteroid : Item
             currenthealth -= attacker.Damage;
             if (currenthealth < 1)
             {
-                Debug.Log("Medium asteroid destroyed");
-                Destroy(gameObject);
                 SplitAsteroid(GameManager.Instance.asteroidPrefabs[(int)AsteroidType.Small]);
                 GameManager.Instance.scoreChange(150);
+                Destroy(gameObject);
             }
         }
         else if (asteroidType == AsteroidType.Large)
@@ -56,12 +57,13 @@ public class Asteroid : Item
             currenthealth -= attacker.Damage;
             if (currenthealth < 1)
             {
-                Debug.Log("Large asteroid destroyed");
-                Destroy(gameObject);
                 SplitAsteroid(GameManager.Instance.asteroidPrefabs[(int)AsteroidType.Medium]);
                 GameManager.Instance.scoreChange(200);
+                Destroy(gameObject);
             }
         }
+
+        GenerateDropItem();
 
         AudioManager.Instance.PlaySound(Random.Range(0, 3));
     }
@@ -78,5 +80,25 @@ public class Asteroid : Item
 
         movement1.SetDirection(direction1);
         movement2.SetDirection(direction2);
+    }
+
+    private void GenerateDropItem()
+    {
+        if (Random.value > dropItemProbability)
+        {
+            return;
+        }
+
+        int randomIndex = Random.Range(0, 2);
+
+        switch (randomIndex)
+        {
+            case 0:
+                Instantiate(heartPrefab, transform.position, Quaternion.identity);
+                break;
+            case 1:
+                Instantiate(shieldPrefab, transform.position, Quaternion.identity);
+                break;
+        }
     }
 }
